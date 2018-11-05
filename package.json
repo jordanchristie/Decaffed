@@ -1,0 +1,24 @@
+{
+  "name": "decaffed",
+  "version": "1.0.0",
+  "description": "Coffee finder app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordanchristie/Decaffed.git"
+  },
+  "keywords": [
+    "mern",
+    "coffee",
+    "react"
+  ],
+  "author": "Jordan Christie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordanchristie/Decaffed/issues"
+  },
+  "homepage": "https://github.com/jordanchristie/Decaffed#readme"
+}
