@@ -10,6 +10,12 @@ class CoffeeMap extends Component {
     constructor(props) {
         super(props)
     }
+
+    fetchCoffeeShops = (mapProps, map) => {
+        const {google} = mapProps;
+        const service = new google.maps.places.PlacesService(map)
+    }
+
     render() {
         const style = {
             width: '100vw',
@@ -20,8 +26,9 @@ class CoffeeMap extends Component {
                 item
                 xs={14}
                 style={style}
-                google={this.props.google}
                 zoom={14}
+                google={this.props.google}
+                onReady={this.fetchCoffeeShops}
                 initialCenter = {{ lat: 39.648209, lng: -75.711185 }}
             />
         )
