@@ -6,21 +6,18 @@ import {
     Marker,
     InfoWindow
 } from 'google-maps-react';
-import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent';
+
+import apiKey from '../keys';
 
 class CoffeeMap extends Component {
 
-    fetchCoffeeShops = (mapProps, map) => {
-        const {google} = mapProps;
-        const service = new google.maps.places.PlacesService(map)
-    }
 
     render() {
+        console.log(apiKey)
         const style = {
             width: '100vw',
             height: '100vh'
         }
-        console.log(this.props.coordinates)
         return (
             <Map
                 item
@@ -28,17 +25,18 @@ class CoffeeMap extends Component {
                 style={style}
                 zoom={14}
                 google={this.props.google}
-                onReady={this.fetchCoffeeShops}
-                initialCenter = {{lng: '-74.42293410000002' , lat: '41.4459271'}}
+                onReady={this.props.fetchCoffeeShops}
+                initialCenter = {this.props.coordinates}
             />
         )
     }
 }
 
-const mapStateToProps = ({coordinates}) => {
-    return {coordinates};
+const mapStateToProps = ({coordinates, coffeeShops}) => {
+    return {coordinates, coffeeShops};
 }
 
-const apiWrapper = GoogleApiWrapper({apiKey: 'AIzaSyDUGTleGS8fQgue69O5g4A91DRPJWU8Zfg'})(CoffeeMap)
+
+const apiWrapper = GoogleApiWrapper({apiKey})(CoffeeMap)
 
 export default connect(mapStateToProps)(apiWrapper);

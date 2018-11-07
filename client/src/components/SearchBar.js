@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { fetchCoordinates } from '../actions';
 import './SearchBar.css';
 
+import apiKey from '../keys';
+
 
 class SearchBar extends Component {
     constructor(props) {
@@ -17,17 +19,22 @@ class SearchBar extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
         this.props.fetchCoordinates(this.state.coordinates, this.props.history);
+        
     }
 
     render() {
-        return <GoogleComponent 
-                    apiKey={process.env.apiKey}
-                    coordinates={true}
-                    onChange={e => this.handleSearch(e)}
-                    onSelect={this.handleSubmit}
-                />
-        
+        return (
+            <>
+                <GoogleComponent 
+                        apiKey={apiKey}
+                        coordinates={true}
+                        onChange={e => this.handleSearch(e)}
+                    />
+                <button onClick={this.handleSubmit}>Find Coffee</button>
+            </>
+        )
     }
 }
 
