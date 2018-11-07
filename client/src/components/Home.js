@@ -9,7 +9,7 @@ class Home extends Component {
             <div id="home">
                 <h1>Decaffed</h1>
                 <h3>Find a coffee shop nearby to recaffeinate.</h3>
-                <SearchBar />
+                <SearchBar {...this.props}/>
             </div>
         )
     }

@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     GoogleApiWrapper,
     Map,
     Marker,
     InfoWindow
 } from 'google-maps-react';
+import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent';
 
 class CoffeeMap extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     fetchCoffeeShops = (mapProps, map) => {
         const {google} = mapProps;
@@ -19,8 +18,9 @@ class CoffeeMap extends Component {
     render() {
         const style = {
             width: '100vw',
-            height: '50vh'
+            height: '100vh'
         }
+        console.log(this.props.coordinates)
         return (
             <Map
                 item
@@ -29,10 +29,16 @@ class CoffeeMap extends Component {
                 zoom={14}
                 google={this.props.google}
                 onReady={this.fetchCoffeeShops}
-                initialCenter = {{ lat: 39.648209, lng: -75.711185 }}
+                initialCenter = {{lng: '-74.42293410000002' , lat: '41.4459271'}}
             />
         )
     }
 }
 
-export default GoogleApiWrapper({apiKey: 'AIzaSyDUGTleGS8fQgue69O5g4A91DRPJWU8Zfg'})(CoffeeMap);
+const mapStateToProps = ({coordinates}) => {
+    return {coordinates};
+}
+
+const apiWrapper = GoogleApiWrapper({apiKey: 'AIzaSyDUGTleGS8fQgue69O5g4A91DRPJWU8Zfg'})(CoffeeMap)
+
+export default connect(mapStateToProps)(apiWrapper);
