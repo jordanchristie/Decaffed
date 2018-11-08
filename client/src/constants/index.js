@@ -1,1 +1,2 @@
 export const GET_COORDINATES = 'GET_COORDINATES';
+export const GET_COFFEE_SHOPS = 'GET_COFFEE_SHOPS';

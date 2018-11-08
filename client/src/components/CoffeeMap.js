@@ -7,27 +7,41 @@ import {
     InfoWindow
 } from 'google-maps-react';
 
+import { fetchCoffeeShops } from '../actions';
 import apiKey from '../keys';
+import './CoffeeMap.css';
 
 class CoffeeMap extends Component {
+    
+    loadCoffeeShops = () => {
+        this.props.fetchCoffeeShops(this.props.coordinates, this.props.google)
+    }
 
+    // renderMarkers = () => {
+    //     console.log(this.props.coffeeShops)
+    //     this.props.coffeeShops.map((shop, i) => {
+    //         return <Marker />
+    //     })
+    // }
 
     render() {
-        console.log(apiKey)
         const style = {
             width: '100vw',
             height: '100vh'
         }
+
         return (
-            <Map
-                item
-                xs={14}
-                style={style}
-                zoom={14}
-                google={this.props.google}
-                onReady={this.props.fetchCoffeeShops}
-                initialCenter = {this.props.coordinates}
-            />
+            <div id="map">
+                <Map
+                    item
+                    xs={14}
+                    style={style}
+                    zoom={14}
+                    google={this.props.google}
+                    onReady={this.loadCoffeeShops}
+                    initialCenter={this.props.coordinates}
+                />
+            </div>   
         )
     }
 }
@@ -39,4 +53,4 @@ const mapStateToProps = ({coordinates, coffeeShops}) => {
 
 const apiWrapper = GoogleApiWrapper({apiKey})(CoffeeMap)
 
-export default connect(mapStateToProps)(apiWrapper);
+export default connect(mapStateToProps, {fetchCoffeeShops})(apiWrapper);
