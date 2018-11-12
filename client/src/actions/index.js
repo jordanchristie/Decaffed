@@ -5,7 +5,7 @@ export const fetchCoordinates = (coordinates, history) => {
     history.push('/map')
     return {
         type: GET_COORDINATES,
-        payload: coordinates
+        coordinates
     }
 }
 
@@ -20,7 +20,7 @@ export const fetchCoffeeShops = (coordinates, google) => {
         };
     const callback = (places, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            dispatch({type: GET_COFFEE_SHOPS, payload: places}); 
+            dispatch({type: GET_COFFEE_SHOPS, places}); 
         }
     }
     service.nearbySearch(request, callback);

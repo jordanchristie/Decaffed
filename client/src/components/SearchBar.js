@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchCoordinates } from '../actions';
 import './SearchBar.css';
 
-import apiKey from '../keys';
+import keys from '../keys.json';
 
 
 class SearchBar extends Component {
@@ -28,7 +28,7 @@ class SearchBar extends Component {
         return (
             <>
                 <GoogleComponent 
-                        apiKey={apiKey}
+                        apiKey={keys.GoogleAPIKey}
                         coordinates={true}
                         onChange={e => this.handleSearch(e)}
                     />
