@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleComponent } from 'react-google-location';
 import { connect } from 'react-redux';
-import { fetchCoordinates } from '../actions';
+import { fetchCoordinates, fetchCoffeeShops } from '../actions';
 import './SearchBar.css';
 
 import keys from '../keys.json';
@@ -21,7 +21,7 @@ class SearchBar extends Component {
         e.preventDefault();
 
         this.props.fetchCoordinates(this.state.coordinates, this.props.history);
-        
+        this.props.fetchCoffeeShops(this.state.coordinates);
     }
 
     render() {
@@ -42,4 +42,4 @@ const mapStateToProps = ({coordinates}) => {
     return {coordinates};
 }
 
-export default connect(mapStateToProps, {fetchCoordinates})(SearchBar);
+export default connect(mapStateToProps, {fetchCoordinates, fetchCoffeeShops})(SearchBar);

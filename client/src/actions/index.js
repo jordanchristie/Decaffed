@@ -1,5 +1,5 @@
 import { GET_COORDINATES, GET_COFFEE_SHOPS } from '../constants';
-
+import keys from '../keys.json';
 
 export const fetchCoordinates = (coordinates, history) => {
     history.push('/map')
@@ -9,21 +9,12 @@ export const fetchCoordinates = (coordinates, history) => {
     }
 }
 
-export const fetchCoffeeShops = (coordinates, google) => {
+export const fetchCoffeeShops = (coordinates) => {
     // Places API setup
     return dispatch => {
-        const service = new google.maps.places.PlacesService(document.getElementById('map'));
-        const request = {
-            location: coordinates,
-            radius: 50000,
-            type: ['cafe']
-        };
-    const callback = (places, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            dispatch({type: GET_COFFEE_SHOPS, places}); 
-        }
-    }
-    service.nearbySearch(request, callback);
+        fetch(`https://cors-anywhere.herokuapp.com/${keys.YelpSearchURL}&latitude=${coordinates.lat}&longitude=${coordinates.lng}`, {headers: {Authorization: `Bearer ${keys.YelpAPIKey}`}})
+            .then(res => res.json())
+            .then(places => dispatch({type: GET_COFFEE_SHOPS, places}))
     }
     
 }
