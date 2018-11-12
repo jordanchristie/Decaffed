@@ -14,7 +14,7 @@ export const fetchCoffeeShops = (coordinates) => {
     return dispatch => {
         fetch(`https://cors-anywhere.herokuapp.com/${keys.YelpSearchURL}&latitude=${coordinates.lat}&longitude=${coordinates.lng}`, {headers: {Authorization: `Bearer ${keys.YelpAPIKey}`}})
             .then(res => res.json())
-            .then(places => dispatch({type: GET_COFFEE_SHOPS, places}))
+            .then(data => dispatch({type: GET_COFFEE_SHOPS, places: data.businesses}))
     }
     
 }

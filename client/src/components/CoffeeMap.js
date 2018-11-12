@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-    GoogleApiWrapper,
-    Map,
-    Marker,
-    InfoWindow
-} from 'google-maps-react';
+import { GoogleApiWrapper, Map } from 'google-maps-react';
 
+import CoffeeShop from './CoffeeShop';
 import { fetchCoffeeShops } from '../actions';
 import keys from '../keys.json';
 import './CoffeeMap.css';
@@ -22,12 +18,11 @@ class CoffeeMap extends Component {
     }
 
     renderMarkers = () => {
-        console.log(this.props.coffeeShops)
-        const {google, coffeeShops} = this.props
+        const {coffeeShops} = this.props
         coffeeShops.map((shop, i) => {
-            return <Marker 
-                        key={i}
-                        animation={google.maps.Animation.DROP}
+            return <CoffeeShop
+                        key={shop.id}
+                        coffeeShop={shop}
                     />
         })
     }
@@ -37,10 +32,8 @@ class CoffeeMap extends Component {
             width: '100vw',
             height: '100vh'
         }
-        console.log(this.props.coffeeShops)
         return (
             <div id="map">
-                <button onClick={this.loadCoffeeShops}></button>
                 <Map
                     item
                     xs={14}
@@ -48,7 +41,9 @@ class CoffeeMap extends Component {
                     zoom={14}
                     google={this.props.google}
                     initialCenter={this.props.coordinates}
+                    onReady={this.renderMarkers()}
                 >
+                {this.renderMarkers}
                 </Map>
             </div>   
         )
