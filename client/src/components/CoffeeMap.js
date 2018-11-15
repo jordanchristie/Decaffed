@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 
-import CoffeeShopModal from './CoffeeShopModal';
 import { fetchCoffeeShops } from '../actions';
 import keys from '../keys.json';
 import './CoffeeMap.css';
@@ -25,12 +24,6 @@ class CoffeeMap extends Component {
             infoWindowOpen: true
         })
     }
-
-    renderModal = () => {
-        console.log('clicked')
-        return <CoffeeShopModal />
-    }
-
 
     render() {
         const style = {
@@ -55,20 +48,26 @@ class CoffeeMap extends Component {
                         title={shop.name}
                         name={shop.name}
                         position={{lat: shop.coordinates.latitude, lng: shop.coordinates.longitude}}
-                        animation={this.props.google.maps.Animation.DROP}
                         onClick={this.selectMarker}/>
                 })}
                 { 
-                    this.state.activeMarker && 
+                    this.state.activeMarker && (
                         <InfoWindow
                         marker={this.state.activeMarker}
                         visible={this.state.infoWindowOpen}
+                        onClick={this.renderModal}
                         >
-                        <img src={selectedPlace.image_url} alt="place" class="shop-img"/>
-                        <h4 onClick={this.renderModal}>{selectedPlace.name}</h4>
-                       
+                        <div className="shop-details">
+                            <img src={selectedPlace.image_url} alt="place" className="shop-img"/>
+                            <h4>{selectedPlace.name}</h4>
+                            <i className="fa fa-envelope"></i>{selectedPlace.location.address1} <br/>
+                            {selectedPlace.location.city}, {selectedPlace.location.state}
+                            {selectedPlace.location.zip_code}<br />
+                            <i className="fa fa-phone"></i>{selectedPlace.phone} <br/>
+                            <i className="fa fa-star"></i>{selectedPlace.rating}/5
+                       </div>
                         </InfoWindow>
-
+                    )
                 }
                 
                 </Map>
