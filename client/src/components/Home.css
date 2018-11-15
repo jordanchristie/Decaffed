@@ -5,4 +5,22 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    background: url('https://media.giphy.com/media/kQHPwJmJxKzyU/giphy.gif') no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+}
+
+h1 {
+    font-size: 5em;
+    margin: 0;
+}
+
+h3 {
+    font-size: 3em;
+    width: 50%;
+}
+
+.google-covert {
+    background: rgba(0,0,0,0.7);
 }
