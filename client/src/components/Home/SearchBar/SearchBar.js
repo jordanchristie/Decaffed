@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { GoogleComponent } from 'react-google-location';
 import { connect } from 'react-redux';
-import { fetchCoordinates, fetchCoffeeShops } from '../actions';
+import { fetchCoordinates, fetchCoffeeShops } from '../../../actions';
 import './SearchBar.css';
 
-import keys from '../keys.json';
+import keys from '../../../keys.json';
 
 
 class SearchBar extends Component {

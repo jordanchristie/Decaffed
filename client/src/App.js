@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Home from './components/Home';
-import CoffeeMap from './components/CoffeeMap';
+import Home from './components/Home/Home';
+import CoffeeMap from './components/CoffeeMap/CoffeeMap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css'

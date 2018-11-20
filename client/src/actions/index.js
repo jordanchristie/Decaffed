@@ -10,7 +10,6 @@ export const fetchCoordinates = (coordinates, history) => {
 }
 
 export const fetchCoffeeShops = (coordinates) => {
-    console.log(coordinates)
     // Places API setup
     return dispatch => {
         fetch(`https://cors-anywhere.herokuapp.com/${keys.YelpSearchURL}&latitude=${coordinates.lat}&longitude=${coordinates.lng}`, {headers: {Authorization: `Bearer ${keys.YelpAPIKey}`}})

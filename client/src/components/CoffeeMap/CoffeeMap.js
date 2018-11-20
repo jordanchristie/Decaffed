@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 
-import { fetchCoffeeShops } from '../actions';
-import keys from '../keys.json';
+import ShopDetails from './ShopDetails/ShopDetails';
+import { fetchCoffeeShops } from '../../actions';
+import keys from '../../keys.json';
 import './CoffeeMap.css';
 
 class CoffeeMap extends Component {
@@ -44,7 +45,7 @@ class CoffeeMap extends Component {
     }
 
     addNote = () => {
-        console.log('note added!')
+        console.log('hi there')
     }
 
     render() {
@@ -77,19 +78,14 @@ class CoffeeMap extends Component {
                 { 
                     this.state.activeMarker && (
                         <InfoWindow
+                        className="infowindow"
                         marker={this.state.activeMarker}
                         visible={this.state.infoWindowOpen}
+                        selectedPlace={selectedPlace}
+                        addNote={this.addNote}
                         >
-                        <div className="shop-details">
-                            <img src={selectedPlace.image_url} alt="place" className="shop-img"/>
-                            <h4>{selectedPlace.name}</h4>
-                            <i className="fa fa-envelope"></i>{selectedPlace.location.address1} <br/>
-                            {selectedPlace.location.city}, {selectedPlace.location.state}
-                            {selectedPlace.location.zip_code}<br />
-                            <i className="fa fa-phone"></i>{selectedPlace.phone} <br/>
-                            <i className="fa fa-star"></i>{selectedPlace.rating}/5 <br/>
-                            <button onClick={this.addNote}>Add Note</button>
-                       </div>
+                        <ShopDetails shop={selectedPlace}  />
+                        {this.props.children}
                         </InfoWindow>
                     )
                 }

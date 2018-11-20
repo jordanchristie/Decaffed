@@ -12,3 +12,7 @@
 .fa {
     margin-right: .5em;
 }
+
+.infowindow {
+    transition: all .5s ease-in-out;
+}
