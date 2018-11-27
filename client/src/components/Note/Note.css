@@ -10,9 +10,26 @@
     align-items: center;
     z-index: 1000;
     color: #fff;
+}
+
+.fa-window-close {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    margin: 0;
+}
+
+h3 {
     text-align: center;
+}
+
+label {
+    font-size: 2em;
+    margin: .5em;
 }
 
 input, textarea {
     width: 70%;
+    background: rgb(212, 210, 210);
+    font-size: 1.5em;
 }

@@ -18,7 +18,7 @@ class Note extends Component {
 
     handleNoteChange = (e) => {
         this.setState({note: e.target.value})
-        console.log(this.state.title)
+        console.log(this.state.note)
     }
 
     addNote = () => {
@@ -34,7 +34,8 @@ class Note extends Component {
         const {shop} = this.props
         return (
             <section className="note">
-                <h1>{shop.name}</h1>
+                <i className="fa fa-window-close fa-3x" onClick={this.props.closeNote}></i>
+                <h3>{shop.name}</h3>
                 <label htmlFor="title">Title</label>
                 <input type="text" onChange={this.handleTitleChange}/>
                 <label htmlFor="note">Note</label>
