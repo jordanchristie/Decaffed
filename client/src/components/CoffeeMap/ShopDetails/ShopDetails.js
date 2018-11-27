@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 
-// import Note from '../../Note/Note';
+import Note from '../../Note/Note';
 import './ShopDetails.css'
 
 class ShopDetails extends Component {
     constructor() {
         super();
-        this.state = { favorited: false }
+        this.state = { 
+            favorited: false,
+            noteOpen: false
+         }
     }
 
     toggleFavorite = (e) => {
         e.preventDefault();
         this.setState({favorited: !this.state.favorited})
+    }
+
+    openNote = () => {
+        this.setState({noteOpen: true})
+    }
+
+    closeNote = () => {
+        this.setState({noteOpen: false})
     }
 
     render() {
@@ -29,12 +40,17 @@ class ShopDetails extends Component {
                     {shop.location.zip_code}<br />
                     <i className="fa fa-phone"></i>{shop.phone} <br/>
                     <i className="fa fa-star"></i>{shop.rating}/5 <br/>
-                    <button onClick={this.props.addNote}>Add Note</button>
+                    <button onClick={this.openNote}>Add Note</button>
                     <i 
                         className={"fa fa-heart " + this.state.favorited ? "favorited" : "" }  
                         onClick={this.toggleFavorite}>
                     </i>
                 </article>
+                { this.state.noteOpen ?
+                    <Note shop={shop} closeNote={this.closeNote}/>
+                  :
+                  null  
+                }
             </section>
         )
     }
