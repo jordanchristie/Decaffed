@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
+import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 
 import ShopDetails from './ShopDetails/ShopDetails';
 import { fetchCoffeeShops } from '../../actions';
@@ -18,13 +18,15 @@ class CoffeeMap extends Component {
     }
 
     
-    selectMarker = (props,marker) => {
+    selectMarker = (props, marker) => {
+        console.log(props.shop)
         this.setState({
             activeMarker: marker,
             selectedPlace: props.shop,
             infoWindowOpen: true
         })
     }
+
 
     mapClick = () => {
         if (this.state.infoWindowOpen) {
@@ -51,9 +53,8 @@ class CoffeeMap extends Component {
     render() {
         const style = {
             width: '100vw',
-            height: '100vh'
+            height: '50vh'
         }
-        const {selectedPlace} = this.state;
         return (
             <div id="map">
                 <Map
@@ -75,22 +76,12 @@ class CoffeeMap extends Component {
                         position={{lat: shop.coordinates.latitude, lng: shop.coordinates.longitude}}
                         onClick={this.selectMarker}/>
                 })}
-                { 
-                    this.state.activeMarker && (
-                        <InfoWindow
-                        className="infowindow"
-                        marker={this.state.activeMarker}
-                        visible={this.state.infoWindowOpen}
-                        selectedPlace={selectedPlace}
-                        addNote={this.addNote}
-                        >
-                        <ShopDetails shop={selectedPlace}  />
-                        {this.props.children}
-                        </InfoWindow>
-                    )
-                }
-                
                 </Map>
+                { this.state.infoWindowOpen ?
+                    <ShopDetails shop={this.state.selectedPlace} />
+                :
+                    null
+                }
             </div>   
         )
     }
