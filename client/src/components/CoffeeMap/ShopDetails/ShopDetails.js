@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Note from '../../Note/Note';
+import { addFavorite, removeFavorite} from '../../../actions';
 import './ShopDetails.css'
 
 class ShopDetails extends Component {
@@ -14,7 +16,14 @@ class ShopDetails extends Component {
 
     toggleFavorite = (e) => {
         e.preventDefault();
+
         this.setState({favorited: !this.state.favorited})
+
+        if (this.state.favorited === false) {
+            this.props.addFavorite(this.props.shop);
+        } else {
+            this.props.removeFavorite(this.props.shop);
+        }
     }
 
     openNote = () => {
@@ -37,12 +46,12 @@ class ShopDetails extends Component {
                     <h2>{shop.name}</h2>
                     <i className="fa fa-envelope"></i>{shop.location.address1} <br/>
                     {shop.location.city}, {shop.location.state} 
-                    {shop.location.zip_code}<br />
-                    <i className="fa fa-phone"></i>{shop.phone} <br/>
-                    <i className="fa fa-star"></i>{shop.rating}/5 <br/>
+                    {shop.location.zip_code}
+                    <i className="fa fa-phone"></i>{shop.phone}
+                    <i className="fa fa-star"></i>{shop.rating}/5
                     <button onClick={this.openNote}>Add Note</button>
                     <i 
-                        className={"fa fa-heart " + this.state.favorited ? "favorited" : "" }  
+                        className={"fa fa-heart"}  
                         onClick={this.toggleFavorite}>
                     </i>
                 </article>
@@ -57,4 +66,6 @@ class ShopDetails extends Component {
     
 }
 
-export default ShopDetails;
+
+
+export default connect(null, {addFavorite, removeFavorite})(ShopDetails);

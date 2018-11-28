@@ -53,7 +53,7 @@ class CoffeeMap extends Component {
     render() {
         const style = {
             width: '100vw',
-            height: '50vh'
+            height: this.state.infoWindowOpen ? '50vh' : '100vh'
         }
         return (
             <div id="map">

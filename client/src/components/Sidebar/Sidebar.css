@@ -1,0 +1,9 @@
+.sidebar {
+    width: 0;
+    transition: width .5s ease;
+}
+
+.sidebar-active {
+    width: 30%;
+    transition: width .5s ease;
+}
