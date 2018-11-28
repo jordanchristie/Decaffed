@@ -25,6 +25,10 @@ h1 {
     width: 100%;
 }
 
+.fa-heart {
+    cursor: pointer;
+}
+
 .favorited {
     color: red;
 }

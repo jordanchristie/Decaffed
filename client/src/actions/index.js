@@ -1,5 +1,6 @@
 import { GET_COORDINATES, GET_COFFEE_SHOPS } from '../constants';
 import keys from '../keys.json';
+// import axios from 'axios'
 
 
 // MAP ACTIONS
@@ -21,10 +22,16 @@ export const fetchCoffeeShops = (coordinates) => {
 }
 
 // BACKEND ACTIONS
-export const addFavorite = () => {
-    console.log('favorited!')
+export const addFavorite = (shop) => {
+    return dispatch => {
+        console.log(shop)
+        //axios.post('/favorites', shop)
+    } 
 }
 
-export const removeFavorite = () => {
-    console.log('unfavorited!')
+export const removeFavorite = (id) => {
+    return dispatch => {
+        console.log(id)
+        // axios.remove('/favorites', id)
+    } 
 }

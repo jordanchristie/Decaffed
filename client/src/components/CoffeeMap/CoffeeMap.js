@@ -19,7 +19,6 @@ class CoffeeMap extends Component {
 
     
     selectMarker = (props, marker) => {
-        console.log(props.shop)
         this.setState({
             activeMarker: marker,
             selectedPlace: props.shop,

@@ -22,7 +22,7 @@ class ShopDetails extends Component {
         if (this.state.favorited === false) {
             this.props.addFavorite(this.props.shop);
         } else {
-            this.props.removeFavorite(this.props.shop);
+            this.props.removeFavorite(this.props.shop.id);
         }
     }
 
@@ -53,6 +53,7 @@ class ShopDetails extends Component {
                     <i 
                         className={"fa fa-heart"}  
                         onClick={this.toggleFavorite}>
+                        {this.state.favorited ? 'Remove from Favorites' : 'Add to Favorites'}
                     </i>
                 </article>
                 { this.state.noteOpen ?
@@ -68,4 +69,4 @@ class ShopDetails extends Component {
 
 
 
-export default connect(null, {addFavorite, removeFavorite})(ShopDetails);
+export default connect(null, { addFavorite, removeFavorite })(ShopDetails);
