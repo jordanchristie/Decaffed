@@ -15,13 +15,17 @@ class SearchBar extends Component {
 
     handleSearch = (e) => {
         this.setState({coordinates: e.coordinates});
+        console.log(this.state.coordinates)
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        this.props.fetchCoordinates(this.state.coordinates, this.props.history);
-        this.props.fetchCoffeeShops(this.state.coordinates);
+        if (this.state.coordinates) {
+            this.props.fetchCoordinates(this.state.coordinates,this.props.history);
+            this.props.fetchCoffeeShops(this.state.coordinates);
+        } else return;
+        
     }
 
     render() {

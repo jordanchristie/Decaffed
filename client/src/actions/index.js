@@ -1,6 +1,11 @@
-import { GET_COORDINATES, GET_COFFEE_SHOPS } from '../constants';
+import { GET_COORDINATES,
+         GET_COFFEE_SHOPS,
+         ADD_FAVORITE,
+         REMOVE_FAVORITE,
+         GET_FAVORITES
+          } from '../constants';
 import keys from '../keys.json';
-// import axios from 'axios'
+import axios from 'axios';
 
 
 // MAP ACTIONS
@@ -22,16 +27,29 @@ export const fetchCoffeeShops = (coordinates) => {
 }
 
 // BACKEND ACTIONS
+
+// FAVORITES
+
+export const fetchFavorites = () => {
+    return dispatch => {
+        axios.get('/api/favorites')
+            .then(res => res.data)
+            .then(data => dispatch({type: GET_FAVORITES, payload: data}))
+    }
+}
+
 export const addFavorite = (shop) => {
     return dispatch => {
         console.log(shop)
-        //axios.post('/favorites', shop)
+        axios.post('/api/favorites', shop)
+            .then(favorite => dispatch({type: ADD_FAVORITE, payload: favorite}))
     } 
 }
 
 export const removeFavorite = (id) => {
     return dispatch => {
         console.log(id)
-        // axios.remove('/favorites', id)
+        //axios.remove('/favorites', id)
+            //.then(data => dispatch({type: REMOVE_FAVORITE, payload: data}))
     } 
 }

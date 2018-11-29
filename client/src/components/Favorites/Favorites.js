@@ -1,24 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-const Favorites = () => {
-    const { favoritedShops } = props;
+import { fetchFavorites } from '../../actions';
+
+class Favorites extends Component {
+    componentDidMount() {
+        this.props.fetchFavorites()
+    }
+
+    renderFavorites = () => {
+        const { favoritedShops } = this.props;
 
     favoritedShops.map(shop => {
         return <article key={shop.id}> 
                     <img src={shop.url} alt="shop"/>
                </article>
     })
+    }
+    render() {
+        return (
+            <section className="favorites-list">
+                { this.props.favoritedShops ?
+                    renderFavorites
+                    : null
+                }
+            </section>
+        )
+    }
+    
 
-    return (
-        <section className="favorites-list">
-            <h1>I am the Favorites!</h1>
-        </section>
-    )
+    
 }
 
 const mapStateToProps = ({favoritedShops}) => {
     return {favoritedShops}
 }
 
-export default connect(mapStateToProps)(Favorites);
+export default connect(mapStateToProps, { fetchFavorites })(Favorites);
