@@ -2,7 +2,9 @@ import { GET_COORDINATES,
          GET_COFFEE_SHOPS,
          ADD_FAVORITE,
          //REMOVE_FAVORITE,
-         GET_FAVORITES
+         GET_FAVORITES,
+         ADD_NOTE,
+         EDIT_NOTE
           } from '../constants';
 import keys from '../keys.json';
 import axios from 'axios';
@@ -49,7 +51,25 @@ export const addFavorite = (shop) => {
 export const removeFavorite = (id) => {
     return dispatch => {
         console.log(id)
-        //axios.remove('/favorites', id)
+        //axios.remove('/api/favorites', id)
             //.then(data => dispatch({type: REMOVE_FAVORITE, payload: data}))
     } 
+}
+
+// NOTES
+
+export const addNote = (note) => {
+    return dispatch => {
+        console.log(note)
+        axios.post('/api/notes', note)
+            .then(data => dispatch({type: ADD_NOTE, payload: data}))
+    }
+}
+
+export const editNote = (note, id) => {
+    return dispatch => {
+        console.log(note)
+        axios.put(`/api/notes/${id}`, note)
+            .then(data => dispatch({type: EDIT_NOTE, payload: data}))
+    }
 }

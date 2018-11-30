@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addNote } from '../../actions';
 
 import './Note.css';
 
@@ -21,12 +23,12 @@ class Note extends Component {
         console.log(this.state.note)
     }
 
-    addNote = () => {
+    submitNote = () => {
         const note = {
             title: this.state.title,
             note: this.state.note
         }
-        console.log(note);
+        this.props.addNote(note)
         this.props.closeNote();
     }
 
@@ -40,10 +42,10 @@ class Note extends Component {
                 <input type="text" onChange={this.handleTitleChange}/>
                 <label htmlFor="note">Note</label>
                 <textarea name="note" id="" cols="30" rows="10" onChange={this.handleNoteChange}></textarea>
-                <button onClick={this.addNote}>Submit</button>
+                <button onClick={this.submitNote}>Submit</button>
             </section>
         )
     }
 }
 
-export default Note;
+export default connect(null, { addNote })(Note);
