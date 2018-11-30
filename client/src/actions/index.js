@@ -1,7 +1,7 @@
 import { GET_COORDINATES,
          GET_COFFEE_SHOPS,
          ADD_FAVORITE,
-         REMOVE_FAVORITE,
+         //REMOVE_FAVORITE,
          GET_FAVORITES
           } from '../constants';
 import keys from '../keys.json';
