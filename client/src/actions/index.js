@@ -6,7 +6,6 @@ import { GET_COORDINATES,
          ADD_NOTE,
          EDIT_NOTE,
          GET_NOTES,
-         REMOVE_FAVORITE,
          REMOVE_NOTE
           } from '../constants';
 import keys from '../keys.json';

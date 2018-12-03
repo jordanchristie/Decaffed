@@ -15,12 +15,10 @@ class Note extends Component {
 
     handleTitleChange = (e) => {
         this.setState({title: e.target.value})
-        console.log(this.state.title)
     }
 
     handleNoteChange = (e) => {
         this.setState({note: e.target.value})
-        console.log(this.state.note)
     }
 
     submitNote = () => {

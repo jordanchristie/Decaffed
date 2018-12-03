@@ -36,7 +36,7 @@ class SearchBar extends Component {
                         coordinates={true}
                         onChange={e => this.handleSearch(e)}
                     />
-                <button onClick={this.handleSubmit}>Find Coffee</button>
+                <button id="search-button" onClick={this.handleSubmit}>Find Coffee</button>
             </>
         )
     }

@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
 
 
 const UserSchema = new Schema({
-      name: 'string',
+      name: String,
       notes: [noteSchema],
       favoriteShops: [favoriteShopSchema]
 })

@@ -5,4 +5,4 @@ const FavoriteShopSchema = new Schema({
     
 });
 
-module.exports = mongoose.model('favoriteShop', FavoriteShopSchema);
+module.exports = FavoriteShopSchema;

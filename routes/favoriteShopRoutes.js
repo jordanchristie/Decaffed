@@ -13,7 +13,7 @@ module.exports = (app) => {
         console.log(req.body);
     });
     // removeFavorite() action
-    app.remove('/api/favorites/:id', (req, res) => {
+    app.delete('/api/favorites/:id', (req, res) => {
         console.log(req)
     })
 
