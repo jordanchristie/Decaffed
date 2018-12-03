@@ -5,4 +5,6 @@ export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
 export const ADD_NOTE = 'ADD_NOTE';
 export const EDIT_NOTE = 'EDIT_NOTE';
+export const REMOVE_NOTE = 'REMOVE_NOTE';
+export const GET_NOTES = 'GET_NOTES';
 

@@ -9,7 +9,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
 // Routes
-require('./routes/routes')(app);
+require('./routes/userRoutes')(app);
+require('./routes/favoriteShopRoutes')(app);
+require('./routes/notesRoutes')(app);
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 

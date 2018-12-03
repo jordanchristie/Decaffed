@@ -4,7 +4,10 @@ import { GET_COORDINATES,
          //REMOVE_FAVORITE,
          GET_FAVORITES,
          ADD_NOTE,
-         EDIT_NOTE
+         EDIT_NOTE,
+         GET_NOTES,
+         REMOVE_FAVORITE,
+         REMOVE_NOTE
           } from '../constants';
 import keys from '../keys.json';
 import axios from 'axios';
@@ -51,12 +54,19 @@ export const addFavorite = (shop) => {
 export const removeFavorite = (id) => {
     return dispatch => {
         console.log(id)
-        //axios.remove('/api/favorites', id)
+        //axios.delete(`/api/favorites/${id}`)
             //.then(data => dispatch({type: REMOVE_FAVORITE, payload: data}))
     } 
 }
 
 // NOTES
+
+export const FetchNotes = () => {
+    return dispatch => {
+        axios.get('api/notes')
+            .then(data => dispatch({type: GET_NOTES, payload: data}))
+    }
+}
 
 export const addNote = (note) => {
     return dispatch => {
@@ -71,5 +81,12 @@ export const editNote = (note, id) => {
         console.log(note)
         axios.put(`/api/notes/${id}`, note)
             .then(data => dispatch({type: EDIT_NOTE, payload: data}))
+    }
+}
+
+export const removeNote = (id) => {
+    return dispatch => {
+        axios.delete(`/api/notes/${id}`)
+            .then(data => dispatch({type: REMOVE_NOTE, payload: data}))
     }
 }
