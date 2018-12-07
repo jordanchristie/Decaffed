@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { fetchNotes, editNote, removeNote } from '../../actions';
+
 class MyNotes extends Component {
+    componentDidMount() {
+        this.props.fetchNotes();
+    }
+
+
     renderNotes = () => {
         this.props.notes.map((note, i) => {
             return (
@@ -10,16 +17,18 @@ class MyNotes extends Component {
                     <h3>{note.shop.name}</h3>
                     <h4>{note.title}</h4>
                     <p>{note.note}</p>
+                    <button onClick={e => this.props.removeNote(note.id)}></button>
                 </article>
             )
         })
     }
     render() {
+        console.log(this.props.notes)
         return (
             <div className="notes-list">
-                {this.props.notes ? 
-                    this.renderNotes()
-                :   <p>You don't have any notes yet.</p>
+                {this.props.notes === undefined ? 
+                    <p>You don't have any notes yet.</p>
+                :   this.renderNotes()
                 }
             </div>
         )
@@ -30,4 +39,8 @@ const mapStateToProps = ({notes}) => {
     return { notes }
 }
 
-export default connect(mapStateToProps, null)(MyNotes);
+export default connect(mapStateToProps, {
+    fetchNotes,
+    editNote,
+    removeNote
+})(MyNotes);

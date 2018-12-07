@@ -28,6 +28,14 @@ class Note extends Component {
         }
         this.props.addNote(note)
         this.props.closeNote();
+        this.resetNote();
+    }
+
+    resetNote = () => {
+        this.setState({
+            title: '',
+            note: ''
+        })
     }
 
     render() {

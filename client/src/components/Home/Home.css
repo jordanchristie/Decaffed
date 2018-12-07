@@ -21,6 +21,10 @@ h3 {
     width: 75%;
 }
 
+.location-box {
+    border-radius: 5%;
+}
+
 .google-covert {
     background: rgba(0,0,0,0.7);
 }

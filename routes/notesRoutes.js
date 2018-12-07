@@ -9,6 +9,7 @@ module.exports = (app) => {
 
     app.post('api/notes', (req, res) => {
         const { title, note } = req.body;
+        console.log(req.body);
 
         const newNote = User.findOne({id: req.user.id}, (err, user) => {
             user.notes.push({

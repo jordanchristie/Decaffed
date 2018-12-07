@@ -21,7 +21,7 @@ class Favorites extends Component {
         return (
             <section className="favorites-list">
                 { this.props.favoritedShops ?
-                    renderFavorites
+                    this.renderFavorites
                     : null
                 }
             </section>
