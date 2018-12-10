@@ -9,3 +9,11 @@ html, body {
 li {
     list-style-type: none;
 }
+
+button {
+    background: #4e342e;
+    color: #fff;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 5px;
+}

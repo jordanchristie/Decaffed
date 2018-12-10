@@ -35,7 +35,9 @@ class SearchBar extends Component {
                         apiKey={keys.GoogleAPIKey}
                         coordinates={true}
                         onChange={e => this.handleSearch(e)}
-                    />
+                    >
+                    <i className="fa fa-search"></i>
+                </GoogleComponent>
                 <button id="search-button" onClick={this.handleSubmit}>Find Coffee</button>
             </>
         )

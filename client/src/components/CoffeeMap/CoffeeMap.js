@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
+import { Spring } from 'react-spring';
 
 import ShopDetails from './ShopDetails/ShopDetails';
 import { fetchCoffeeShops } from '../../actions';
@@ -52,7 +53,7 @@ class CoffeeMap extends Component {
     render() {
         const style = {
             width: '100vw',
-            height: this.state.infoWindowOpen ? '50vh' : '100vh'
+            height: this.state.infoWindowOpen ? '40vh' : '100vh'
         }
         return (
             <div id="map">
@@ -77,7 +78,13 @@ class CoffeeMap extends Component {
                 })}
                 </Map>
                 { this.state.infoWindowOpen ?
-                    <ShopDetails shop={this.state.selectedPlace} />
+                    <Spring
+                        delay={5000}
+                        from={{height: 100, opacity: 0}}
+                        to={{height: 472, opacity: 1}}>
+                       { ({height, opacity}) => <ShopDetails style={{height, opacity}} shop={this.state.selectedPlace} open={this.state.infoWindowOpen} />
+                       }
+                    </Spring>
                 :
                     null
                 }

@@ -6,9 +6,9 @@ import './Sidebar.css';
 class Sidebar extends Component {
 
     render() {
-        console.log(this.props.isOpen)
         return (
                 <section className={'sidebar ' + (this.props.isOpen ? 'sidebar-active' : '') }>
+                    <p>Decaffed.</p>
                     <ul>
                         <Link to="/dashboard">Dashboard</Link>
                         <Link to="/map">Map</Link>

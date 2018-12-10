@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Spring } from 'react-spring';
 
 import Note from '../../Note/Note';
 import { addFavorite, removeFavorite} from '../../../actions';
-import './ShopDetails.css'
+import './ShopDetails.css';
+
 
 class ShopDetails extends Component {
     constructor() {
@@ -51,7 +53,7 @@ class ShopDetails extends Component {
                     <i className="fa fa-star"></i>{shop.rating}/5
                     <button onClick={this.openNote}>Add Note</button>
                     <i 
-                        className={"fa fa-heart"}  
+                        className={"fa fa-heart " + (this.state.favorited ? 'favorited' : '')}  
                         onClick={this.toggleFavorite}>
                         {this.state.favorited ? 'Remove from Favorites' : 'Add to Favorites'}
                     </i>

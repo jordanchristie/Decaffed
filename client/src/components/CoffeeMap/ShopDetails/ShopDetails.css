@@ -4,9 +4,9 @@ h1 {
 
 .shop-details {
     position: absolute;
-    top: 100%;
-    height: 50vh;
-    width: 100%;
+    bottom: 0;
+    height: 60vh; 
+    width: 100%; 
 }
 
 .overlay {
@@ -33,6 +33,8 @@ h1 {
     color: red;
 }
 
-button {
+.shop-details button {
     margin: 1em;
 }
+
+/* animation */
