@@ -3,7 +3,7 @@ import { ADD_NOTE,
          REMOVE_NOTE,
          GET_NOTES } from '../constants';
 
-export const NoteReducer = (state = {}, action) => {
+export const NoteReducer = (state = [], action) => {
     switch (action.type) {
         case ADD_NOTE:
         case EDIT_NOTE:

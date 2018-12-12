@@ -14,6 +14,15 @@ class Header extends Component {
         this.setState({sideBarOpen: !this.state.sideBarOpen})
     }
 
+    handleOutsideClick = (e) => {
+        
+        if (!this.ref.contains(e.target)) {
+            this.toggleSidebar();
+        }
+    }
+
+    ref = React.createRef();
+
     render() {
         return (
             <div>
@@ -21,7 +30,7 @@ class Header extends Component {
                     <i className="fa fa-bars fa-3x"
                     onClick={this.toggleSidebar}></i>
                 </section>
-                <Sidebar isOpen={this.state.sideBarOpen} />
+                <Sidebar ref={this.ref} isOpen={this.state.sideBarOpen} />
             </div>
         )
     }

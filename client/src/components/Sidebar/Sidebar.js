@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 
 import './Sidebar.css';
 
+// TO-DO
+// Handle Outside Click
+
 class Sidebar extends Component {
 
     render() {

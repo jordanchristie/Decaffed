@@ -23,10 +23,11 @@ class MyNotes extends Component {
         })
     }
     render() {
-        console.log(this.props.notes)
+        const { notes } = this.props
+        console.log(notes)
         return (
             <div className="notes-list">
-                {this.props.notes === undefined ? 
+                { notes === undefined ? 
                     <p>You don't have any notes yet.</p>
                 :   this.renderNotes()
                 }
