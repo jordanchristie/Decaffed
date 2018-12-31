@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SplashPage from './components/SplashPage/SplashPage'
 import Home from './components/Home/Home';
 import CoffeeMap from './components/CoffeeMap/CoffeeMap';
 import Header from './components/Header/Header';
@@ -17,7 +18,7 @@ class App extends Component {
           <>
           <Header />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={SplashPage} />
             <Route path="/map" component={CoffeeMap} />
             <Route path="/dashboard" component={Favorites} />
             <Route path="/myNotes" component={MyNotes}/>
