@@ -10,15 +10,7 @@ h1 {
 }
 
 .overlay {
-    height: 100%;
-    width: 100%;
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+   
 }
 
 .shop-img {

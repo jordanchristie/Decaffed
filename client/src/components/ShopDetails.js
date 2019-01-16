@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Spring } from 'react-spring';
+import styled from 'styled-components';
 
-import Note from '../../Note/Note';
-import { addFavorite, removeFavorite} from '../../../actions';
-import './ShopDetails.css';
+import Note from './Note';
+import { addFavorite, removeFavorite} from '../actions';
 
 
 class ShopDetails extends Component {
@@ -43,8 +43,8 @@ class ShopDetails extends Component {
             backgroundSize: 'cover'
         }
         return (
-            <section className="shop-details" style={backgroundStyle}>
-                <article className="overlay">
+            <ShopInfo style={backgroundStyle}>
+                <Overlay>
                     <h2>{shop.name}</h2>
                     <i className="fa fa-envelope"></i>{shop.location.address1} <br/>
                     {shop.location.city}, {shop.location.state} 
@@ -57,13 +57,13 @@ class ShopDetails extends Component {
                         onClick={this.toggleFavorite}>
                         {this.state.favorited ? 'Remove from Favorites' : 'Add to Favorites'}
                     </i>
-                </article>
+                </Overlay>
                 { this.state.noteOpen ?
                     <Note shop={shop} closeNote={this.closeNote}/>
                   :
                   null  
                 }
-            </section>
+            </ShopInfo>
         )
     }
     
@@ -72,3 +72,23 @@ class ShopDetails extends Component {
 
 
 export default connect(null, { addFavorite, removeFavorite })(ShopDetails);
+
+const ShopInfo = styled.section`
+    background-size: cover;
+`
+
+const Overlay = styled.article`
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+`
+
+const ShopImg = styled.img`
+
+`

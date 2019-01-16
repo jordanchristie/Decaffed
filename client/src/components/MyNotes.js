@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchNotes, editNote, removeNote } from '../../actions';
+import { fetchNotes, editNote, removeNote } from '../actions';
 
 class MyNotes extends Component {
     componentDidMount() {

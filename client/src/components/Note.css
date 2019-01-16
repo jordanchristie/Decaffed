@@ -1,0 +1,24 @@
+.note {
+    
+}
+
+.fa-window-close {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    margin: 0;
+}
+
+h3 {
+    
+}
+
+label {
+    font-size: 2em;
+    margin: .5em;
+}
+
+input, textarea {
+    width: 70%;
+    font-size: 1.5em;
+}

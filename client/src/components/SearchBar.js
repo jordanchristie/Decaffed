@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { GoogleComponent } from 'react-google-location';
 import { connect } from 'react-redux';
-import { fetchCoordinates, fetchCoffeeShops } from '../../../actions';
-import './SearchBar.css';
+import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
 
-import keys from '../../../keys.json';
+import { fetchCoordinates, fetchCoffeeShops } from '../actions';
+
+import keys from '../keys.json';
 
 
 class SearchBar extends Component {
@@ -38,7 +40,10 @@ class SearchBar extends Component {
                     >
                     <i className="fa fa-search"></i>
                 </GoogleComponent>
-                <button id="search-button" onClick={this.handleSubmit}>Find Coffee</button>
+                <SearchButton 
+                    onClick={this.handleSubmit} 
+                    color="primary"
+                    variant="contained">Find Coffee</SearchButton>
             </>
         )
     }
@@ -49,3 +54,7 @@ const mapStateToProps = ({coordinates}) => {
 }
 
 export default connect(mapStateToProps, {fetchCoordinates, fetchCoffeeShops})(SearchBar);
+
+const SearchButton = styled(Button)`
+    margin-top: 2em;
+`

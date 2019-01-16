@@ -21,14 +21,14 @@ module.exports = (app) => {
     })
 
     app.put('api/notes/:id', (req, res) => {
-        const editedQuote = User.findOne({id: req.user._id}, (err, user) => {
+        const editedNote = User.findOne ({id: req.user._id}, (err, user) => {
 
         })
     })
 
     app.delete('api/notes/:id', (req, res) => {
-        const deletedQuote = User.findOne({id: req.user._id}, (err, user) => {
-            user.savedQuotes.id(req.params.id).remove()
+        const deletedNote = User.findOne({id: req.user._id}, (err, user) => {
+            user.savedNote.id(req.params.id).remove()
 
             user.save();
         })

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 import { Spring } from 'react-spring';
+import styled from 'styled-components';
 
-import ShopDetails from './ShopDetails/ShopDetails';
-import { fetchCoffeeShops } from '../../actions';
-import keys from '../../keys.json';
-import './CoffeeMap.css';
+import ShopDetails from './ShopDetails';
+import { fetchCoffeeShops } from '../actions';
+import keys from '../keys.json';
 
 class CoffeeMap extends Component {
     constructor(props) {
@@ -56,7 +56,7 @@ class CoffeeMap extends Component {
             height: this.state.infoWindowOpen ? '40vh' : '100vh'
         }
         return (
-            <div id="map">
+            <MapWrapper>
                 <Map
                     item
                     xs={14}
@@ -88,7 +88,7 @@ class CoffeeMap extends Component {
                 :
                     null
                 }
-            </div>   
+            </MapWrapper>   
         )
     }
 }
@@ -101,3 +101,8 @@ const mapStateToProps = ({coordinates, coffeeShops}) => {
 const apiWrapper = GoogleApiWrapper({apiKey: keys.GoogleAPIKey})(CoffeeMap)
 
 export default connect(mapStateToProps, {fetchCoffeeShops})(apiWrapper);
+
+const MapWrapper = styled.main`
+    height: 100vh;
+    width: 100vw;
+`

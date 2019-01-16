@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import { fetchFavorites } from '../../actions';
+import { fetchFavorites } from '../actions';
 
 class Favorites extends Component {
     componentDidMount() {
@@ -19,12 +20,12 @@ class Favorites extends Component {
     }
     render() {
         return (
-            <section className="favorites-list">
+            <FavoritesList>
                 { this.props.favoritedShops ?
                     this.renderFavorites()
                     : <p>You don't have any favorites yet.</p>
                 }
-            </section>
+            </FavoritesList>
         )
     }
     
@@ -37,3 +38,7 @@ const mapStateToProps = ({favoritedShops}) => {
 }
 
 export default connect(mapStateToProps, { fetchFavorites })(Favorites);
+
+const FavoritesList = styled.section`
+
+`
