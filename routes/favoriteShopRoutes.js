@@ -5,16 +5,16 @@ const express = require('express'),
 module.exports = (app) => {
     // Get all favorites
     app.get('/api/favorites', (req, res) => {
-        console.log(req.body)
 
     })
     // addFavorite() action
     app.post('/api/favorites', (req, res) => {
-        console.log(req.body);
+        const shop = req.body;
+        console.log(shop.id, shop.name)
     });
     // removeFavorite() action
     app.delete('/api/favorites/:id', (req, res) => {
-        console.log(req)
+        console.log(req.body)
     })
 
 }

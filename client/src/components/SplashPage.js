@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import SearchBar from './SearchBar'
+import SearchBar from './SearchBar';
 
 class SplashPage extends Component {
     render() {
@@ -8,6 +8,9 @@ class SplashPage extends Component {
             <Splash>
                 <Title>Decaffed</Title>
                 <Tagline>Find a coffee shop nearby to recaffeinate.</Tagline>
+                <SignUp>Github</SignUp>
+                <SignUp>Google</SignUp>
+                <SignUp>Twitter</SignUp>
                 <SearchBar {...this.props}/>
             </Splash>
         )
@@ -35,4 +38,10 @@ const Title = styled.h1`
 const Tagline = styled.h3`
     font-size: 3em;
     width: 75%;
+`
+
+const SignUp = styled.button`
+    cursor: pointer;
+    outline: 0;
+    font-size: 24px;
 `

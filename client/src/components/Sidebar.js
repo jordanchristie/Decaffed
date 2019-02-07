@@ -7,20 +7,29 @@ import { Home, Map, Notes } from '@material-ui/icons'
 
 class Sidebar extends Component {
 
-
     render() {
         return (
-                <Drawer anchor="left" open={this.props.isOpen}>
-                    <NavTitle>Decaffed.</NavTitle>
+                <AppDrawer anchor="left" 
+                    open={this.props.isOpen}
+                    >
+                    <NavTitle href="/">Decaffed.</NavTitle>
                     <NavList>
-                        <Home />
-                        <Link to="/dashboard">Dashboard</Link> 
-                        <Map />
-                        <Link to="/map">Map</Link> 
-                        <Notes />
-                        <Link to="/mynotes">My Notes</Link>        
+                        <NavLink to="/dashboard">
+                            <Home />
+                            Dashboard
+                        </NavLink> 
+
+                        <NavLink to="/map">
+                            <Map />
+                            Map
+                        </NavLink> 
+
+                        <NavLink to="/mynotes">
+                            <Notes />
+                            My Notes
+                        </NavLink>        
                     </NavList>
-                </Drawer>
+                </AppDrawer>
         )
     }
 
@@ -28,11 +37,20 @@ class Sidebar extends Component {
 
 export default Sidebar;
 
-const NavTitle = styled.p`
+const AppDrawer = styled(Drawer)`
+    width: 50vw;
+`
+
+const NavTitle = styled.a`
     text-align: center;
 `
 
 const NavList = styled.ul`
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
+    padding: 20%;
+`
+
+const NavLink = styled(Link)`
+    text-decoration: none;
 `

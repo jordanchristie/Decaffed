@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
-import { Spring } from 'react-spring';
+//import { Spring } from 'react-spring';
 import styled from 'styled-components';
 
 import ShopDetails from './ShopDetails';
@@ -78,13 +78,7 @@ class CoffeeMap extends Component {
                 })}
                 </Map>
                 { this.state.infoWindowOpen ?
-                    <Spring
-                        delay={5000}
-                        from={{height: 100, opacity: 0}}
-                        to={{height: 472, opacity: 1}}>
-                       { ({height, opacity}) => <ShopDetails style={{height, opacity}} shop={this.state.selectedPlace} open={this.state.infoWindowOpen} />
-                       }
-                    </Spring>
+                    <ShopDetails shop={this.state.selectedPlace} open={this.state.infoWindowOpen} />
                 :
                     null
                 }

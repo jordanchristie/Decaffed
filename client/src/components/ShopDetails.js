@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Spring } from 'react-spring';
+//import { Spring } from 'react-spring';
 import styled from 'styled-components';
 
 import Note from './Note';
@@ -43,17 +43,19 @@ class ShopDetails extends Component {
             backgroundSize: 'cover'
         }
         return (
-            <ShopInfo style={backgroundStyle}>
+            <ShopInfo style={backgroundStyle} background={shop.image_url}>
                 <Overlay>
                     <h2>{shop.name}</h2>
-                    <i className="fa fa-envelope"></i>{shop.location.address1} <br/>
+                    <FaIcon type="fa fa-envelope"></FaIcon>{shop.location.address1} <br/>
                     {shop.location.city}, {shop.location.state} 
                     {shop.location.zip_code}
-                    <i className="fa fa-phone"></i>{shop.phone}
-                    <i className="fa fa-star"></i>{shop.rating}/5
-                    <button onClick={this.openNote}>Add Note</button>
+                    <FaIcon type="fa fa-phone"></FaIcon>{shop.phone}
+                    <br/>
+                    <FaIcon type="fa fa-star"></FaIcon>{shop.rating}/5
+                    <br/>
+                    <OpenNoteButton onClick={this.openNote}>Add Note</OpenNoteButton>
                     <i 
-                        className={"fa fa-heart " + (this.state.favorited ? 'favorited' : '')}  
+                        type={"fa fa-heart " + (this.state.favorited ? 'favorited' : '')}  
                         onClick={this.toggleFavorite}>
                         {this.state.favorited ? 'Remove from Favorites' : 'Add to Favorites'}
                     </i>
@@ -74,7 +76,12 @@ class ShopDetails extends Component {
 export default connect(null, { addFavorite, removeFavorite })(ShopDetails);
 
 const ShopInfo = styled.section`
-    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    height: 60vh; 
+    width: 100%;
+    background: url(${props => props.background}) no-repeat center;
+    background-size: cover; 
 `
 
 const Overlay = styled.article`
@@ -89,6 +96,12 @@ const Overlay = styled.article`
     text-align: center;
 `
 
-const ShopImg = styled.img`
+const OpenNoteButton = styled.button`
+    margin: 1em;
+`
+
+const FaIcon = styled.i.attrs( props => ({
+    className: props => props.type 
+}))`
 
 `

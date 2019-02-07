@@ -26,12 +26,12 @@ class Header extends Component {
             <>
                 <AppBar>
                     <Toolbar>
-                        <IconButton>
-                            <Menu onClick={this.toggleSidebar} />
+                        <IconButton onClick={this.toggleSidebar}>
+                            <Menu />
                         </IconButton>
                     </Toolbar>
                 </AppBar>
-                <Sidebar isOpen={this.state.sideBarOpen} />
+                <Sidebar isOpen={this.state.sideBarOpen} toggleSidebar={this.toggleSidebar} />
             </>
         )
     }
@@ -41,4 +41,5 @@ export default Header;
 
 const Menu = styled(MenuIcon)`
     color: white;
+    height: 60px;
 `
