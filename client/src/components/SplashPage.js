@@ -8,9 +8,9 @@ class SplashPage extends Component {
             <Splash>
                 <Title>Decaffed</Title>
                 <Tagline>Find a coffee shop nearby to recaffeinate.</Tagline>
-                <SignUp>Github</SignUp>
-                <SignUp>Google</SignUp>
-                <SignUp>Twitter</SignUp>
+                <SignUp href="/auth/github">Github</SignUp>
+                <SignUp href="/auth/google">Google</SignUp>
+                <SignUp href="/auth/twitter">Twitter</SignUp>
                 <SearchBar {...this.props}/>
             </Splash>
         )
@@ -20,6 +20,7 @@ class SplashPage extends Component {
 export default SplashPage;
 
 const Splash = styled.section`
+    margin-top: 4em;
     height: 100vh;
     display: flex;
     flex-flow: column;
@@ -40,8 +41,12 @@ const Tagline = styled.h3`
     width: 75%;
 `
 
-const SignUp = styled.button`
+const SignUp = styled.a`
     cursor: pointer;
-    outline: 0;
+    background: #3f51b5;
+    text-decoration: none;
+    color: #fff;
+    padding: .25em .5em;
+    margin: .5em;
     font-size: 24px;
 `

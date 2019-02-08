@@ -1,12 +1,33 @@
 import React, { Component } from 'react';
-import SplashPage from './components/SplashPage'
+import { createGlobalStyle } from 'styled-components';
+import { reset } from 'styled-reset';
+import SplashPage from './components/SplashPage';
 import CoffeeMap from './components/CoffeeMap';
 import Header from './components/Header';
 import Favorites from './components/Favorites';
 import MyNotes from './components/MyNotes';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import './App.css'
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+  html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: "Roboto", sans-serif;
+  }
+  li {
+    list-style-type: none;
+  }
+  button {
+    color: #fff;
+    background: #3f51b5;
+    padding: .25em .5em;
+    border: none;
+  }
+`
 
 
 class App extends Component {
@@ -15,6 +36,7 @@ class App extends Component {
       <main className="App">
         <Router>
           <>
+          <GlobalStyle />
           <Header />
           <Switch>
             <Route exact path="/" component={SplashPage} />
@@ -30,4 +52,3 @@ class App extends Component {
 }
 
 export default App;
-

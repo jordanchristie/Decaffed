@@ -101,7 +101,7 @@ const OpenNoteButton = styled.button`
 `
 
 const FaIcon = styled.i.attrs( props => ({
-    className: props => props.type 
+    className: props.type 
 }))`
 
 `
