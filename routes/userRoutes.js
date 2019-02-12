@@ -4,8 +4,8 @@ const express = require('express'),
       app = express();
 
 module.exports = (app) => {
-      const auth = (url, callbackUrl, strategy) => {
-            app.get(url, passport.authenticate(strategy))
+      const auth = (url, callbackUrl, strategy, options) => {
+            app.get(url, passport.authenticate(strategy, options))
 
             app.get(callbackUrl, passport.authenticate({
                   successRedirect: '/dashboard',
@@ -13,7 +13,11 @@ module.exports = (app) => {
                   }))
       }
 
-      auth('/auth/github', 'auth/github/callback', 'github')
-      auth('/auth/google', 'auth/google/callback', 'google')
+      auth('/auth/github', 'auth/github/callback', 'github', {
+            scope: ['user:email']
+      })
+      auth('/auth/google', 'auth/google/callback', 'google', {
+            scope: ['profile']
+      })
       auth('/auth/twitter', 'auth/twitter/callback', 'twitter')
 }

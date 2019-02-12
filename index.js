@@ -3,7 +3,7 @@ const express = require('express'),
       cors = require('cors'),
       bodyParser = require('body-parser'),
       keys = require('./keys/keys'),
-      PORT = 5000,
+      PORT = process.env.PORT || 5000,
       app = express();
 
 require('./services/passport');
