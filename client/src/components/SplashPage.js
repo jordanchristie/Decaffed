@@ -8,9 +8,9 @@ class SplashPage extends Component {
             <Splash>
                 <Title>Decaffed</Title>
                 <Tagline>Find a coffee shop nearby to recaffeinate.</Tagline>
-                <SignUp href="/auth/github">Github</SignUp>
-                <SignUp href="/auth/google">Google</SignUp>
-                <SignUp href="/auth/twitter">Twitter</SignUp>
+                <SignUp bg="#333" href="/auth/github">Login with Github</SignUp>
+                <SignUp bg="#3f51b5" href="/auth/google">Login with Google</SignUp>
+                <SignUp bg="#1da1f2" href="/auth/twitter">Login with Twitter</SignUp>
                 <SearchBar {...this.props}/>
             </Splash>
         )
@@ -43,8 +43,10 @@ const Tagline = styled.h3`
 
 const SignUp = styled.a`
     cursor: pointer;
-    background: #3f51b5;
+    background: ${props => props.bg};
     text-decoration: none;
+    border: none;
+    border-radius: .2em;
     color: #fff;
     padding: .25em .5em;
     margin: .5em;

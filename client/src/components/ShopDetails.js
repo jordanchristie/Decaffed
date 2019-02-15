@@ -38,6 +38,7 @@ class ShopDetails extends Component {
 
     render() {
         const { shop } = this.props;
+        console.log(shop)
         const backgroundStyle = {
             background: `url(${shop.image_url}) no-repeat center`,
             backgroundSize: 'cover'
@@ -54,11 +55,12 @@ class ShopDetails extends Component {
                     <FaIcon type="fa fa-star"></FaIcon>{shop.rating}/5
                     <br/>
                     <OpenNoteButton onClick={this.openNote}>Add Note</OpenNoteButton>
-                    <i 
-                        type={"fa fa-heart " + (this.state.favorited ? 'favorited' : '')}  
+                    <FaIcon
+                        favorited={this.state.favorited} 
+                        type="fa fa-heart "  
                         onClick={this.toggleFavorite}>
                         {this.state.favorited ? 'Remove from Favorites' : 'Add to Favorites'}
-                    </i>
+                    </FaIcon>
                 </Overlay>
                 { this.state.noteOpen ?
                     <Note shop={shop} closeNote={this.closeNote}/>
@@ -103,5 +105,5 @@ const OpenNoteButton = styled.button`
 const FaIcon = styled.i.attrs( props => ({
     className: props.type 
 }))`
-
+    color: ${props => props.favorited ? 'red' : 'fff'}
 `

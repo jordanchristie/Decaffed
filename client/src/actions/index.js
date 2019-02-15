@@ -37,7 +37,6 @@ export const fetchCoffeeShops = (coordinates) => {
 export const fetchFavorites = () => {
     return dispatch => {
         axios.get('/api/favorites')
-            .then(res => res.data)
             .then(data => dispatch({type: GET_FAVORITES, payload: data}))
     }
 }

@@ -8,9 +8,10 @@ import { Home, Map, Notes } from '@material-ui/icons'
 class Sidebar extends Component {
 
     render() {
+        const { isOpen } = this.props;
         return (
                 <AppDrawer anchor="left" 
-                    open={this.props.isOpen}
+                    open={isOpen}
                     >
                     <NavTitle href="/">Decaffed.</NavTitle>
                     <NavList>
