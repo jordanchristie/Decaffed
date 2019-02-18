@@ -1,5 +1,4 @@
 const express = require('express'),
-      User = require('../models/User'),
       passport = require('passport')
       app = express();
 
@@ -20,4 +19,9 @@ module.exports = (app) => {
             scope: ['profile']
       })
       auth('/auth/twitter', 'auth/twitter/callback', 'twitter')
+
+      app.get('/auth/logout',(req, res) => {
+            req.logout();
+            res.redirect('/');
+      })
 }

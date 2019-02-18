@@ -28,7 +28,11 @@ class Sidebar extends Component {
                         <NavLink to="/mynotes">
                             <Notes />
                             My Notes
-                        </NavLink>        
+                        </NavLink> 
+
+                        <NavLink to="/auth/logout">
+                            Log Out
+                        </NavLink>       
                     </NavList>
                 </AppDrawer>
         )
@@ -49,9 +53,10 @@ const NavTitle = styled.a`
 const NavList = styled.ul`
     display: flex;
     flex-flow: column wrap;
-    padding: 20%;
+    padding: 10%;
 `
 
 const NavLink = styled(Link)`
     text-decoration: none;
+    margin: 1em;
 `
