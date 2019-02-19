@@ -2,11 +2,23 @@ const mongoose = require('mongoose'),
       { Schema } = mongoose;
 
 const FavoriteShopSchema = new Schema({
-      name: String,
-      image_url: String,
+      name: {
+            type: String,
+            required: true
+      },
+      image_url: {
+            type: String,
+            required: true
+      },
       address: {
-            street: Number,
-            city: Number
+            street: {
+                  type: String,
+                  required: true
+            },
+            city: {
+                  type: String,
+                  required: true
+            }
       }
 });
 

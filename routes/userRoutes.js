@@ -3,22 +3,38 @@ const express = require('express'),
       app = express();
 
 module.exports = (app) => {
-      const auth = (url, callbackUrl, strategy, options) => {
-            app.get(url, passport.authenticate(strategy, options))
+      // github
+      app.get('/auth/github', passport.authenticate('github', {
+            scope: ['email', 'profile']
+        }));
+    
+        app.get('/auth/github/callback', passport.authenticate('github', {
+            successRedirect: '/dashboard',
+            failureRedirect: '/'
+        }));
 
-            app.get(callbackUrl, passport.authenticate({
-                  successRedirect: '/dashboard',
-                  failureRedirect: '/'
-                  }))
-      }
 
-      auth('/auth/github', 'auth/github/callback', 'github', {
-            scope: ['user:email']
+      // Google
+      app.get('/auth/google', passport.authenticate('google', {
+            scope: ['email', 'profile']
+        }));
+    
+      app.get('/auth/google/callback', passport.authenticate('google', {
+      successRedirect: '/dashboard',
+      failureRedirect: '/'
+      }));
+
+      // Twitter
+      app.get('/auth/twitter', passport.authenticate('twitter'));
+    
+      app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+      successRedirect: '/dashboard',
+      failureRedirect: '/'
+      }));
+
+      app.get('/auth/user', (req, res) => {
+            res.send(req.user)
       })
-      auth('/auth/google', 'auth/google/callback', 'google', {
-            scope: ['profile']
-      })
-      auth('/auth/twitter', 'auth/twitter/callback', 'twitter')
 
       app.get('/auth/logout',(req, res) => {
             req.logout();
