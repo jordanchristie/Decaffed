@@ -9,6 +9,7 @@ const express = require('express'),
       PORT = process.env.PORT || 5000,
       app = express();
 
+require('./models/User');
 require('./services/passport');
 
 app.use(cors());

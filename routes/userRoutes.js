@@ -5,8 +5,8 @@ const express = require('express'),
 module.exports = (app) => {
       // github
       app.get('/auth/github', passport.authenticate('github', {
-            scope: ['email', 'profile']
-        }));
+            scope: ['user:email']
+      }));
     
         app.get('/auth/github/callback', passport.authenticate('github', {
             successRedirect: '/dashboard',
@@ -32,12 +32,4 @@ module.exports = (app) => {
       failureRedirect: '/'
       }));
 
-      app.get('/auth/user', (req, res) => {
-            res.send(req.user)
-      })
-
-      app.get('/auth/logout',(req, res) => {
-            req.logout();
-            res.redirect('/');
-      })
 }

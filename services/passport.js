@@ -7,14 +7,14 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy,
 
 passport.serializeUser((user, done) => {
     console.log(user)
-    //done(null, user);
+    done(null, user);
 })
 
 passport.deserializeUser((id, done) => {
     console.log(id)
-    // User.findById(id, (err, user) => {
-    //     done(null, user)
-    // })
+    User.findById(id, (err, user) => {
+        done(null, user)
+    })
 })
 
 passport.use( 
