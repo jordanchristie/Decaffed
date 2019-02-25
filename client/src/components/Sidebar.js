@@ -1,43 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Drawer from '@material-ui/core/Drawer'
 import { Home, Map, Notes } from '@material-ui/icons'
 
 
-class Sidebar extends Component {
+const Sidebar = ({ isOpen }) => {
+    return (
+        <AppDrawer anchor="left" 
+            open={isOpen}
+            >
+            <NavTitle href="/">Decaffed.</NavTitle>
+            <NavList>
+                <NavLink to="/dashboard">
+                    <Home />
+                    Dashboard
+                </NavLink> 
 
-    render() {
-        const { isOpen } = this.props;
-        return (
-                <AppDrawer anchor="left" 
-                    open={isOpen}
-                    >
-                    <NavTitle href="/">Decaffed.</NavTitle>
-                    <NavList>
-                        <NavLink to="/dashboard">
-                            <Home />
-                            Dashboard
-                        </NavLink> 
+                <NavLink to="/map">
+                    <Map />
+                    Map
+                </NavLink> 
 
-                        <NavLink to="/map">
-                            <Map />
-                            Map
-                        </NavLink> 
+                <NavLink to="/mynotes">
+                    <Notes />
+                    My Notes
+                </NavLink> 
 
-                        <NavLink to="/mynotes">
-                            <Notes />
-                            My Notes
-                        </NavLink> 
-
-                        <NavLink to="/auth/logout">
-                            Log Out
-                        </NavLink>       
-                    </NavList>
-                </AppDrawer>
-        )
-    }
-
+                <NavLink to="/auth/logout">
+                    Log Out
+                </NavLink>       
+            </NavList>
+        </AppDrawer>
+    )
 }
 
 export default Sidebar;
