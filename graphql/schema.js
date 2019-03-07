@@ -1,47 +1,40 @@
-const { GraphQLObjectType,
-        GraphQLList,
-        GraphQLString,
-        GraphQLSchema,
-        GraphQLNonNull,
-        GraphQLID
-    } = require('graphql');
+const { gql } = require('apollo-server-express');
 
-const { UserType, NoteType, FavoriteShopType } = require('./types');
-const mutation = require('./mutations');
-
-
-const query = new GraphQLObjectType({
-    name: 'Query',
-    fields: {
-        user: {
-            type: UserType,
-            args: {id: {type: GraphQLID}},
-            resolve(parent, args) {
-                console.log(args)
-                //return User.findById({id: args._id})
-            }
-        },
-        notes: {
-            type: new GraphQLList(NoteType),
-            args: {id: {type: GraphQLID}},
-            resolve(parent, args) {
-                console.log(args)
-            }
-        },
-        favoriteShops: {
-            type: new GraphQLList(FavoriteShopType),
-            args: {id: {type: GraphQLID}},
-            resolve(parent, args) {
-                console.log(args)
-
-            }
-        }
+exports.typeDefs = gql`
+    type Query {
+        getUser(_id: String!): User
     }
-})
 
+    type Note {
+        _id: ID!
+        title: String!
+        note: String!
+    }
 
+    type FSAddress {
+        street: String!
+        city: String!
+    }
 
-module.exports = new GraphQLSchema({
-    query,
-    mutation
-})
+    type FavoriteShop {
+        _id: ID!
+        image_url: String
+        address: FSAddress!
+    }
+
+    type User {
+        _id: ID!
+        name: String!
+        profileImg: String!
+        notes: [Note]
+        favoriteShops: [FavoriteShop]
+    }
+    type Mutation {
+        addUser(_id: String!): User
+        removeUser(_id: String!): User
+        addFavoriteShop(name: String!, image_url: String! ): FavoriteShop
+        addNote(_id: String!, title: String!, note: String!): Note
+        editNote(_id: String!): Note
+        removeNote(_id: String!): Note
+    }
+`
