@@ -25,20 +25,19 @@ passport.use(
         proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
-        console.log(accessToken)
-        console.log(profile)
         // Check whether user exists
         const existingUser = await User.findOne({ id: profile.id});
         if (existingUser) {
             return done(null, existingUser);
         }
-        
+        console.log('Existing user', existingUser)        
         // Create new User
         const newUser =  await new User({ 
             name: profile.displayName,
             profileImg: profile._json.image.url,
             }).save();
-        done(null, newUser);        
+        done(null, newUser);
+        console.log('New User', newUser)        
     })
 );
 
@@ -50,8 +49,6 @@ passport.use(
         proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
-        console.log(accessToken)
-        console.log(profile)
         // Check whether user exists
         const existingUser = await User.findOne({ id: profile.id});
         if (existingUser) {
@@ -75,8 +72,6 @@ passport.use(
         proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
-        console.log(accessToken)
-        console.log(profile)
         //Check whether user exists
         const existingUser = await User.findOne({ id: profile.id});
         if (existingUser) {
@@ -89,5 +84,6 @@ passport.use(
             profileImg: profile._json.image.url,
             }).save();
         done(null, newUser);
+        
     })
 )

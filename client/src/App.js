@@ -40,6 +40,7 @@ class App extends Component {
           <Header />
           <Switch>
             <Route exact path="/" component={SplashPage} />
+            <Route path="/signup" component={SignUp} />
             <Route path="/map" component={CoffeeMap} />
             <Route path="/dashboard" component={Favorites} />
             <Route path="/myNotes" component={MyNotes}/>
