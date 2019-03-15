@@ -1,15 +1,15 @@
-import { graphql } from 'react-apollo';
-import { gql } from 'graphql-tag';
+import gql from 'graphql-tag';
 
 // User Mutations
 export const ADD_USER = gql`
-  mutation {
-    addUser(_id) {
+  mutation ($id: String!){
+    addUser(_id: $id) {
       name
       profileImg
     }
   }
 `
+
 // FavoriteShop Mutations
 export const ADD_FAVORITE_SHOP = gql`
   mutation ($name: String!, $image_url: String!, $city: String!, $state: String!){
@@ -25,8 +25,20 @@ export const ADD_FAVORITE_SHOP = gql`
 export const REMOVE_FAVORITE_SHOP = gql`
   mutation ($id: String!) {
     removeFavoriteShop(id: $id) {
-
+      id
     }
   }
 `
+
+// Note Mutations
+export const ADD_NOTE = gql`
+  mutation ($title: String!, $note: String!) {
+    addNote(title: $title, note: $note) {
+      title
+      note
+    }
+  }
+`
+
+
 

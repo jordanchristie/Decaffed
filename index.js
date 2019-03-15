@@ -5,7 +5,6 @@ const express = require('express'),
       session = require('express-session'),
       passport = require('passport'),
       { ApolloServer } = require('apollo-server-express'),
-      { makeExecutableSchema } = require('graphql-tools');
       keys = require('./server/keys/keys'),
       User = require('./server/models/User'),
       FavoriteShop = require('./server/models/FavoriteShop'),
@@ -36,11 +35,6 @@ require('./server/routes/userRoutes')(app);
 
 require('./server/routes/routes')(app);
 
-
-const schema = makeExecutableSchema({
-      typeDefs,
-      resolvers
-})
 
 const server = new ApolloServer({ 
       typeDefs,

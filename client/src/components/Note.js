@@ -1,60 +1,61 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { addNote } from '../actions';
+import { Mutation } from 'react-apollo';
+import { ADD_NOTE } from '../graphql/mutations';
 
+const initialState = {
+    title: '',
+    note: ''
+}
 
 class Note extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            title: '',
-            note: ''
-        }
+    
+    state = { ...initialState };
+
+    handleChange = (e) => {
+        const { name, value } = e.target;
+        
+        this.setState({ [name]: value })
     }
 
-    handleTitleChange = (e) => {
-        this.setState({title: e.target.value})
-    }
-
-    handleNoteChange = (e) => {
-        this.setState({note: e.target.value})
-    }
-
-    submitNote = () => {
-        const note = {
-            title: this.state.title,
-            note: this.state.note
-        }
-        this.props.addNote(note)
-        this.props.closeNote();
-        this.resetNote();
+    submitNote = (e, addNote) => {
+        addNote().then(console.log('note added'))
     }
 
     resetNote = () => {
-        this.setState({
-            title: '',
-            note: ''
-        })
+        this.setState({ ...initialState })
     }
 
     render() {
+        const { title, note } = this.state;
         const {shop} = this.props
         return (
-            <NoteWrapper>
-                <i className="fa fa-window-close fa-3x" onClick={this.props.closeNote}></i>
-                <ShopName>{shop.name}</ShopName>
-                <label htmlFor="title">Title</label>
-                <input type="text" onChange={this.handleTitleChange}/>
-                <label htmlFor="note">Note</label>
-                <textarea name="note" id="" cols="30" rows="10" onChange={this.handleNoteChange}></textarea>
-                <button onClick={this.submitNote}>Submit</button>
-            </NoteWrapper>
+            <Mutation mutation={ADD_NOTE} variables={{title, note}}>
+            {addNote  => {
+                return (
+                <NoteWrapper>
+                    <i className="fa fa-window-close fa-3x" onClick={this.props.closeNote}></i>
+                    <ShopName>{shop.name}</ShopName>
+                    <label htmlFor="title">Title</label>
+                    <input type="text"
+                        name="title"
+                        value={title}
+                        onChange={this.handleChange}/>
+                    <label htmlFor="note">Note</label>
+                    <textarea id="" cols="30" rows="10"
+                            name="note"
+                            value={note} 
+                            onChange={this.handleChange}></textarea>
+                    <button onClick={e => this.submitNote(e, addNote)}>Submit</button>
+                </NoteWrapper>
+                )
+            }}
+            </Mutation>
         )
     }
 }
 
-export default connect(null, { addNote })(Note);
+export default Note;
 
 const NoteWrapper = styled.section`
     position: absolute;
