@@ -6,6 +6,7 @@ import CoffeeMap from './components/CoffeeMap';
 import Header from './components/Header';
 import Favorites from './components/Favorites';
 import MyNotes from './components/MyNotes';
+import SignUp from "./components/SignUp";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const GlobalStyle = createGlobalStyle`

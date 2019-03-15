@@ -7,7 +7,7 @@ const initialState = {
   confirmedPassword: ''
 }
 
-export default class SignUp extends Component {
+class SignUp extends Component {
   render() {
     return (
       <form action="">
@@ -19,3 +19,5 @@ export default class SignUp extends Component {
     )
   }
 }
+
+export default SignUp;

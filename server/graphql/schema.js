@@ -13,16 +13,13 @@ exports.typeDefs = gql`
         note: String!
     }
 
-    input FSAddress {
-        street: String!
-        city: String!
-    }
 
     type FavoriteShop {
         _id: ID!
         name: String!
         image_url: String!
-        address: FSAddress!
+        city: String!
+        state: String!
     }
 
     type User {
@@ -35,7 +32,8 @@ exports.typeDefs = gql`
     type Mutation {
         addUser(_id: String!): User
         removeUser(_id: String!): User
-        addFavoriteShop(name: String!, image_url: String!, address: FSAddress! ): FavoriteShop
+        addFavoriteShop(name: String!, image_url: String!, city: String!
+        state: String! ): FavoriteShop
         addNote(_id: String!, title: String!, note: String!): Note
         editNote(_id: String!): Note
         removeNote(_id: String!): Note

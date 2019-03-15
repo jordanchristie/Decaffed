@@ -34,14 +34,16 @@ exports.resolvers = {
     },
 
     // FavoriteShop Mutations
-    addFavoriteShop: async (parent, { _id, name, image_url, address }, { User, FavoriteShop}) => {
-      const user = await User.findOne({ _id });
+    addFavoriteShop: async (parent, { _id, name, image_url, city, state }, { User, FavoriteShop}) => {
+      // const user = await User.findOne({ _id });
       const favoriteShop = {
         name,
         image_url,
-        address
+        city,
+        state
       }
-      user.favoriteShops.push(favoriteShop)
+      return favoriteShop
+      // user.favoriteShops.push(favoriteShop)
     },
 
     // Note Mutations
