@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import SearchBar from './SearchBar';
 
 class SplashPage extends Component {
     render() {
@@ -11,7 +10,7 @@ class SplashPage extends Component {
                 <SignUp bg="#333" href="/auth/github">Login with Github</SignUp>
                 <SignUp bg="#3f51b5" href="/auth/google">Login with Google</SignUp>
                 <SignUp bg="#1da1f2" href="/auth/twitter">Login with Twitter</SignUp>
-                <SearchBar {...this.props}/>
+                <SignUp bg="#1da1f2" href="/signup">Sign Up</SignUp>    
             </Splash>
         )
     }
@@ -20,13 +19,13 @@ class SplashPage extends Component {
 export default SplashPage;
 
 const Splash = styled.section`
-    margin-top: 4em;
     height: 100vh;
+    margin-top: 56px;
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    background: url('https://media.giphy.com/media/kQHPwJmJxKzyU/giphy.gif') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://media.giphy.com/media/kQHPwJmJxKzyU/giphy.gif') no-repeat center center;
     background-size: cover;
     color: #fff;
     text-align: center;
@@ -34,11 +33,13 @@ const Splash = styled.section`
 
 const Title = styled.h1`
     font-size: 5em;
+    margin: 0;
 `
 
 const Tagline = styled.h3`
     font-size: 3em;
     width: 75%;
+    margin: 0;
 `
 
 const SignUp = styled.a`
@@ -48,7 +49,7 @@ const SignUp = styled.a`
     border: none;
     border-radius: .2em;
     color: #fff;
-    padding: .25em .5em;
-    margin: .5em;
+    padding: .5em 1em;
+    margin: .5em 0 .75em;
     font-size: 24px;
 `

@@ -32,7 +32,8 @@ class SearchBar extends Component {
     render() {
         return (
             <>
-                <GoogleComponent 
+                <GoogleComponent
+                        style={{width: '70%'}} 
                         apiKey={keys.GoogleAPIKey}
                         coordinates={true}
                         onChange={e => this.handleSearch(e)}

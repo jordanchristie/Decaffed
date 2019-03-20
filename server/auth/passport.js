@@ -6,12 +6,10 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy,
       User = require('../models/User');
 
 passport.serializeUser((user, done) => {
-    console.log(user)
     done(null, user);
 })
 
 passport.deserializeUser((id, done) => {
-    console.log(id)
     User.findById(id, (err, user) => {
         done(null, user)
     })
@@ -26,18 +24,18 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
         // Check whether user exists
-        const existingUser = await User.findOne({ id: profile.id});
+        const existingUser = await User.findOne({ _id: profile.id });
         if (existingUser) {
             return done(null, existingUser);
         }
         console.log('Existing user', existingUser)        
         // Create new User
         const newUser =  await new User({ 
+            _id: profile.id,
             name: profile.displayName,
             profileImg: profile._json.image.url,
             }).save();
-        done(null, newUser);
-        console.log('New User', newUser)        
+        done(null, newUser);        
     })
 );
 
@@ -45,10 +43,11 @@ passport.use(
     new GithubStrategy({
         clientID: keys.githubClientID,
         clientSecret: keys.githubClientSecret,
-        redirect_uri: 'auth/github/callback',
+        callbackURL: 'http://localhost:3000/auth/github/callback',
         proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
+        console.log(profile)
         // Check whether user exists
         const existingUser = await User.findOne({ id: profile.id});
         if (existingUser) {
@@ -56,7 +55,8 @@ passport.use(
         }
         
         // Create new User
-        const newUser =  await new User({ 
+        const newUser =  await new User({
+            _id: profile.id, 
             name: profile.displayName,
             profileImg: profile._json.image.url,
             }).save();
@@ -79,7 +79,8 @@ passport.use(
         }
         
         // Create new User
-        const newUser =  await new User({ 
+        const newUser =  await new User({
+            _id: profile.id, 
             name: profile.displayName,
             profileImg: profile._json.image.url,
             }).save();

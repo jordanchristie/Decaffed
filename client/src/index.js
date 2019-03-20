@@ -4,14 +4,29 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import ApolloClient from 'apollo-boost';
+import { ApolloClient } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import * as serviceWorker from './serviceWorker';
 
 import rootReducer from './reducers/index';
 
+
 const client = new ApolloClient({
-    uri: `http://localhost:5000/graphql`
+  link: createHttpLink({uri: 'http://localhost:5000/graphql'}),
+  cache: new InMemoryCache(),
+  fetchOptions: {
+    credentials: 'include'
+  },
+//   request: (operation) => {
+//     const token = localStorage.getItem('token');
+//     operation.setContext({
+//       headers: {
+//         authorization: token
+//       }
+//     })
+//   }
 })
 
 const root = document.getElementById('root')

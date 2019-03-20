@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 exports.typeDefs = gql`
     type Query {
-        getUser(_id: String!): User
+        getUser(_id: ID!): User
         getAllNotes(_id: String!): [Note]
         getAllFavoriteShops(_id: String!): [FavoriteShop]
     }
@@ -23,7 +23,7 @@ exports.typeDefs = gql`
     }
 
     type User {
-        _id: String!
+        _id: ID!
         name: String!
         profileImg: String!
         notes: [Note]
@@ -34,8 +34,8 @@ exports.typeDefs = gql`
         removeUser(_id: String!): User
         addFavoriteShop(name: String!, image_url: String!, city: String!
         state: String! ): FavoriteShop
-        addNote(_id: String!, title: String!, note: String!): Note
-        editNote(_id: String!): Note
-        removeNote(_id: String!): Note
+        addNote(title: String!, note: String!): Note
+        editNote(_id: ID!): Note
+        removeNote(_id: ID!): Note
     }
 `

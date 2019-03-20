@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Sidebar from './Sidebar';
 
 
+
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -23,7 +24,7 @@ class Header extends Component {
 
     render() {
         return (
-            <>
+            <Navbar>
                 <AppBar>
                     <Toolbar>
                         <IconButton onClick={this.toggleSidebar}>
@@ -32,12 +33,16 @@ class Header extends Component {
                     </Toolbar>
                 </AppBar>
                 <Sidebar isOpen={this.state.sideBarOpen} toggleSidebar={this.toggleSidebar} />
-            </>
+            </Navbar>
         )
     }
 }
 
 export default Header;
+
+const Navbar = styled.nav`
+    
+`
 
 const Menu = styled(MenuIcon)`
     color: white;

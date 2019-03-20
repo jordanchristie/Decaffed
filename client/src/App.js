@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { reset } from 'styled-reset';
+// import { reset } from 'styled-reset';
 import SplashPage from './components/SplashPage';
 import CoffeeMap from './components/CoffeeMap';
 import Header from './components/Header';
-import Favorites from './components/Favorites';
+import Home from './components/Home';
 import MyNotes from './components/MyNotes';
 import SignUp from "./components/SignUp";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const GlobalStyle = createGlobalStyle`
-  ${reset}
-  html, body {
+  html, body, .App {
     height: 100%;
     width: 100%;
     margin: 0;
@@ -31,26 +30,22 @@ const GlobalStyle = createGlobalStyle`
 `
 
 
-class App extends Component {
-   render() {
-    return (
-      <main className="App">
-        <Router>
-          <>
-          <GlobalStyle />
-          <Header />
-          <Switch>
-            <Route exact path="/" component={SplashPage} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/map" component={CoffeeMap} />
-            <Route path="/dashboard" component={Favorites} />
-            <Route path="/myNotes" component={MyNotes}/>
-          </Switch>
-          </>
-        </Router>
-      </main>
-    );
-  }
-}
+const App = ({refetch, session}) => (
+  <main className="App">
+    <Router>
+      <>
+      <GlobalStyle />
+      <Header session={session} />
+      <Switch>
+        <Route exact path="/" component={SplashPage} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/map" component={CoffeeMap} />
+        <Route path="/dashboard" component={Home} />
+        <Route path="/myNotes" component={MyNotes}/>
+      </Switch>
+      </>
+    </Router>
+  </main>
+);
 
 export default App;
