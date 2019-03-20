@@ -5,10 +5,11 @@ import Drawer from '@material-ui/core/Drawer'
 import { Home, Map, Notes } from '@material-ui/icons'
 
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, toggleSidebar }) => {
     return (
         <AppDrawer anchor="left" 
             open={isOpen}
+            onClose={toggleSidebar}
             >
             <NavTitle href="/">Decaffed.</NavTitle>
             <NavList>

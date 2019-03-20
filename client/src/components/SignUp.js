@@ -28,6 +28,7 @@ class SignUp extends Component {
 export default SignUp;
 
 const SignUpForm = styled.form`
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
