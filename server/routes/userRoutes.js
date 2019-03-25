@@ -9,27 +9,33 @@ module.exports = (app) => {
       }));
     
         app.get('/auth/github/callback', passport.authenticate('github', {
-            successRedirect: '/dashboard',
             failureRedirect: '/'
-        }));
+      }), (req, res) => {
+            res.send(req.user)
+            res.redirect('/dashboard')
+      })
 
 
       // Google
       app.get('/auth/google', passport.authenticate('google', {
             scope: ['email', 'profile']
-        }), () => console.log('clicked!'));
+        }));
     
       app.get('/auth/google/callback', passport.authenticate('google', {
-      successRedirect: '/dashboard',
-      failureRedirect: '/'
-      }));
+            failureRedirect: '/'
+      }), (req, res) => {
+            console.log(req.user)
+            res.redirect('/dashboard')
+            
+      })
 
       // Twitter
       app.get('/auth/twitter', passport.authenticate('twitter'));
     
       app.get('/auth/twitter/callback', passport.authenticate('twitter', {
-      successRedirect: '/dashboard',
-      failureRedirect: '/'
-      }));
+            failureRedirect: '/'
+      }), (req, res) => {
+            res.redirect('/dashboard')
+      })
 
 }

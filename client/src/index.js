@@ -14,11 +14,8 @@ import rootReducer from './reducers/index';
 
 
 const client = new ApolloClient({
-  link: createHttpLink({uri: 'http://localhost:5000/graphql'}),
+  link: createHttpLink({uri: 'http://localhost:5000/graphql', credentials: 'include'}),
   cache: new InMemoryCache(),
-  fetchOptions: {
-    credentials: 'include'
-  },
 //   request: (operation) => {
 //     const token = localStorage.getItem('token');
 //     operation.setContext({

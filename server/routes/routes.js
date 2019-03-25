@@ -14,4 +14,8 @@ module.exports = (app) => {
         req.logout();
         res.redirect('/');
   })
+
+  app.get('/auth/test', (req, res) => {
+      res.redirect('/dashboard')
+  })
 }

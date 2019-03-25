@@ -3,8 +3,8 @@ const { gql } = require('apollo-server-express');
 exports.typeDefs = gql`
     type Query {
         getUser(_id: ID!): User
-        getAllNotes(_id: String!): [Note]
-        getAllFavoriteShops(_id: String!): [FavoriteShop]
+        getAllNotes(_id: ID!): [Note]
+        getAllFavoriteShops(_id: ID!): [FavoriteShop]
     }
 
     type Note {

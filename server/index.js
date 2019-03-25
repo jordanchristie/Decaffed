@@ -5,15 +5,15 @@ const express = require('express'),
       session = require('express-session'),
       passport = require('passport'),
       { ApolloServer } = require('apollo-server-express'),
-      keys = require('./server/keys/keys'),
-      User = require('./server/models/User'),
-      FavoriteShop = require('./server/models/FavoriteShop'),
-      Note = require('./server/models/Note'),
-      { typeDefs } = require('./server/graphql/schema'),
-      { resolvers } = require('./server/graphql/resolvers'),
+      keys = require('./keys/keys'),
+      User = require('./models/User'),
+      FavoriteShop = require('./models/FavoriteShop'),
+      Note = require('./models/Note'),
+      { typeDefs } = require('./graphql/schema'),
+      { resolvers } = require('./graphql/resolvers'),
       PORT = process.env.PORT || 5000,
       app = express();
-require('./server/auth/passport');
+require('./auth/passport');
       
 // Initialize MongoDB
 mongoose.connect(keys.mongoURI, {useNewUrlParser: true});
@@ -22,7 +22,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console));
 db.once('open', () => console.log('connected to Mongo 🐵'))
 
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -31,10 +31,10 @@ app.use(session({secret: keys.expressKey, resave: true, saveUninitialized: true}
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./server/routes/userRoutes')(app);
+require('./routes/userRoutes')(app);
 
 
-require('./server/routes/routes')(app);
+require('./routes/routes')(app);
 
 
 const server = new ApolloServer({ 

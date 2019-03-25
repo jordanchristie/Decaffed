@@ -5,14 +5,12 @@ import styled from 'styled-components';
 import { fetchFavorites } from '../actions';
 
 class Favorites extends Component {
-    componentDidMount() {
-        this.props.fetchFavorites()
-    }
+    
 
     renderFavorites = () => {
-        const { favoritedShops } = this.props;
+        const { favoriteShops } = this.props;
 
-    favoritedShops.map(shop => {
+    favoriteShops.map(shop => {
         return <article key={shop.id}> 
                     <img src={shop.url} alt="shop"/>
                </article>
@@ -21,7 +19,7 @@ class Favorites extends Component {
     render() {
         return (
             <FavoritesList>
-                { this.props.favoritedShops ?
+                { this.props.favoriteShops ?
                     this.renderFavorites()
                     : <p>You don't have any favorites yet.</p>
                 }
