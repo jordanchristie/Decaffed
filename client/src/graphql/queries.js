@@ -4,7 +4,7 @@ export const GET_USER = gql`
   query ($_id: ID!){
     getUser(_id: $_id) {
       name
-      image_url
+      profileImg
       notes {
         title
         note

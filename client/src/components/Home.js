@@ -1,24 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SearchBar from './SearchBar';
 import { GET_USER } from '../graphql/queries';
 import { Query } from 'react-apollo';
 
-class Home extends Component {
-    render() {
+const Home = () => (
+       
+    <Query query={GET_USER} variables={{ _id: 102694616703030500000 }}>
+    {(data, loading, error) => {
+        console.log(data)
         return (
-            <Query query={GET_USER}>
-            {(data, loading, error) => {
-                console.log(data)
-                return (
-                    <>
-                        <h1>Home Page</h1>
-                        <SearchBar />
-                    </>
-                )
-            }}
-            </Query>
+            <>
+                <h1>Home Page</h1>
+                <SearchBar />
+            </>
         )
-    }
-}
+    }}
+    </Query>
+
+)
 
 export default Home

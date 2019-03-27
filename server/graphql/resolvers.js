@@ -1,6 +1,7 @@
 exports.resolvers = {
   Query: {
     getUser: async (parent, { _id }, { User }) => {
+      console.log('got user')
       const user = await User.findOne({ _id });
       console.log(user)
       return user;

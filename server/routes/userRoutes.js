@@ -24,7 +24,6 @@ module.exports = (app) => {
       app.get('/auth/google/callback', passport.authenticate('google', {
             failureRedirect: '/'
       }), (req, res) => {
-            console.log(req.user)
             res.redirect('/dashboard')
             
       })
