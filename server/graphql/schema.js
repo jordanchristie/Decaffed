@@ -3,8 +3,14 @@ const { gql } = require('apollo-server-express');
 exports.typeDefs = gql`
     type Query {
         getUser(_id: ID!): User
+        getCoffeeShops(coordinates: Coordinates): [CoffeeShop]!
         getAllNotes(_id: ID!): [Note]
         getAllFavoriteShops(_id: ID!): [FavoriteShop]
+    }
+
+    input Coordinates {
+        lat: Float!
+        lng: Float!
     }
 
     type Note {
@@ -13,13 +19,19 @@ exports.typeDefs = gql`
         note: String!
     }
 
-
     type FavoriteShop {
         _id: ID!
         name: String!
         image_url: String!
         city: String!
         state: String!
+    }
+
+    type CoffeeShop {
+        name: String
+        image_url: String
+        city: String
+        state: String
     }
 
     type User {

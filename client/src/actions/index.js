@@ -7,8 +7,7 @@ import { GET_COORDINATES,
          EDIT_NOTE,
          GET_NOTES,
          REMOVE_NOTE,
-         GET_USER
-          } from '../constants';
+         } from '../constants';
 import keys from '../keys.json';
 import axios from 'axios';
 
@@ -33,14 +32,6 @@ export const fetchCoffeeShops = (coordinates) => {
 
 // BACKEND ACTIONS
 
-// USER
-
-export const loadUser = () => {
-    return dispatch => {
-        axios.get('api/user')
-            .then(data => dispatch({type: GET_USER, payload: data}))
-    }
-}
 
 // FAVORITES
 

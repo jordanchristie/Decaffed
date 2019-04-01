@@ -18,3 +18,14 @@ export const GET_USER = gql`
     }
   }
 `
+
+export const GET_COFFEE_SHOPS = gql`
+  query ($coordinates: Coordinates!){
+    getCoffeeShops(coordinates: $coordinates) {
+      name
+      state
+      city
+      state
+    }
+  }
+`

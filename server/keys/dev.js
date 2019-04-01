@@ -6,5 +6,6 @@ module.exports = {
     githubClientID: '2db108716e143fd7fdd8',
     githubClientSecret: '106fef8242f3bb6c1486b4b99d065b5cda05646d',
     twitterConsumerKey: 'lQVBb1DiGru04W8VpOLydzL4a',
-    twitterConsumerSecret: '4M1UXLWOoCgMQwaF0TyYxvg4hjDWsCCvLDYaC628kPOdXdnQ1N'
+    twitterConsumerSecret: '4M1UXLWOoCgMQwaF0TyYxvg4hjDWsCCvLDYaC628kPOdXdnQ1N',
+    yelpAPIKey: "jBebg1xK5dAMiR7rGLXQpAmT4ub67UFNmgdZH9QW1r5hi8s_VcdnuRpZXPDsTlvzg8QTuLTRuQlUDHrBdCzJEm-QM4lH6tLvy7FrITJuadzc8y-VBk8gDjjBcrDpW3Yx"
 }
