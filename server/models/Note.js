@@ -1,9 +1,9 @@
-const mongoose = require('mongoose'),
-      { Schema } = mongoose;
+const mongoose = require("mongoose"),
+  { Schema } = mongoose;
 
 const NoteSchema = new Schema({
-    title: String,
-    note: String
-})
+  title: String,
+  note: String
+});
 
 module.exports = NoteSchema;

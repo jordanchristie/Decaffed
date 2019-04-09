@@ -1,58 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import Drawer from '@material-ui/core/Drawer'
-import { Home, Map, Notes } from '@material-ui/icons'
-
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import Drawer from "@material-ui/core/Drawer";
+import { Home, Map, Notes } from "@material-ui/icons";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-    return (
-        <AppDrawer anchor="left" 
-            open={isOpen}
-            onClose={toggleSidebar}
-            >
-            <NavTitle href="/">Decaffed.</NavTitle>
-            <NavList>
-                <NavLink to="/dashboard">
-                    <Home />
-                    Dashboard
-                </NavLink> 
+  return (
+    <AppDrawer anchor="left" open={isOpen} onClose={toggleSidebar}>
+      <NavTitle href="/">Decaffed.</NavTitle>
+      <NavList>
+        <NavLink to="/dashboard">
+          <Home />
+          Dashboard
+        </NavLink>
 
-                <NavLink to="/map">
-                    <Map />
-                    Map
-                </NavLink> 
+        <NavLink to="/map">
+          <Map />
+          Map
+        </NavLink>
 
-                <NavLink to="/mynotes">
-                    <Notes />
-                    My Notes
-                </NavLink> 
+        <NavLink to="/mynotes">
+          <Notes />
+          My Notes
+        </NavLink>
 
-                <NavLink to="/auth/logout">
-                    Log Out
-                </NavLink>       
-            </NavList>
-        </AppDrawer>
-    )
-}
+        <NavLink to="/auth/logout">Log Out</NavLink>
+      </NavList>
+    </AppDrawer>
+  );
+};
 
 export default Sidebar;
 
 const AppDrawer = styled(Drawer)`
-    width: 50vw;
-`
+  width: 50vw;
+`;
 
 const NavTitle = styled.a`
-    text-align: center;
-`
+  text-align: center;
+`;
 
 const NavList = styled.ul`
-    display: flex;
-    flex-flow: column wrap;
-    padding: 10%;
-`
+  display: flex;
+  flex-flow: column wrap;
+  padding: 10%;
+`;
 
 const NavLink = styled(Link)`
-    text-decoration: none;
-    margin: 1em;
-`
+  text-decoration: none;
+  margin: 1em;
+`;
