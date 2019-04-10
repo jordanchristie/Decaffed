@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 
-class SplashPage extends Component {
-  render() {
-    return (
-      <Splash>
+const SplashPage = ({ session }) => (
+  <Splash>
+    {session.getUser ? (
+      <Redirect to="/dashboard" />
+    ) : (
+      <>
         <Title>Decaffed</Title>
         <Tagline>Find a coffee shop nearby to recaffeinate.</Tagline>
         <SignUp bg="#333" href="/auth/github">
@@ -19,10 +22,10 @@ class SplashPage extends Component {
         <SignUp bg="#1da1f2" href="/signup">
           Sign Up
         </SignUp>
-      </Splash>
-    );
-  }
-}
+      </>
+    )}
+  </Splash>
+);
 
 export default SplashPage;
 

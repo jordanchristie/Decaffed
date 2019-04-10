@@ -1,14 +1,14 @@
-import React from 'react';
-import { createGlobalStyle } from 'styled-components';
+import React from "react";
+import { createGlobalStyle } from "styled-components";
 // import { reset } from 'styled-reset';
-import SplashPage from './components/SplashPage';
-import CoffeeMap from './components/CoffeeMap';
-import Header from './components/Header';
-import Home from './components/Home';
-import MyNotes from './components/MyNotes';
+import SplashPage from "./components/SplashPage";
+import CoffeeMap from "./components/CoffeeMap";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import MyNotes from "./components/MyNotes";
 import SignUp from "./components/SignUp";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import withAuth from './withAuth';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import withAuth from "./withAuth";
 
 const GlobalStyle = createGlobalStyle`
   html, body, .App {
@@ -28,29 +28,33 @@ const GlobalStyle = createGlobalStyle`
     padding: .25em .5em;
     border: none;
   }
-`
+`;
 
-
-const App = ({refetch, session}) => {
-  console.log(session)
+const App = ({ refetch, session }) => {
   return (
-  <main className="App">
-    <Router>
-      <>
-      <GlobalStyle />
-      <Header session={session} />
-      <Switch>
-        <Route exact path="/" component={SplashPage} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/map" component={CoffeeMap} />
-        <Route path="/dashboard" render={() => <Home session={session}/>} />
-        <Route path="/myNotes" component={MyNotes}/>
-      </Switch>
-      </>
-    </Router>
-  </main>
-);
-}
-  
+    <main className="App">
+      <Router>
+        <>
+          <GlobalStyle />
+          <Header session={session} />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => <SplashPage session={session} />}
+            />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/map" component={CoffeeMap} />
+            <Route
+              path="/dashboard"
+              render={() => <Home session={session} />}
+            />
+            <Route path="/myNotes" component={MyNotes} />
+          </Switch>
+        </>
+      </Router>
+    </main>
+  );
+};
 
 export default withAuth(App);
