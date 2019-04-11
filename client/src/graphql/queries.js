@@ -1,7 +1,7 @@
-import gql  from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const GET_USER = gql`
-  query ($_id: ID!){
+  query($_id: ID!) {
     getUser(_id: $_id) {
       name
       profileImg
@@ -17,15 +17,21 @@ export const GET_USER = gql`
       }
     }
   }
-`
+`;
 
 export const GET_COFFEE_SHOPS = gql`
-  query ($coordinates: Coordinates!){
+  query($coordinates: Coordinates!) {
     getCoffeeShops(coordinates: $coordinates) {
       name
-      state
-      city
-      state
+      image_url
+      phone
+      rating
+      address
+      cityState
+      coordinates {
+        lat
+        lng
+      }
     }
   }
-`
+`;

@@ -1,41 +1,42 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { ApolloClient } from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
-import { createHttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { ApolloClient } from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import { createHttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import * as serviceWorker from "./serviceWorker";
 
-import rootReducer from './reducers/index';
-
+import rootReducer from "./reducers/index";
 
 const client = new ApolloClient({
-  link: createHttpLink({uri: 'http://localhost:5000/graphql'}),
-  cache: new InMemoryCache(),
-//   request: (operation) => {
-//     const token = localStorage.getItem('token');
-//     operation.setContext({
-//       headers: {
-//         authorization: token
-//       }
-//     })
-//   }
-})
+  link: createHttpLink({ uri: "http://localhost:5000/graphql" }),
+  cache: new InMemoryCache()
+  //   request: (operation) => {
+  //     const token = localStorage.getItem('token');
+  //     operation.setContext({
+  //       headers: {
+  //         authorization: token
+  //       }
+  //     })
+  //   }
+});
 
-const root = document.getElementById('root')
+const root = document.getElementById("root");
 
-const store =  createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </ApolloProvider>, root);
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ApolloProvider>,
+  root
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -43,11 +44,12 @@ ReactDOM.render(
 serviceWorker.unregister();
 
 if (module.hot) {
-    module.hot.accept('./App', () => {
-      ReactDOM.render(
-        <Provider store={store}>
-            <App />
-        </Provider>, root
-      )
-    })
-  }
+  module.hot.accept("./App", () => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      root
+    );
+  });
+}

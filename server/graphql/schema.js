@@ -13,6 +13,11 @@ exports.typeDefs = gql`
     lng: Float!
   }
 
+  type CSCoordinates {
+    lat: Float!
+    lng: Float!
+  }
+
   type Note {
     _id: ID!
     title: String!
@@ -30,8 +35,11 @@ exports.typeDefs = gql`
   type CoffeeShop {
     name: String
     image_url: String
-    city: String
-    state: String
+    coordinates: CSCoordinates
+    address: String
+    cityState: String
+    phone: String
+    rating: Float
   }
 
   type User {

@@ -47,9 +47,8 @@ class ShopDetails extends Component {
         <Overlay>
           <h2>{shop.name}</h2>
           <FaIcon type="fa fa-envelope" />
-          {shop.location.address1} <br />
-          {shop.location.city}, {shop.location.state}
-          {shop.location.zip_code}
+          {shop.address} <br />
+          {shop.cityState}
           <FaIcon type="fa fa-phone" />
           {shop.phone}
           <br />

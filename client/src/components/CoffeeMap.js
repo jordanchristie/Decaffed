@@ -37,12 +37,12 @@ class CoffeeMap extends Component {
     }
   };
 
-  updateMap = (map, getCoffeeShops) => {
+  updateMap = (map, refetch) => {
     const newCenter = {
       lat: map.center.lat(),
       lng: map.center.lng()
     };
-    getCoffeeShops(newCenter);
+    refetch(newCenter);
   };
 
   addNote = () => {
@@ -56,25 +56,25 @@ class CoffeeMap extends Component {
     };
     const { coordinates } = this.props.location.state;
     return (
-      <Query
-        query={GET_COFFEE_SHOPS}
-        variables={{ coordinates: this.props.coordinates }}
-      >
-        {(getCoffeeShops, { data, loading, error }) => {
+      <Query query={GET_COFFEE_SHOPS} variables={{ coordinates }}>
+        {({ data, loading, error, refetch }) => {
           if (loading) return <h1>Loading...</h1>;
+          if (error) return <h1>Error...{error}</h1>;
           return (
-            <MapWrapper>
+            //<h1>Hi</h1>
+            <>
               <Map
                 item
                 xs={14}
                 style={style}
                 zoom={14}
                 google={this.props.google}
-                initialCenter={this.props.coordinates}
+                initialCenter={coordinates}
                 onClick={this.mapClick}
-                onDragend={e => this.updateMap(e, getCoffeeShops)}
+                onDragend={e => this.updateMap(e, refetch)}
               >
-                {this.props.coffeeShops.map((shop, i) => {
+                {data.getCoffeeShops.map((shop, i) => {
+                  console.log(shop.name);
                   return (
                     <Marker
                       key={i}
@@ -82,8 +82,8 @@ class CoffeeMap extends Component {
                       title={shop.name}
                       name={shop.name}
                       position={{
-                        lat: shop.coordinates.latitude,
-                        lng: shop.coordinates.longitude
+                        lat: shop.coordinates.lat,
+                        lng: shop.coordinates.lng
                       }}
                       onClick={this.selectMarker}
                     />
@@ -96,17 +96,13 @@ class CoffeeMap extends Component {
                   open={this.state.infoWindowOpen}
                 />
               ) : null}
-            </MapWrapper>
+            </>
           );
         }}
       </Query>
     );
   }
 }
-
-// const mapStateToProps = ({coordinates, coffeeShops}) => {
-//     return {coordinates, coffeeShops};
-// }
 
 export default GoogleApiWrapper({ apiKey: keys.GoogleAPIKey })(CoffeeMap);
 
