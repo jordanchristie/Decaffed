@@ -12,7 +12,6 @@ class SearchBar extends Component {
 
   handleSearch = e => {
     this.setState({ coordinates: e.coordinates });
-    console.log(this.state.coordinates);
   };
 
   render() {

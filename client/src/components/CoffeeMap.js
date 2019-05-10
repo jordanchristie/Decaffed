@@ -12,8 +12,9 @@ import keys from "../keys.json";
 
 class CoffeeMap extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
+      coordinates: props.location.state.coordinates,
       activeMarker: null,
       selectedPlace: {},
       infoWindowOpen: false
@@ -21,6 +22,7 @@ class CoffeeMap extends Component {
   }
 
   selectMarker = (props, marker) => {
+    console.log("marker clicked");
     this.setState({
       activeMarker: marker,
       selectedPlace: props.shop,
@@ -37,12 +39,14 @@ class CoffeeMap extends Component {
     }
   };
 
-  updateMap = (map, refetch) => {
+  updateMap = (mapProps, map, refetch) => {
+    console.log(map);
     const newCenter = {
       lat: map.center.lat(),
       lng: map.center.lng()
     };
-    refetch(newCenter);
+    this.setState({ coordinates: newCenter });
+    refetch(this.state.coordinates);
   };
 
   addNote = () => {
@@ -50,31 +54,37 @@ class CoffeeMap extends Component {
   };
 
   render() {
-    const style = {
+    const mapStyle = {
       width: "100vw",
       height: this.state.infoWindowOpen ? "40vh" : "100vh"
     };
-    const { coordinates } = this.props.location.state;
+    const {
+      coordinates,
+      selectedPlace,
+      selectMarker,
+      infoWindowOpen
+    } = this.state;
+    console.log(selectedPlace);
     return (
       <Query query={GET_COFFEE_SHOPS} variables={{ coordinates }}>
         {({ data, loading, error, refetch }) => {
           if (loading) return <h1>Loading...</h1>;
-          if (error) return <h1>Error...{error}</h1>;
+          if (error) return <h1>Error...</h1>;
           return (
-            //<h1>Hi</h1>
             <>
               <Map
                 item
                 xs={14}
-                style={style}
+                style={mapStyle}
                 zoom={14}
                 google={this.props.google}
                 initialCenter={coordinates}
                 onClick={this.mapClick}
-                onDragend={e => this.updateMap(e, refetch)}
+                onDragend={(mapProps, map) =>
+                  this.updateMap(mapProps, map, refetch)
+                }
               >
                 {data.getCoffeeShops.map((shop, i) => {
-                  console.log(shop.name);
                   return (
                     <Marker
                       key={i}
@@ -85,16 +95,13 @@ class CoffeeMap extends Component {
                         lat: shop.coordinates.lat,
                         lng: shop.coordinates.lng
                       }}
-                      onClick={this.selectMarker}
+                      onClick={selectMarker}
                     />
                   );
                 })}
               </Map>
-              {this.state.infoWindowOpen ? (
-                <ShopDetails
-                  shop={this.state.selectedPlace}
-                  open={this.state.infoWindowOpen}
-                />
+              {infoWindowOpen ? (
+                <ShopDetails shop={selectedPlace} open={infoWindowOpen} />
               ) : null}
             </>
           );
