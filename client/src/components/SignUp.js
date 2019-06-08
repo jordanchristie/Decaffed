@@ -15,6 +15,7 @@ class SignUp extends Component {
     const { name, email, password, confirmedPassword } = this.state;
     return (
       <SignUpForm>
+        <h1>Sign Up</h1>
         <SignUpInput type="text" name={name} placeholder="Name" />
         <SignUpInput type="email" name={email} placeholder="Email" />
         <SignUpInput type="password" name={password} placeholder="Password" />

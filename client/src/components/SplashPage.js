@@ -4,38 +4,28 @@ import styled from "styled-components";
 
 const SplashPage = ({ session }) => (
   <Splash>
-    {session.getUser ? (
-      <Redirect to="/dashboard" />
-    ) : (
-      <>
-        <Title>Decaffed</Title>
-        <Tagline>Find a coffee shop nearby to recaffeinate.</Tagline>
-        <SignUp bg="#333" href="/auth/github">
-          Login with Github
-        </SignUp>
-        <SignUp bg="#3f51b5" href="/auth/google">
-          Login with Google
-        </SignUp>
-        <SignUp bg="#1da1f2" href="/auth/twitter">
-          Login with Twitter
-        </SignUp>
-        <SignUp bg="#1da1f2" href="/signup">
-          Sign Up
-        </SignUp>
-      </>
-    )}
+    <Title>Decaffed</Title>
+    <Tagline>Find a coffee shop nearby to recaffeinate.</Tagline>
+    <SignUp bg="#333" href="/auth/github">
+      Login with Github
+    </SignUp>
+    <SignUp bg="#3f51b5" href="/auth/google">
+      Login with Google
+    </SignUp>
+    <SignUp bg="#1da1f2" href="/auth/twitter">
+      Login with Twitter
+    </SignUp>
+    <SignUp bg="#1da1f2" href="/signup">
+      Sign Up
+    </SignUp>
   </Splash>
 );
 
 export default SplashPage;
 
-const Splash = styled.section`
+export const SplashBackground = styled.main`
   height: 100vh;
   margin-top: 56px;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://media.giphy.com/media/kQHPwJmJxKzyU/giphy.gif") no-repeat
       center center;
@@ -44,9 +34,16 @@ const Splash = styled.section`
   text-align: center;
 `;
 
+export const Splash = styled.section`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Title = styled.h1`
   font-size: 5em;
-  margin: 0;
+  margin: 2em 0 0 0;
 `;
 
 const Tagline = styled.h3`
