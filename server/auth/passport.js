@@ -61,7 +61,7 @@ passport.use(
       const newUser = await new User({
         _id: profile.id,
         name: profile.displayName,
-        profileImg: profile._json.image.url
+        profileImg: profile._json.avatar_url
       }).save();
       done(null, newUser);
     }

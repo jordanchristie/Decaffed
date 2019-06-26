@@ -71,7 +71,7 @@ class CoffeeMap extends Component {
           if (loading) return <h1>Loading...</h1>;
           if (error) return <h1>Error...</h1>;
           return (
-            <>
+            <MapWrapper>
               <Map
                 item
                 xs={14}
@@ -103,7 +103,7 @@ class CoffeeMap extends Component {
               {infoWindowOpen ? (
                 <ShopDetails shop={selectedPlace} open={infoWindowOpen} />
               ) : null}
-            </>
+            </MapWrapper>
           );
         }}
       </Query>

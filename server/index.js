@@ -41,7 +41,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => ({
-    User,
+    User: req.user,
     FavoriteShop,
     Note
   })

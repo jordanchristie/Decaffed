@@ -15,11 +15,7 @@ module.exports = app => {
     "/auth/github/callback",
     passport.authenticate("github", {
       failureRedirect: "/"
-    }),
-    (req, res) => {
-      res.send(req.user);
-      res.redirect("/dashboard");
-    }
+    })
   );
 
   // Google
@@ -34,10 +30,7 @@ module.exports = app => {
     "/auth/google/callback",
     passport.authenticate("google", {
       failureRedirect: "/"
-    }),
-    (req, res) => {
-      res.redirect("/dashboard");
-    }
+    })
   );
 
   // Twitter
@@ -47,9 +40,6 @@ module.exports = app => {
     "/auth/twitter/callback",
     passport.authenticate("twitter", {
       failureRedirect: "/"
-    }),
-    (req, res) => {
-      res.redirect("/dashboard");
-    }
+    })
   );
 };

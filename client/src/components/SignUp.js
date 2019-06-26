@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import {
+  SplashBackground,
+  SignUpForm,
+  SignUpInput,
+  SignUpButton
+} from "./styledComponents";
 
 const initialState = {
   name: "",
@@ -11,45 +16,57 @@ const initialState = {
 class SignUp extends Component {
   state = { ...initialState };
 
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(this.state);
+  };
+
   render() {
     const { name, email, password, confirmedPassword } = this.state;
     return (
-      <SignUpForm>
-        <h1>Sign Up</h1>
-        <SignUpInput type="text" name={name} placeholder="Name" />
-        <SignUpInput type="email" name={email} placeholder="Email" />
-        <SignUpInput type="password" name={password} placeholder="Password" />
-        <SignUpInput
-          type="password"
-          name={confirmedPassword}
-          placeholder="Confirm Password"
-        />
-        <SignUpButton>Submit</SignUpButton>
-      </SignUpForm>
+      <SplashBackground>
+        <SignUpForm>
+          <h1>Sign Up</h1>
+          <SignUpInput
+            type="text"
+            name="name"
+            value={name}
+            placeholder="Name"
+            onChange={this.handleChange}
+          />
+          <SignUpInput
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Email"
+            onChange={this.handleChange}
+          />
+          <SignUpInput
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
+          <SignUpInput
+            type="password"
+            name="confirmedPassword"
+            value={confirmedPassword}
+            placeholder="Confirm Password"
+            onChange={this.handleChange}
+          />
+          <SignUpButton bg="#1da1f2" onClick={this.handleSubmit}>
+            Submit
+          </SignUpButton>
+        </SignUpForm>
+      </SplashBackground>
     );
   }
 }
 
 export default SignUp;
-
-const SignUpForm = styled.form`
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-`;
-
-const SignUpInput = styled.input`
-  font-size: 2em;
-  margin: 0.5em;
-  outline: 0;
-`;
-
-const SignUpButton = styled.button`
-  border: none;
-  border-radius: 0.2em;
-  padding: 0.5em 1em;
-  margin: 0.5em 0 0.75em;
-  font-size: 24px;
-`;

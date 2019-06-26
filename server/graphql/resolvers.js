@@ -19,7 +19,7 @@ exports.resolvers = {
       );
 
       const data = await result.data.businesses;
-    
+
       const normalizedData = data.map(
         ({
           name,

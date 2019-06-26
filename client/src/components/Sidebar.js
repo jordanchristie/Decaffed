@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import Drawer from "@material-ui/core/Drawer";
+import { AppDrawer, NavTitle, NavList, NavLink } from "./styledComponents";
+
 import { Home, Map, Notes } from "@material-ui/icons";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
@@ -31,22 +30,3 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 };
 
 export default Sidebar;
-
-const AppDrawer = styled(Drawer)`
-  width: 50vw;
-`;
-
-const NavTitle = styled.a`
-  text-align: center;
-`;
-
-const NavList = styled.ul`
-  display: flex;
-  flex-flow: column wrap;
-  padding: 10%;
-`;
-
-const NavLink = styled(Link)`
-  text-decoration: none;
-  margin: 1em;
-`;

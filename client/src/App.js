@@ -1,7 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 // import { reset } from 'styled-reset';
-import SplashPage, { SplashBackground } from "./components/SplashPage";
+import SplashPage from "./components/SplashPage";
 import CoffeeMap from "./components/CoffeeMap";
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -38,14 +38,13 @@ const App = ({ refetch, session }) => {
           <GlobalStyle />
           <Header session={session} />
           <Switch>
-            <SplashBackground>
-              <Route
-                exact
-                path="/"
-                render={() => <SplashPage session={session} />}
-              />
-              <Route path="/signup" component={SignUp} />
-            </SplashBackground>
+            <Route
+              exact
+              path="/"
+              render={() => <SplashPage session={session} />}
+            />
+            <Route path="/signup" component={SignUp} />
+
             <Route path="/map" component={CoffeeMap} />
             <Route
               path="/dashboard"
