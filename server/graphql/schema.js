@@ -42,15 +42,20 @@ exports.typeDefs = gql`
     rating: Float
   }
 
+  type Token {
+    token: String!
+  }
+
   type User {
     _id: ID!
-    name: String!
-    profileImg: String!
+    username: String!
+    email: String!
+    profileImg: String
     notes: [Note]
     favoriteShops: [FavoriteShop]
   }
   type Mutation {
-    addUser(_id: String!): User
+    signUpUser(username: String!, email: String!, password: String!): Token
     removeUser(_id: String!): User
     addFavoriteShop(
       name: String!

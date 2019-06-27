@@ -1,5 +1,7 @@
 const axios = require("axios");
+const bcrypt = require("bcrypt");
 const keys = require("../keys/keys");
+const { createToken } = require("../util/jwt");
 
 const YelpSearchURL = "https://api.yelp.com/v3/businesses/search?term=cafe";
 
@@ -56,15 +58,18 @@ exports.resolvers = {
   },
   Mutation: {
     // User Mutations
-    addUser: async (parent, { _id, name, profileImg }, { User }) => {
-      const existingUser = await User.findOne({ _id });
-      if (existingUser) return existingUser;
-      const user = await new User({
-        _id,
-        name,
-        profileImg
-      });
-      return user;
+    signUpUser: async (parent, { username, email, password }, { User }) => {
+      const existingUser = await User.findOne();
+      if (existingUser) throw new Error("User already exists");
+      const newUser = await new User({
+        username,
+        email,
+        password
+      }).save();
+
+      return {
+        token: createToken(newUser, keys.tokenSecret, "12hr")
+      };
     },
 
     removeUser: async (parent, { _id }, { User }) => {

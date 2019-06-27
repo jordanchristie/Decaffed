@@ -4,8 +4,9 @@ const mongoose = require("mongoose"),
   favoriteShopSchema = require("./FavoriteShop");
 
 const UserSchema = new Schema({
-  _id: Number,
-  name: String,
+  username: String,
+  email: String,
+  password: String,
   profileImg: String,
   notes: [noteSchema],
   favoriteShops: [favoriteShopSchema]

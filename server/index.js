@@ -40,11 +40,11 @@ require("./routes/routes")(app);
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => ({
-    User: req.user,
+  context: {
+    User,
     FavoriteShop,
     Note
-  })
+  }
 });
 server.applyMiddleware({ app });
 

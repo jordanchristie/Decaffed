@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { Mutation } from 'react-apollo';
 import {
   SplashBackground,
   SignUpForm,
@@ -7,7 +8,7 @@ import {
 } from "./styledComponents";
 
 const initialState = {
-  name: "",
+  username: "",
   email: "",
   password: "",
   confirmedPassword: ""
@@ -27,16 +28,16 @@ class SignUp extends Component {
   };
 
   render() {
-    const { name, email, password, confirmedPassword } = this.state;
+    const { username, email, password, confirmedPassword } = this.state;
     return (
       <SplashBackground>
         <SignUpForm>
           <h1>Sign Up</h1>
           <SignUpInput
             type="text"
-            name="name"
-            value={name}
-            placeholder="Name"
+            name="username"
+            value={username}
+            placeholder="Username"
             onChange={this.handleChange}
           />
           <SignUpInput
