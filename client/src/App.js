@@ -44,8 +44,8 @@ const App = ({ refetch, session }) => {
               path="/"
               render={() => <SplashPage session={session} />}
             />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/login" component={Login} />
+            <Route path="/signup" render={() => <SignUp refetch={refetch} />} />
+            <Route path="/login" render={() => <Login refetch={refetch} />} />
 
             <Route path="/map" component={CoffeeMap} />
             <Route

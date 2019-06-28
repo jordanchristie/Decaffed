@@ -14,6 +14,9 @@ const initialState = {
 };
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = { ...initialState };
 
   handleChange = e => {
@@ -26,6 +29,7 @@ class Login extends Component {
 
     loginUser().then(({ data }) => {
       localStorage.setItem("token", data.loginUser.token);
+      this.props.refetch();
     });
   };
 
@@ -35,7 +39,6 @@ class Login extends Component {
       <SplashBackground>
         <Mutation mutation={LOGIN_USER} variables={{ username, password }}>
           {(loginUser, { data, loading, error }) => {
-
             return (
               <IntakeForm onSubmit={e => this.handleSubmit(e, loginUser)}>
                 <h1>Log In</h1>

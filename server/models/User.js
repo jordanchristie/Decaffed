@@ -14,14 +14,16 @@ const UserSchema = new Schema({
 });
 
 UserSchema.pre("save", function(next) {
-  if (!this.isModified(this.password)) return next();
+  const user = this;
+  if (!user.isModified("password")) return next();
 
   bcrypt.genSalt(10, function(err, salt) {
     if (err) return next(err);
 
-    bcrypt.hash(this.password, salt, function(err, hash) {
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      console.log(hash);
       if (err) return next(err);
-      this.password = hash;
+      user.password = hash;
       next();
     });
   });

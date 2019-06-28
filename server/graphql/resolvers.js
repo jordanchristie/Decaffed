@@ -10,7 +10,7 @@ exports.resolvers = {
     getUser: async (parent, { _id }, { User }) => {
       const user = await User.findOne({ _id });
       console.log(user);
-      return user;
+      return user ? user : null;
     },
 
     getCoffeeShops: async (parent, { coordinates }) => {
