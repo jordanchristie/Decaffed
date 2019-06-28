@@ -5,18 +5,19 @@ const express = require("express"),
   session = require("express-session"),
   passport = require("passport"),
   { ApolloServer } = require("apollo-server-express"),
-  keys = require("./keys/keys"),
-  User = require("./models/User"),
-  FavoriteShop = require("./models/FavoriteShop"),
-  Note = require("./models/Note"),
-  { typeDefs } = require("./graphql/schema"),
-  { resolvers } = require("./graphql/resolvers"),
-  PORT = process.env.PORT || 5000,
-  app = express();
+  { mongoURI } = require("./keys/keys"),
+  { verifyToken } = require("./util/jwt");
+(User = require("./models/User")),
+  (FavoriteShop = require("./models/FavoriteShop")),
+  (Note = require("./models/Note")),
+  ({ typeDefs } = require("./graphql/schema")),
+  ({ resolvers } = require("./graphql/resolvers")),
+  (PORT = process.env.PORT || 5000),
+  (app = express());
 require("./auth/passport");
 
 // Initialize MongoDB
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+mongoose.connect(mongoURI, { useNewUrlParser: true });
 const db = mongoose.connection;
 
 db.on("error", console.error.bind(console));
@@ -26,9 +27,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(
-  session({ secret: keys.expressKey, resave: true, saveUninitialized: true })
-);
+app.use(verifyToken);
 
 app.use(passport.initialize());
 app.use(passport.session());

@@ -9,6 +9,7 @@ exports.resolvers = {
   Query: {
     getUser: async (parent, { _id }, { User }) => {
       const user = await User.findOne({ _id });
+      console.log(user);
       return user;
     },
 
@@ -69,6 +70,23 @@ exports.resolvers = {
 
       return {
         token: createToken(newUser, keys.tokenSecret, "12hr")
+      };
+    },
+
+    loginUser: async (parent, { username, password }, { User }) => {
+      const user = await User.findOne({ username });
+      if (!user) {
+        throw new Error("No user found");
+      }
+
+      const validPassword = await bcrypt.compare(password, user.password);
+
+      if (!validPassword) {
+        throw new Error("Invalid password");
+      }
+
+      return {
+        token: createToken(user, keys.tokenSecret, "12hr")
       };
     },
 

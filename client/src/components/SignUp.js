@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-// import { Mutation } from 'react-apollo';
+import { Mutation } from "react-apollo";
+import { SIGN_UP_USER } from "../graphql/mutations";
 import {
   SplashBackground,
-  SignUpForm,
-  SignUpInput,
-  SignUpButton
+  IntakeForm,
+  IntakeInput,
+  IntakeButton
 } from "./styledComponents";
 
 const initialState = {
@@ -22,49 +23,59 @@ class SignUp extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e, signUpUser) => {
     e.preventDefault();
-    console.log(this.state);
+
+    signUpUser().then(({ data }) => {
+      localStorage.setItem("token", data.signUpUser.token);
+    });
   };
 
   render() {
     const { username, email, password, confirmedPassword } = this.state;
     return (
       <SplashBackground>
-        <SignUpForm>
-          <h1>Sign Up</h1>
-          <SignUpInput
-            type="text"
-            name="username"
-            value={username}
-            placeholder="Username"
-            onChange={this.handleChange}
-          />
-          <SignUpInput
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Email"
-            onChange={this.handleChange}
-          />
-          <SignUpInput
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Password"
-            onChange={this.handleChange}
-          />
-          <SignUpInput
-            type="password"
-            name="confirmedPassword"
-            value={confirmedPassword}
-            placeholder="Confirm Password"
-            onChange={this.handleChange}
-          />
-          <SignUpButton bg="#1da1f2" onClick={this.handleSubmit}>
-            Submit
-          </SignUpButton>
-        </SignUpForm>
+        <Mutation
+          mutation={SIGN_UP_USER}
+          variables={{ username, email, password, confirmedPassword }}
+        >
+          {(signUpUser, { data, loading, error }) => {
+            return (
+              <IntakeForm onSubmit={e => this.handleSubmit(e, signUpUser)}>
+                <h1>Sign Up</h1>
+                <IntakeInput
+                  type="text"
+                  name="username"
+                  value={username}
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                />
+                <IntakeInput
+                  type="email"
+                  name="email"
+                  value={email}
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                />
+                <IntakeInput
+                  type="password"
+                  name="password"
+                  value={password}
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                />
+                <IntakeInput
+                  type="password"
+                  name="confirmedPassword"
+                  value={confirmedPassword}
+                  placeholder="Confirm Password"
+                  onChange={this.handleChange}
+                />
+                <IntakeButton>Submit</IntakeButton>
+              </IntakeForm>
+            );
+          }}
+        </Mutation>
       </SplashBackground>
     );
   }

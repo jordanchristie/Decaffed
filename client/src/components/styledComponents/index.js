@@ -32,10 +32,9 @@ export const Tagline = styled.h3`
   margin: 0;
 `;
 
-export const SignUpButton = styled.a`
+export const IntakeButton = styled.button`
   cursor: pointer;
   background: ${props => props.bg};
-  text-decoration: none;
   border: none;
   border-radius: 0.2em;
   color: #fff;
@@ -44,8 +43,8 @@ export const SignUpButton = styled.a`
   font-size: 24px;
 `;
 
-// SignUp Page
-export const SignUpForm = styled.form`
+// SignUp/Login Pages
+export const IntakeForm = styled.form`
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -54,7 +53,7 @@ export const SignUpForm = styled.form`
   background: rgba(0, 0, 0, 0.2);
 `;
 
-export const SignUpInput = styled.input`
+export const IntakeInput = styled.input`
   font-size: 2em;
   margin: 0.5em;
   outline: 0;

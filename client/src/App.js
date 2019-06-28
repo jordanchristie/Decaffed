@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import MyNotes from "./components/MyNotes";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import withAuth from "./withAuth";
 
@@ -44,6 +45,7 @@ const App = ({ refetch, session }) => {
               render={() => <SplashPage session={session} />}
             />
             <Route path="/signup" component={SignUp} />
+            <Route path="/login" component={Login} />
 
             <Route path="/map" component={CoffeeMap} />
             <Route

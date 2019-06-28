@@ -2,7 +2,7 @@ const { gql } = require("apollo-server-express");
 
 exports.typeDefs = gql`
   type Query {
-    getUser(_id: ID!): User
+    getUser: User
     getCoffeeShops(coordinates: Coordinates): [CoffeeShop]!
     getAllNotes(_id: ID!): [Note]
     getAllFavoriteShops(_id: ID!): [FavoriteShop]
@@ -56,6 +56,7 @@ exports.typeDefs = gql`
   }
   type Mutation {
     signUpUser(username: String!, email: String!, password: String!): Token
+    loginUser(username: String!, password: String!): Token
     removeUser(_id: String!): User
     addFavoriteShop(
       name: String!

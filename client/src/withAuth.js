@@ -5,7 +5,7 @@ import { GET_USER } from "./graphql/queries";
 //user: 102694616703030500000
 
 const withAuth = Component => props => (
-  <Query query={GET_USER} variables={{ _id: null }}>
+  <Query query={GET_USER}>
     {({ data, loading, refetch }) => {
       console.log(data);
       if (loading) return null;

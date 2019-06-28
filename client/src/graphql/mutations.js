@@ -9,6 +9,14 @@ export const SIGN_UP_USER = gql`
   }
 `;
 
+export const LOGIN_USER = gql`
+  mutation($username: String!, $password: String!) {
+    loginUser(username: $username, password: $password) {
+      token
+    }
+  }
+`;
+
 // FavoriteShop Mutations
 export const ADD_FAVORITE_SHOP = gql`
   mutation(
