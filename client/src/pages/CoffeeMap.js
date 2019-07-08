@@ -6,7 +6,7 @@ import { Query } from "react-apollo";
 // import { Spring } from 'react-spring';
 import styled from "styled-components";
 
-import ShopDetails from "./ShopDetails";
+import ShopDetails from "../components/ShopDetails";
 // import { fetchCoffeeShops } from '../actions';
 import keys from "../keys.json";
 

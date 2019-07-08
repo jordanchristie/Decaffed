@@ -1,8 +1,8 @@
 import React from "react";
-import SearchBar from "./SearchBar";
+import SearchBar from "../components/SearchBar";
 
-const Home = ({ session }) => {
-  const { name } = session.getUser;
+const Home = ({ user }) => {
+  const { name } = user.getUser;
   return (
     <>
       <h1>Welcome {name}</h1>

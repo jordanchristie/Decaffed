@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { LOGIN_USER } from "../graphql/mutations";
-import {
-  SplashBackground,
-  IntakeForm,
-  IntakeInput,
-  IntakeButton
-} from "./styledComponents";
+import { IntakeForm, IntakeInput, IntakeButton } from "./styledComponents";
 
 const initialState = {
   username: "",
@@ -14,9 +9,6 @@ const initialState = {
 };
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = { ...initialState };
 
   handleChange = e => {
@@ -36,32 +28,32 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <SplashBackground>
-        <Mutation mutation={LOGIN_USER} variables={{ username, password }}>
-          {(loginUser, { data, loading, error }) => {
-            return (
-              <IntakeForm onSubmit={e => this.handleSubmit(e, loginUser)}>
-                <h1>Log In</h1>
-                <IntakeInput
-                  type="text"
-                  name="username"
-                  value={username}
-                  placeholder="Username"
-                  onChange={this.handleChange}
-                />
-                <IntakeInput
-                  type="password"
-                  name="password"
-                  value={password}
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                />
-                <IntakeButton>Submit</IntakeButton>
-              </IntakeForm>
-            );
-          }}
-        </Mutation>
-      </SplashBackground>
+      <Mutation mutation={LOGIN_USER} variables={{ username, password }}>
+        {(loginUser, { data, loading, error }) => {
+          return (
+            <IntakeForm
+              active={this.props.active}
+              onSubmit={e => this.handleSubmit(e, loginUser)}
+            >
+              <IntakeInput
+                type="text"
+                name="username"
+                value={username}
+                placeholder="Username"
+                onChange={this.handleChange}
+              />
+              <IntakeInput
+                type="password"
+                name="password"
+                value={password}
+                placeholder="Password"
+                onChange={this.handleChange}
+              />
+              <IntakeButton>Login</IntakeButton>
+            </IntakeForm>
+          );
+        }}
+      </Mutation>
     );
   }
 }

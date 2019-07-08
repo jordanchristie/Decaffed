@@ -1,14 +1,18 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 // import { reset } from 'styled-reset';
-import SplashPage from "./components/SplashPage";
-import CoffeeMap from "./components/CoffeeMap";
+import SplashPage from "./pages/SplashPage";
+import CoffeeMap from "./pages/CoffeeMap";
 import Header from "./components/Header";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import MyNotes from "./components/MyNotes";
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import SignUpLoginPage from "./pages/SignUpLoginPage";
 import withAuth from "./withAuth";
 
 const GlobalStyle = createGlobalStyle`
@@ -31,27 +35,28 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const App = ({ refetch, session }) => {
+const App = ({ refetch, user }) => {
   return (
     <main className="App">
       <Router>
         <>
           <GlobalStyle />
-          <Header session={session} />
+          <Header user={user} />
           <Switch>
+            <Route exact path="/" render={() => <SplashPage user={user} />} />
             <Route
-              exact
-              path="/"
-              render={() => <SplashPage session={session} />}
+              path="/signup"
+              render={() =>
+                user ? (
+                  <SignUpLoginPage refetch={refetch} />
+                ) : (
+                  <Redirect to="/dashboard" />
+                )
+              }
             />
-            <Route path="/signup" render={() => <SignUp refetch={refetch} />} />
-            <Route path="/login" render={() => <Login refetch={refetch} />} />
 
             <Route path="/map" component={CoffeeMap} />
-            <Route
-              path="/dashboard"
-              render={() => <Home session={session} />}
-            />
+            <Route path="/dashboard" render={() => <Home user={user} />} />
             <Route path="/myNotes" component={MyNotes} />
           </Switch>
         </>

@@ -7,7 +7,7 @@ import {
   Title,
   Tagline,
   IntakeButton
-} from "./styledComponents";
+} from "../components/styledComponents";
 
 const SplashPage = ({ session }) => (
   <SplashBackground>

@@ -4,7 +4,11 @@ import Drawer from "@material-ui/core/Drawer";
 
 // Splash Page
 export const SplashBackground = styled.main`
-  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   margin-top: 56px;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://media.giphy.com/media/kQHPwJmJxKzyU/giphy.gif") no-repeat
@@ -43,14 +47,39 @@ export const IntakeButton = styled.button`
   font-size: 24px;
 `;
 
-// SignUp/Login Pages
-export const IntakeForm = styled.form`
-  height: 100vh;
+// SignUpLogin Page
+export const IntakeWrapper = styled.section`
+  background: white;
+  width: 60vw;
+  margin: 10vw auto;
+  color: #333;
+`;
+
+export const SignUpLoginTabs = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20px;
+  h3 {
+    width: 50%;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .login {
+    border-right: 1px solid #333;
+  }
+
+  &.active {
+    border-bottom: 1px solid #333;
+  }
+`;
+
+export const IntakeForm = styled.form`
+  display: ${props => (props.active ? "flex" : "none")};
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  background: rgba(0, 0, 0, 0.2);
 `;
 
 export const IntakeInput = styled.input`
