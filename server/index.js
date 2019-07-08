@@ -1,19 +1,19 @@
-const express = require("express"),
-  mongoose = require("mongoose"),
-  cors = require("cors"),
-  bodyParser = require("body-parser"),
-  session = require("express-session"),
-  passport = require("passport"),
-  { ApolloServer } = require("apollo-server-express"),
-  { mongoURI } = require("./keys/keys"),
-  { verifyToken } = require("./util/jwt");
-(User = require("./models/User")),
-  (FavoriteShop = require("./models/FavoriteShop")),
-  (Note = require("./models/Note")),
-  ({ typeDefs } = require("./graphql/schema")),
-  ({ resolvers } = require("./graphql/resolvers")),
-  (PORT = process.env.PORT || 5000),
-  (app = express());
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const passport = require("passport");
+const { ApolloServer } = require("apollo-server-express");
+const { mongoURI } = require("./keys/keys");
+const { verifyToken } = require("./util/jwt");
+const User = require("./models/User");
+const FavoriteShop = require("./models/FavoriteShop");
+const Note = require("./models/Note");
+const { typeDefs } = require("./graphql/schema");
+const { resolvers } = require("./graphql/resolvers");
+const PORT = process.env.PORT || 5000;
+const app = express();
 require("./auth/passport");
 
 // Initialize MongoDB
@@ -23,9 +23,9 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console));
 db.once("open", () => console.log("connected to Mongo 🐵"));
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.use(verifyToken);
 
@@ -39,10 +39,14 @@ require("./routes/routes")(app);
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: {
-    User,
-    FavoriteShop,
-    Note
+  context: ({ req }) => {
+    console.log(req.currentUser);
+    return {
+      User,
+      FavoriteShop,
+      Note,
+      currentUser: req.currentUser
+    };
   }
 });
 server.applyMiddleware({ app });

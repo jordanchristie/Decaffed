@@ -7,10 +7,11 @@ const YelpSearchURL = "https://api.yelp.com/v3/businesses/search?term=cafe";
 
 exports.resolvers = {
   Query: {
-    getUser: async (parent, { _id }, { User }) => {
-      const user = await User.findOne({ _id });
-      console.log(user);
-      return user ? user : null;
+    getUser: async (parent, args, ctx) => {
+      console.log("getUser", ctx.currentUser);
+      // const user = await User.findOne({ _id });
+      // console.log(user);
+      // return user ? user : null;
     },
 
     getCoffeeShops: async (parent, { coordinates }) => {

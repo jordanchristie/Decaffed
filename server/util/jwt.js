@@ -2,14 +2,14 @@ const jwt = require("jsonwebtoken");
 const { tokenSecret } = require("../keys/keys");
 
 exports.verifyToken = async (req, res, next) => {
-  const token = await req.headers("Authorization");
+  const token = await req.headers["authorization"];
   if (token !== null) {
     try {
-      const user = jwt.verify(token, tokenSecret);
+      const user = await jwt.verify(token, tokenSecret);
 
-      req.user = user;
+      req.currentUser = user;
     } catch (err) {
-      console.error(err);
+      console.error("Something went wrong");
     }
   }
   next();

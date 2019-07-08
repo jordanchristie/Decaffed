@@ -8,8 +8,9 @@ const withAuth = Component => props => (
   <Query query={GET_USER}>
     {({ data, loading, refetch }) => {
       console.log(data);
-      if (loading) return null;
-      return <Component {...props} refetch={refetch} user={data} />;
+      // if (loading) return null;
+      return null;
+      //return <Component {...props} refetch={refetch} user={data} />;
     }}
   </Query>
 );
