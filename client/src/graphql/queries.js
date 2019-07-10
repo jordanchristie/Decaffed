@@ -1,9 +1,9 @@
 import gql from "graphql-tag";
 
 export const GET_USER = gql`
-  query($_id: ID!) {
-    getUser(_id: $_id) {
-      name
+  query {
+    getUser {
+      username
       profileImg
       notes {
         title

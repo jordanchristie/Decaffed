@@ -46,18 +46,20 @@ const App = ({ refetch, user }) => {
             <Route exact path="/" render={() => <SplashPage user={user} />} />
             <Route
               path="/signup"
-              render={() =>
-                user ? (
-                  <SignUpLoginPage refetch={refetch} />
-                ) : (
-                  <Redirect to="/dashboard" />
-                )
+              render={
+                () => <SignUpLoginPage refetch={refetch} />
+                // user.hasOwnProperty("token") ? (
+                //   <SignUpLoginPage refetch={refetch} />
+                // ) : (
+                //   <Redirect to="/dashboard" />
+                // )
               }
             />
 
             <Route path="/map" component={CoffeeMap} />
             <Route path="/dashboard" render={() => <Home user={user} />} />
             <Route path="/myNotes" component={MyNotes} />
+            <Redirect to="/" />
           </Switch>
         </>
       </Router>
