@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <Navbar>
-      <AppBar>
+      <AppBar style={{ position: "relative" }}>
         <Toolbar>
           <IconButton onClick={() => toggleSidebar(!sideBarOpen)}>
             <Menu />

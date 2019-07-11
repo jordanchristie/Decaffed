@@ -1,26 +1,29 @@
 import React from "react";
 import SearchBar from "../components/SearchBar";
+import Favorites from "../components/Favorites";
+import Notes from "../components/Notes";
+import styled from "styled-components";
 
 const Home = ({ user }) => {
-  const { name } = user.getUser;
+  const { username } = user;
   return (
-    <>
-      <h1>Welcome {name}</h1>
+    <Dashboard>
+      <h1>Welcome {username}!</h1>
       <SearchBar />
-    </>
+
+      <h2>Favorites</h2>
+      <Favorites />
+      <h2>Notes</h2>
+      <Notes />
+    </Dashboard>
   );
-  // <Query query={GET_USER} variables={{ _id: 102694616703030500000 }}>
-  // {(data, loading, error) => {
-  //     console.log(data)
-  //     if (loading) return <h1>Loading...</h1>
-  //     return (
-  //         <>
-  //             <h1>Welcome</h1>
-  //             <SearchBar />
-  //         </>
-  //     )
-  // }}
-  // </Query>
 };
 
 export default Home;
+
+const Dashboard = styled.main`
+  h1,
+  h2 {
+    margin-left: 5%;
+  }
+`;
