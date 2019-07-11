@@ -33,16 +33,17 @@ class Note extends Component {
         {addNote => {
           return (
             <NoteWrapper>
-              <i
-                className="fa fa-window-close fa-3x"
-                onClick={this.props.closeNote}
-              />
+              <NoteHeader>
+                <p>Cancel</p>
+                <p>Save</p>
+              </NoteHeader>
               <ShopName>{shop.name}</ShopName>
               <label htmlFor="title">Title</label>
               <input
                 type="text"
                 name="title"
                 value={title}
+                placeholder="Title (optional)"
                 onChange={this.handleChange}
               />
               <label htmlFor="note">Note</label>
@@ -52,9 +53,9 @@ class Note extends Component {
                 rows="10"
                 name="note"
                 value={note}
+                placeholder="Add text to your note"
                 onChange={this.handleChange}
               />
-              <button onClick={e => this.submitNote(e, addNote)}>Submit</button>
             </NoteWrapper>
           );
         }}
@@ -67,9 +68,10 @@ export default Note;
 
 const NoteWrapper = styled.section`
   position: absolute;
-  top: -57%;
-  height: 100vh;
-  width: 100vw;
+  top: -43%;
+  left: 10%;
+  height: 75vh;
+  width: 75vw;
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   flex-flow: column;
@@ -82,4 +84,9 @@ const NoteWrapper = styled.section`
 
 const ShopName = styled.h3`
   text-align: center;
+`;
+
+const NoteHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

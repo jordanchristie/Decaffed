@@ -58,13 +58,8 @@ class CoffeeMap extends Component {
       width: "100vw",
       height: this.state.infoWindowOpen ? "40vh" : "100vh"
     };
-    const {
-      coordinates,
-      selectedPlace,
-      selectMarker,
-      infoWindowOpen
-    } = this.state;
-    console.log(selectedPlace);
+    const { coordinates, selectedPlace, infoWindowOpen } = this.state;
+
     return (
       <Query query={GET_COFFEE_SHOPS} variables={{ coordinates }}>
         {({ data, loading, error, refetch }) => {
@@ -95,7 +90,7 @@ class CoffeeMap extends Component {
                         lat: shop.coordinates.lat,
                         lng: shop.coordinates.lng
                       }}
-                      onClick={selectMarker}
+                      onClick={this.selectMarker}
                     />
                   );
                 })}

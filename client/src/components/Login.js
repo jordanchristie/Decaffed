@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { Mutation } from "react-apollo";
-import { GET_USER } from "../graphql/queries";
 import { LOGIN_USER } from "../graphql/mutations";
 import { IntakeForm, IntakeInput, IntakeButton } from "./styledComponents";
 
@@ -33,11 +32,7 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <Mutation
-        mutation={LOGIN_USER}
-        variables={this.state}
-        //refetchQueries={[{ query: GET_USER }]}
-      >
+      <Mutation mutation={LOGIN_USER} variables={this.state}>
         {(loginUser, { data, loading, error }) => {
           return (
             <IntakeForm

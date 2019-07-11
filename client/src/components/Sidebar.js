@@ -7,7 +7,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <AppDrawer anchor="left" open={isOpen} onClose={toggleSidebar}>
       <NavTitle href="/">Decaffed.</NavTitle>
-      <NavList>
+      <NavList onClick={toggleSidebar}>
         <NavLink to="/dashboard">
           <Home />
           Dashboard

@@ -14,7 +14,6 @@ exports.resolvers = {
       const { username } = await currentUser;
       if (!username) return null;
       const user = await User.findOne({ username });
-      console.log("user", user);
 
       return user;
     },
