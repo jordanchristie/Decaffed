@@ -11,9 +11,8 @@ const YelpSearchURL = "https://api.yelp.com/v3/businesses/search?term=cafe";
 exports.resolvers = {
   Query: {
     getUser: async (parent, args, { User, currentUser }) => {
-      const { username } = await currentUser;
-      if (!username) return null;
-      const user = await User.findOne({ username });
+      if (!currentUser) return null;
+      const user = await User.findOne({ username: currentUser.username });
 
       return user;
     },
@@ -74,7 +73,7 @@ exports.resolvers = {
       }).save();
 
       return {
-        token: createToken(newUser, keys.tokenSecret, "12hr")
+        token: createToken(newUser, keys.tokenSecret, "1d")
       };
     },
 
@@ -91,7 +90,7 @@ exports.resolvers = {
       }
 
       return {
-        token: createToken(user, keys.tokenSecret, "12hr")
+        token: createToken(user, keys.tokenSecret, "1d")
       };
     },
 
