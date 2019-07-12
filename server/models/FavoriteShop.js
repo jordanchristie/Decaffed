@@ -8,17 +8,15 @@ const FavoriteShopSchema = new Schema({
   },
   image_url: {
     type: String,
-    required: true
+    required: false
   },
   address: {
-    street: {
-      type: String,
-      required: true
-    },
-    city: {
-      type: String,
-      required: true
-    }
+    type: String,
+    required: true
+  },
+  cityState: {
+    type: String,
+    required: true
   }
 });
 

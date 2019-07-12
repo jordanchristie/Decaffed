@@ -102,26 +102,37 @@ exports.resolvers = {
     // FavoriteShop Mutations
     addFavoriteShop: async (
       parent,
-      { _id, name, image_url, city, state },
-      { User, FavoriteShop }
+      { name, image_url, address, cityState },
+      { User, currentUser }
     ) => {
-      // const user = await User.findOne({ _id });
+      const user = await User.findOne({ username: currentUser.username });
       const favoriteShop = {
         name,
         image_url,
-        city,
-        state
+        address,
+        cityState
       };
-      return favoriteShop;
-      // user.favoriteShops.push(favoriteShop)
+      user.favoriteShops.push(favoriteShop);
+      user.save();
     },
 
     // Note Mutations
-    addNote: async (parent, { _id, title, note }, { User, Note }) => {
-      const user = await User.findOne({ _id });
-      const newNote = await new Note({ title, note });
+    addNote: async (
+      parent,
+      { title, note, name, location },
+      { User, currentUser, Note }
+    ) => {
+      const user = await User.findOne({ username: currentUser.username });
+
+      const newNote = {
+        title,
+        note,
+        name,
+        location
+      };
 
       user.notes.push(newNote);
+      user.save();
     },
 
     editNote: async (parent, { _id }, { User, Note }) => {

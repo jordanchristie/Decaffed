@@ -8,12 +8,14 @@ export const GET_USER = gql`
       notes {
         title
         note
+        name
+        location
       }
       favoriteShops {
         name
         image_url
-        city
-        state
+        address
+        cityState
       }
     }
   }

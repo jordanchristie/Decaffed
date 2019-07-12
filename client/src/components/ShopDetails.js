@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import { Mutation } from "react-apollo";
 //import { Spring } from 'react-spring';
 import styled from "styled-components";
 
 import Note from "./Note";
-import { addFavorite, removeFavorite } from "../actions";
+import { GET_USER } from "../graphql/queries";
+import { ADD_FAVORITE_SHOP } from "../graphql/mutations";
 
 class ShopDetails extends Component {
   constructor() {
@@ -15,13 +16,13 @@ class ShopDetails extends Component {
     };
   }
 
-  toggleFavorite = e => {
+  toggleFavorite = (e, addFavoriteShop) => {
     e.preventDefault();
 
     this.setState({ favorited: !this.state.favorited });
 
     if (this.state.favorited === false) {
-      this.props.addFavorite(this.props.shop);
+      addFavoriteShop(this.props.shop);
     } else {
       this.props.removeFavorite(this.props.shop.id);
     }
@@ -36,48 +37,62 @@ class ShopDetails extends Component {
   };
 
   render() {
-    const { shop } = this.props;
-    console.log(shop);
+    const {
+      name,
+      image_url,
+      address,
+      cityState,
+      phone,
+      rating
+    } = this.props.shop;
+    console.log(this.props.shop);
     const backgroundStyle = {
-      background: `url(${shop.image_url}) no-repeat center`,
+      background: `url(${image_url}) no-repeat center`,
       backgroundSize: "cover"
     };
     return (
-      <ShopInfo style={backgroundStyle} background={shop.image_url}>
+      <ShopInfo style={backgroundStyle} background={image_url}>
         <Overlay>
-          <h2>{shop.name}</h2>
+          <h2>{name}</h2>
           <FaIcon type="fa fa-envelope" />
-          {shop.address} <br />
-          {shop.cityState}
+          {address} <br />
+          {cityState}
           <FaIcon type="fa fa-phone" />
-          {shop.phone}
+          {phone}
           <br />
           <FaIcon type="fa fa-star" />
-          {shop.rating}/5
+          {rating}/5
           <br />
           <OpenNoteButton onClick={this.openNote}>Add Note</OpenNoteButton>
-          <FaIcon
-            favorited={this.state.favorited}
-            type="fa fa-heart "
-            onClick={this.toggleFavorite}
+          <Mutation
+            mutation={ADD_FAVORITE_SHOP}
+            variables={{ name, image_url, address, cityState }}
+            refetchQueries={[{ query: GET_USER }]}
           >
-            {this.state.favorited
-              ? "Remove from Favorites"
-              : "Add to Favorites"}
-          </FaIcon>
+            {addFavoriteShop => {
+              return (
+                <FaIcon
+                  favorited={this.state.favorited}
+                  type="fa fa-heart "
+                  onClick={e => this.toggleFavorite(e, addFavoriteShop)}
+                >
+                  {this.state.favorited
+                    ? "Remove from Favorites"
+                    : "Add to Favorites"}
+                </FaIcon>
+              );
+            }}
+          </Mutation>
         </Overlay>
         {this.state.noteOpen ? (
-          <Note shop={shop} closeNote={this.closeNote} />
+          <Note shop={this.props.shop} closeNote={this.closeNote} />
         ) : null}
       </ShopInfo>
     );
   }
 }
 
-export default connect(
-  null,
-  { addFavorite, removeFavorite }
-)(ShopDetails);
+export default ShopDetails;
 
 const ShopInfo = styled.section`
   position: absolute;

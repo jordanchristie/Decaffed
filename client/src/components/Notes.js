@@ -1,32 +1,31 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
-class Notes extends Component {
-  renderNotes = () => {
-    const { notes } = this.props;
-
+const Notes = ({ notes }) => {
+  console.log(notes);
+  const renderNotes = () => {
     notes.map(note => {
       return (
-        <article key={note.id}>
+        <article key={note.note}>
+          hello
           {note.title}
           {note.note}
+          {note.name}
+          {note.location}
         </article>
       );
     });
   };
-  render() {
-    return (
-      <NotesList>
-        {this.props.Notes ? (
-          this.renderNotes()
-        ) : (
-          <p>You don't have any notes yet.</p>
-        )}
-      </NotesList>
-    );
-  }
-}
+  return (
+    <NotesList>
+      {notes ? renderNotes() : <p>You don't have any notes yet.</p>}
+    </NotesList>
+  );
+};
 
 export default Notes;
 
-const NotesList = styled.section``;
+const NotesList = styled.section`
+  display: flex;
+  flex-direction: row;
+`;

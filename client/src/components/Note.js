@@ -27,9 +27,11 @@ class Note extends Component {
 
   render() {
     const { title, note } = this.state;
-    const { shop } = this.props;
+    const {
+      shop: { name, cityState: location }
+    } = this.props;
     return (
-      <Mutation mutation={ADD_NOTE} variables={{ title, note }}>
+      <Mutation mutation={ADD_NOTE} variables={{ title, note, name, location }}>
         {addNote => {
           return (
             <NoteWrapper>
@@ -37,7 +39,7 @@ class Note extends Component {
                 <p>Cancel</p>
                 <p>Save</p>
               </NoteHeader>
-              <ShopName>{shop.name}</ShopName>
+              <ShopName>{name}</ShopName>
               <label htmlFor="title">Title</label>
               <input
                 type="text"
@@ -56,6 +58,7 @@ class Note extends Component {
                 placeholder="Add text to your note"
                 onChange={this.handleChange}
               />
+              <button onClick={e => addNote(e, addNote)}>Add Note</button>
             </NoteWrapper>
           );
         }}

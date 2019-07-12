@@ -1,31 +1,43 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
-class Favorites extends Component {
-  renderFavorites = () => {
-    const { favoriteShops } = this.props;
-
-    favoriteShops.map(shop => {
+const Favorites = ({ favoriteShops }) => {
+  const renderFavorites = () => {
+    return favoriteShops.map(shop => {
       return (
-        <article key={shop.id}>
-          <img src={shop.url} alt="shop" />
-        </article>
+        <Favorite key={shop.address}>
+          <FavoritesImg src={shop.image_url} alt="shop" />
+        </Favorite>
       );
     });
   };
-  render() {
-    return (
-      <FavoritesList>
-        {this.props.favoriteShops ? (
-          this.renderFavorites()
-        ) : (
-          <p>You don't have any favorites yet.</p>
-        )}
-      </FavoritesList>
-    );
-  }
-}
+
+  return (
+    <FavoritesList>
+      {favoriteShops ? (
+        renderFavorites()
+      ) : (
+        <p>You don't have any favorites yet.</p>
+      )}
+    </FavoritesList>
+  );
+};
 
 export default Favorites;
 
-const FavoritesList = styled.section``;
+const FavoritesList = styled.section`
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  white-space: nowrap;
+`;
+
+const Favorite = styled.article`
+  height: 250px;
+  width: 250px;
+`;
+
+const FavoritesImg = styled.img`
+  height: 250px;
+  width: 250px;
+`;

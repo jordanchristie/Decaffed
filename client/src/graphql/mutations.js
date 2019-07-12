@@ -22,20 +22,19 @@ export const ADD_FAVORITE_SHOP = gql`
   mutation(
     $name: String!
     $image_url: String!
-    $city: String!
-    $state: String!
+    $address: String!
+    $cityState: String!
   ) {
     addFavoriteShop(
       name: $name
-      img_url: $img_url
+      image_url: $image_url
       address: $address
-      city: $city
-      state: $state
+      cityState: $cityState
     ) {
       name
-      img_url
-      city
-      state
+      image_url
+      address
+      cityState
     }
   }
 `;
@@ -50,10 +49,12 @@ export const REMOVE_FAVORITE_SHOP = gql`
 
 // Note Mutations
 export const ADD_NOTE = gql`
-  mutation($title: String!, $note: String!) {
-    addNote(title: $title, note: $note) {
+  mutation($title: String, $note: String!, $name: String!, $location: String!) {
+    addNote(title: $title, note: $note, name: $name, location: $location) {
       title
       note
+      name
+      location
     }
   }
 `;

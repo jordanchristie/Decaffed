@@ -22,14 +22,16 @@ exports.typeDefs = gql`
     _id: ID!
     title: String!
     note: String!
+    name: String!
+    location: String!
   }
 
   type FavoriteShop {
     _id: ID!
     name: String!
     image_url: String!
-    city: String!
-    state: String!
+    address: String!
+    cityState: String!
   }
 
   type CoffeeShop {
@@ -61,10 +63,15 @@ exports.typeDefs = gql`
     addFavoriteShop(
       name: String!
       image_url: String!
-      city: String!
-      state: String!
+      address: String!
+      cityState: String!
     ): FavoriteShop
-    addNote(title: String!, note: String!): Note
+    addNote(
+      title: String
+      note: String!
+      name: String!
+      location: String!
+    ): Note
     editNote(_id: ID!): Note
     removeNote(_id: ID!): Note
   }
