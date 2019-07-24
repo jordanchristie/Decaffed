@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import styled from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -7,9 +8,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 import Sidebar from "./Sidebar";
 
-export default function Header() {
+const Header = () => {
   const [sideBarOpen, toggleSidebar] = useState(false);
-
   return (
     <Navbar>
       <AppBar style={{ position: "relative" }}>
@@ -25,7 +25,9 @@ export default function Header() {
       />
     </Navbar>
   );
-}
+};
+
+export default Header;
 
 const Navbar = styled.nav``;
 

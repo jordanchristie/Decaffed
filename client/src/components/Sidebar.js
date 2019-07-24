@@ -1,9 +1,17 @@
 import React from "react";
+import { withApollo, compose } from "react-apollo";
+import { withRouter } from "react-router-dom";
 import { AppDrawer, NavTitle, NavList, NavLink } from "./styledComponents";
 
 import { Home, Map, Notes } from "@material-ui/icons";
 
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+const Sidebar = ({ client, history, isOpen, toggleSidebar }) => {
+  console.log(history);
+  const logout = () => {
+    localStorage.removeItem("token");
+    client.resetStore();
+    history.push("/");
+  };
   return (
     <AppDrawer anchor="left" open={isOpen} onClose={toggleSidebar}>
       <NavTitle href="/">Decaffed.</NavTitle>
@@ -23,10 +31,15 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           My Notes
         </NavLink>
 
-        <NavLink to="/auth/logout">Log Out</NavLink>
+        <NavLink as="p" onClick={logout}>
+          Log Out
+        </NavLink>
       </NavList>
     </AppDrawer>
   );
 };
 
-export default Sidebar;
+export default compose(
+  withRouter,
+  withApollo
+)(Sidebar);

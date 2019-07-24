@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Drawer from "@material-ui/core/Drawer";
-import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
 
 // Splash Page
@@ -24,7 +24,7 @@ export const Splash = styled.section`
 
 export const Title = styled.h1`
   font-size: 5em;
-  margin: 2em 0 0 0;
+  margin-bottom: 0;
 `;
 
 export const Tagline = styled.h3`
@@ -53,7 +53,7 @@ export const ActionButton = styled.button`
 export const IntakeWrapper = styled.section`
   background: white;
   width: 60vw;
-  margin: 10vw auto;
+  margin: 0 auto;
   color: #333;
 `;
 
@@ -84,7 +84,7 @@ export const IntakeForm = styled.form`
   flex-flow: column;
 `;
 
-export const IntakeInput = styled(Input)`
+export const IntakeInput = styled(TextField)`
   font-size: 2em;
   margin: 0.5em;
   outline: 0;
@@ -112,4 +112,4 @@ export const NavLink = styled(Link)`
 
 export const FieldLabel = styled(InputLabel)``;
 
-export const NoteInput = styled(Input)``;
+export const NoteInput = styled(TextField)``;
