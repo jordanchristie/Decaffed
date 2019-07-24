@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Mutation } from "react-apollo";
 import { ADD_NOTE } from "../graphql/mutations";
-import { NoteInput, ActionButton } from "./styledComponents";
+import { FieldLabel, NoteInput, ActionButton } from "./styledComponents";
 
 const initialState = {
   title: "",
@@ -29,6 +29,7 @@ class Note extends Component {
   render() {
     const { title, note } = this.state;
     const {
+      closeNote,
       shop: { name, cityState: location }
     } = this.props;
     return (
@@ -37,11 +38,10 @@ class Note extends Component {
           return (
             <NoteWrapper>
               <NoteHeader>
-                <p>Cancel</p>
-                <p>Save</p>
+                <p onClick={closeNote}>&#215;</p>
               </NoteHeader>
               <ShopName>{name}</ShopName>
-              <label htmlFor="title">Title</label>
+              <FieldLabel for="title">Title</FieldLabel>
               <NoteInput
                 type="text"
                 name="title"
@@ -49,17 +49,19 @@ class Note extends Component {
                 placeholder="Title (optional)"
                 onChange={this.handleChange}
               />
-              <label htmlFor="note">Note</label>
+              <FieldLabel for="note">Note</FieldLabel>
               <NoteInput
                 id=""
-                cols="30"
-                rows="10"
+                multiline={true}
                 name="note"
                 value={note}
                 placeholder="Add text to your note"
                 onChange={this.handleChange}
               />
-              <ActionButton onClick={e => addNote(e, addNote)}>
+              <ActionButton
+                className="note-submit"
+                onClick={e => addNote(e, addNote)}
+              >
                 Add Note
               </ActionButton>
             </NoteWrapper>
@@ -76,7 +78,6 @@ const NoteWrapper = styled.section`
   position: absolute;
   top: -43%;
   left: 10%;
-  height: 75vh;
   width: 75vw;
   background: #fff;
   display: flex;
@@ -84,7 +85,7 @@ const NoteWrapper = styled.section`
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  color: #fff;
+  color: #333;
   transition: all 0.5s ease-in;
 `;
 
@@ -93,6 +94,11 @@ const ShopName = styled.h3`
 `;
 
 const NoteHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
+  width: 100%;
+
+  p {
+    font-size: 40px;
+    margin: 0 0 0 90%;
+    cursor: pointer;
+  }
 `;

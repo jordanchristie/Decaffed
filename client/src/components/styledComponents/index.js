@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Drawer from "@material-ui/core/Drawer";
 import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
 
 // Splash Page
 export const SplashBackground = styled.main`
@@ -42,6 +43,10 @@ export const ActionButton = styled.button`
   margin: 0.5em 0 0.75em;
   font-size: 24px;
   text-decoration: none;
+
+  &.note-submit {
+    margin: 3em 0 0.75em;
+  }
 `;
 
 // SignUpLogin Page
@@ -104,5 +109,7 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   margin: 1em;
 `;
+
+export const FieldLabel = styled(InputLabel)``;
 
 export const NoteInput = styled(Input)``;
