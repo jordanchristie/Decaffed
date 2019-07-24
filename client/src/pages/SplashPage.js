@@ -6,7 +6,7 @@ import {
   Splash,
   Title,
   Tagline,
-  IntakeButton
+  ActionButton
 } from "../components/styledComponents";
 
 const SplashPage = ({ session }) => (
@@ -14,18 +14,18 @@ const SplashPage = ({ session }) => (
     <Splash>
       <Title>Decaffed</Title>
       <Tagline>Find a coffee shop nearby to recaffeinate.</Tagline>
-      <IntakeButton bg="#333" href="/auth/github">
+      <ActionButton bg="#333" href="/auth/github">
         Login with Github
-      </IntakeButton>
-      <IntakeButton bg="#3f51b5" href="/auth/google">
+      </ActionButton>
+      <ActionButton bg="#3f51b5" href="/auth/google">
         Login with Google
-      </IntakeButton>
-      <IntakeButton bg="#1da1f2" href="/auth/twitter">
+      </ActionButton>
+      <ActionButton bg="#1da1f2" href="/auth/twitter">
         Login with Twitter
-      </IntakeButton>
-      <Link to="/signup" style={{ background: "#1da1f2" }}>
+      </ActionButton>
+      <ActionButton as={Link} to="/signup" bg="#1da1f2">
         Sign Up
-      </Link>
+      </ActionButton>
     </Splash>
   </SplashBackground>
 );

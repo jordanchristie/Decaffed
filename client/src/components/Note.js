@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Mutation } from "react-apollo";
 import { ADD_NOTE } from "../graphql/mutations";
+import { NoteInput, ActionButton } from "./styledComponents";
 
 const initialState = {
   title: "",
@@ -41,7 +42,7 @@ class Note extends Component {
               </NoteHeader>
               <ShopName>{name}</ShopName>
               <label htmlFor="title">Title</label>
-              <input
+              <NoteInput
                 type="text"
                 name="title"
                 value={title}
@@ -49,7 +50,7 @@ class Note extends Component {
                 onChange={this.handleChange}
               />
               <label htmlFor="note">Note</label>
-              <textarea
+              <NoteInput
                 id=""
                 cols="30"
                 rows="10"
@@ -58,7 +59,9 @@ class Note extends Component {
                 placeholder="Add text to your note"
                 onChange={this.handleChange}
               />
-              <button onClick={e => addNote(e, addNote)}>Add Note</button>
+              <ActionButton onClick={e => addNote(e, addNote)}>
+                Add Note
+              </ActionButton>
             </NoteWrapper>
           );
         }}
@@ -75,7 +78,7 @@ const NoteWrapper = styled.section`
   left: 10%;
   height: 75vh;
   width: 75vw;
-  background: rgba(0, 0, 0, 0.8);
+  background: #fff;
   display: flex;
   flex-flow: column;
   justify-content: center;

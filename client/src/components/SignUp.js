@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { SIGN_UP_USER } from "../graphql/mutations";
-import { IntakeForm, IntakeInput, IntakeButton } from "./styledComponents";
+import { IntakeForm, IntakeInput, ActionButton } from "./styledComponents";
 
 const initialState = {
   username: "",
@@ -71,7 +71,7 @@ class SignUp extends Component {
                 placeholder="Confirm Password"
                 onChange={this.handleChange}
               />
-              <IntakeButton>SignUp</IntakeButton>
+              <ActionButton>SignUp</ActionButton>
             </IntakeForm>
           );
         }}

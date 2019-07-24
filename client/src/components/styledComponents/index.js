@@ -1,15 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Drawer from "@material-ui/core/Drawer";
+import Input from "@material-ui/core/Input";
 
 // Splash Page
 export const SplashBackground = styled.main`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin-top: 56px;
+  height: 100vh
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://media.giphy.com/media/kQHPwJmJxKzyU/giphy.gif") no-repeat
       center center;
@@ -36,7 +32,7 @@ export const Tagline = styled.h3`
   margin: 0;
 `;
 
-export const IntakeButton = styled.button`
+export const ActionButton = styled.button`
   cursor: pointer;
   background: ${props => props.bg};
   border: none;
@@ -45,6 +41,7 @@ export const IntakeButton = styled.button`
   padding: 0.5em 1em;
   margin: 0.5em 0 0.75em;
   font-size: 24px;
+  text-decoration: none;
 `;
 
 // SignUpLogin Page
@@ -82,7 +79,7 @@ export const IntakeForm = styled.form`
   flex-flow: column;
 `;
 
-export const IntakeInput = styled.input`
+export const IntakeInput = styled(Input)`
   font-size: 2em;
   margin: 0.5em;
   outline: 0;
@@ -107,3 +104,5 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   margin: 1em;
 `;
+
+export const NoteInput = styled(Input)``;

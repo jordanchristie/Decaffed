@@ -6,12 +6,14 @@ export const GET_USER = gql`
       username
       profileImg
       notes {
+        _id
         title
         note
         name
         location
       }
       favoriteShops {
+        _id
         name
         image_url
         address

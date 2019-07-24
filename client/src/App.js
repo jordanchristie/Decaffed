@@ -41,7 +41,7 @@ const App = ({ refetch, user }) => {
       <Router>
         <>
           <GlobalStyle />
-          <Header user={user} />
+          {user && <Header user={user} />}
           <Switch>
             <Route exact path="/" render={() => <SplashPage user={user} />} />
             <Route
