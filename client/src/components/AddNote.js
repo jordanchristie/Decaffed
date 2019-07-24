@@ -41,7 +41,7 @@ class Note extends Component {
                 <p onClick={closeNote}>&#215;</p>
               </NoteHeader>
               <ShopName>{name}</ShopName>
-              <FieldLabel for="title">Title</FieldLabel>
+              <FieldLabel htmlFor="title">Title</FieldLabel>
               <NoteInput
                 type="text"
                 name="title"
@@ -49,7 +49,7 @@ class Note extends Component {
                 placeholder="Title (optional)"
                 onChange={this.handleChange}
               />
-              <FieldLabel for="note">Note</FieldLabel>
+              <FieldLabel htmlFor="note">Note</FieldLabel>
               <NoteInput
                 id=""
                 multiline={true}
@@ -87,6 +87,8 @@ const NoteWrapper = styled.section`
   z-index: 1000;
   color: #333;
   transition: all 0.5s ease-in;
+  border: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 `;
 
 const ShopName = styled.h3`

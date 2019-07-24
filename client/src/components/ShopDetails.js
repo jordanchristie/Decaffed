@@ -3,7 +3,7 @@ import { Mutation } from "react-apollo";
 //import { Spring } from 'react-spring';
 import styled from "styled-components";
 
-import Note from "./Note";
+import AddNote from "./AddNote";
 import { GET_USER } from "../graphql/queries";
 import { ADD_FAVORITE_SHOP } from "../graphql/mutations";
 
@@ -85,7 +85,7 @@ class ShopDetails extends Component {
           </Mutation>
         </Overlay>
         {this.state.noteOpen ? (
-          <Note shop={this.props.shop} closeNote={this.closeNote} />
+          <AddNote shop={this.props.shop} closeNote={this.closeNote} />
         ) : null}
       </ShopInfo>
     );
