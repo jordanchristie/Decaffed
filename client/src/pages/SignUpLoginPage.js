@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import SignUp from "../components/SignUp";
 import Login from "../components/Login";
 import {
@@ -7,33 +7,31 @@ import {
   SignUpLoginTabs
 } from "../components/styledComponents";
 
-class SignUpLoginPage extends Component {
-  constructor() {
-    super();
-    this.state = { active: false };
-  }
+const SignUpLoginPage = ({ refetch }) => {
+  const [active, toggleActive] = useState("login");
 
-  toggleActive = e => {
-    this.setState({ active: !this.state.active });
+  const checkActive = tab => {
+    return active === tab;
   };
 
-  render() {
-    const { active } = this.state;
-    return (
-      <SplashBackground>
-        <IntakeWrapper>
-          <SignUpLoginTabs>
-            <h3 className="login" onClick={this.toggleActive}>
-              Login
-            </h3>
-            <h3 onClick={this.toggleActive}>SignUp</h3>
-          </SignUpLoginTabs>
-          <Login active={active} refetch={this.props.refetch} />
-          <SignUp active={active} refetch={this.props.refetch} />
-        </IntakeWrapper>
-      </SplashBackground>
-    );
-  }
-}
+  console.log(active === "login");
+  return (
+    <SplashBackground>
+      <IntakeWrapper>
+        <SignUpLoginTabs>
+          <h3 className="login" onClick={() => toggleActive("login")}>
+            Login
+          </h3>
+          <h3 onClick={() => toggleActive("signup")}>SignUp</h3>
+        </SignUpLoginTabs>
+        {checkActive("login") ? (
+          <Login refetch={refetch} />
+        ) : (
+          <SignUp refetch={refetch} />
+        )}
+      </IntakeWrapper>
+    </SplashBackground>
+  );
+};
 
 export default SignUpLoginPage;

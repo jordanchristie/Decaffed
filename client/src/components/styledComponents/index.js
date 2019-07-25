@@ -78,10 +78,11 @@ export const SignUpLoginTabs = styled.div`
 `;
 
 export const IntakeForm = styled.form`
-  display: ${props => (props.active ? "flex" : "none")};
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
+  }
 `;
 
 export const IntakeInput = styled(TextField)`
