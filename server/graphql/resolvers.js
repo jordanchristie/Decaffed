@@ -5,9 +5,6 @@ const { createToken } = require("../util/jwt");
 
 const YelpSearchURL = "https://api.yelp.com/v3/businesses/search?term=cafe";
 
-// parent, args, { User, currentUser }
-
-// getUser is firing before context is assigned!
 exports.resolvers = {
   Query: {
     getUser: async (parent, args, { User, currentUser }) => {

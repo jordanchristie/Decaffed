@@ -11,7 +11,6 @@ import SplashPage from "./pages/SplashPage";
 import CoffeeMap from "./pages/CoffeeMap";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import MyNotes from "./components/MyNotes";
 import SignUpLoginPage from "./pages/SignUpLoginPage";
 import withAuth from "./withAuth";
 
@@ -46,19 +45,10 @@ const App = ({ refetch, user }) => {
             <Route exact path="/" render={() => <SplashPage user={user} />} />
             <Route
               path="/signup"
-              render={
-                () => <SignUpLoginPage refetch={refetch} />
-                // user.hasOwnProperty("token") ? (
-                //   <SignUpLoginPage refetch={refetch} />
-                // ) : (
-                //   <Redirect to="/dashboard" />
-                // )
-              }
+              render={() => <SignUpLoginPage refetch={refetch} />}
             />
-
             <Route path="/map" component={CoffeeMap} />
             <Route path="/dashboard" render={() => <Home user={user} />} />
-            <Route path="/myNotes" component={MyNotes} />
             <Redirect to="/" />
           </Switch>
         </>

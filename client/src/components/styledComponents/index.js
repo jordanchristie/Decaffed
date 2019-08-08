@@ -13,6 +13,9 @@ export const SplashBackground = styled.main`
   background-size: cover;
   color: #fff;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Splash = styled.section`
@@ -103,6 +106,7 @@ export const NavTitle = styled.a`
 export const NavList = styled.ul`
   display: flex;
   flex-flow: column wrap;
+  justify-content: center;
   padding: 10%;
 `;
 
