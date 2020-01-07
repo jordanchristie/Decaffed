@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { Mutation } from "react-apollo";
 import { LOGIN_USER } from "../graphql/mutations";
-import { IntakeForm, IntakeInput, ActionButton } from "./styledComponents";
+import {
+  IntakeForm,
+  IntakeInput,
+  ActionButton,
+  SplashBackground
+} from "./styledComponents";
 
 const initialState = {
   username: "",
@@ -35,26 +40,26 @@ class Login extends Component {
       <Mutation mutation={LOGIN_USER} variables={this.state}>
         {(loginUser, { data, loading, error }) => {
           return (
-            <IntakeForm
-              active={this.props.active}
-              onSubmit={e => this.handleSubmit(e, loginUser)}
-            >
-              <IntakeInput
-                type="text"
-                name="username"
-                value={username}
-                placeholder="Username"
-                onChange={this.handleChange}
-              />
-              <IntakeInput
-                type="password"
-                name="password"
-                value={password}
-                placeholder="Password"
-                onChange={this.handleChange}
-              />
-              <ActionButton>Login</ActionButton>
-            </IntakeForm>
+            <SplashBackground>
+              <IntakeForm onSubmit={e => this.handleSubmit(e, loginUser)}>
+                <h1>Login</h1>
+                <IntakeInput
+                  type="text"
+                  name="username"
+                  value={username}
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                />
+                <IntakeInput
+                  type="password"
+                  name="password"
+                  value={password}
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                />
+                <ActionButton>Login</ActionButton>
+              </IntakeForm>
+            </SplashBackground>
           );
         }}
       </Mutation>

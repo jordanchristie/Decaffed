@@ -18,7 +18,7 @@ export const SplashBackground = styled.main`
   justify-content: center;
 `;
 
-export const Splash = styled.section`
+export const SplashContent = styled.section`
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -52,39 +52,18 @@ export const ActionButton = styled.button`
   }
 `;
 
-// SignUpLogin Page
-export const IntakeWrapper = styled.section`
-  background: white;
-  width: 60vw;
-  margin: 0 auto;
-  color: #333;
-`;
-
-export const SignUpLoginTabs = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 20px;
-  h3 {
-    width: 50%;
-    margin: 0;
-    cursor: pointer;
-  }
-
-  .login {
-    border-right: 1px solid #333;
-  }
-
-  &.active {
-    border-bottom: 1px solid #333;
-  }
-`;
+// SignUp / Login
 
 export const IntakeForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
+  background: white;
+  width: 50vw;
+  margin: 0 auto;
+  padding: 20px;
+  color: #333;
   }
 `;
 

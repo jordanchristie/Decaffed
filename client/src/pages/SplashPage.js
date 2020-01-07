@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   SplashBackground,
-  Splash,
+  SplashContent,
   Title,
   Tagline,
   ActionButton
@@ -11,7 +11,7 @@ import {
 
 const SplashPage = ({ session }) => (
   <SplashBackground>
-    <Splash>
+    <SplashContent>
       <Title>Decaffed</Title>
       <Tagline>Find a coffee shop nearby to recaffeinate.</Tagline>
       <ActionButton bg="#333" href="/auth/github">
@@ -26,7 +26,7 @@ const SplashPage = ({ session }) => (
       <ActionButton as={Link} to="/signup" bg="#1da1f2">
         Sign Up
       </ActionButton>
-    </Splash>
+    </SplashContent>
   </SplashBackground>
 );
 

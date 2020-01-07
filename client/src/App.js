@@ -11,7 +11,8 @@ import SplashPage from "./pages/SplashPage";
 import CoffeeMap from "./pages/CoffeeMap";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import SignUpLoginPage from "./pages/SignUpLoginPage";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 import withAuth from "./withAuth";
 
 const GlobalStyle = createGlobalStyle`
@@ -43,10 +44,8 @@ const App = ({ refetch, user }) => {
           {user && <Header user={user} />}
           <Switch>
             <Route exact path="/" render={() => <SplashPage user={user} />} />
-            <Route
-              path="/signup"
-              render={() => <SignUpLoginPage refetch={refetch} />}
-            />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/login" component={Login} />
             <Route path="/map" component={CoffeeMap} />
             <Route path="/dashboard" render={() => <Home user={user} />} />
             <Redirect to="/" />

@@ -1,8 +1,13 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { SIGN_UP_USER } from "../graphql/mutations";
-import { IntakeForm, IntakeInput, ActionButton } from "./styledComponents";
+import {
+  IntakeForm,
+  IntakeInput,
+  ActionButton,
+  SplashBackground
+} from "./styledComponents";
 
 const initialState = {
   username: "",
@@ -39,40 +44,43 @@ class SignUp extends Component {
       >
         {(signUpUser, { data, loading, error }) => {
           return (
-            <IntakeForm
-              active={this.props.active}
-              onSubmit={e => this.handleSubmit(e, signUpUser)}
-            >
-              <IntakeInput
-                type="text"
-                name="username"
-                value={username}
-                placeholder="Username"
-                onChange={this.handleChange}
-              />
-              <IntakeInput
-                type="email"
-                name="email"
-                value={email}
-                placeholder="Email"
-                onChange={this.handleChange}
-              />
-              <IntakeInput
-                type="password"
-                name="password"
-                value={password}
-                placeholder="Password"
-                onChange={this.handleChange}
-              />
-              <IntakeInput
-                type="password"
-                name="confirmedPassword"
-                value={confirmedPassword}
-                placeholder="Confirm Password"
-                onChange={this.handleChange}
-              />
-              <ActionButton>SignUp</ActionButton>
-            </IntakeForm>
+            <SplashBackground>
+              <IntakeForm onSubmit={e => this.handleSubmit(e, signUpUser)}>
+                <h1>Sign Up</h1>
+                <IntakeInput
+                  type="text"
+                  name="username"
+                  value={username}
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                />
+                <IntakeInput
+                  type="email"
+                  name="email"
+                  value={email}
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                />
+                <IntakeInput
+                  type="password"
+                  name="password"
+                  value={password}
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                />
+                <IntakeInput
+                  type="password"
+                  name="confirmedPassword"
+                  value={confirmedPassword}
+                  placeholder="Confirm Password"
+                  onChange={this.handleChange}
+                />
+                <ActionButton>Submit</ActionButton>
+                <p>
+                  Already a user? <Link to="/login">Log In</Link>
+                </p>
+              </IntakeForm>
+            </SplashBackground>
           );
         }}
       </Mutation>
