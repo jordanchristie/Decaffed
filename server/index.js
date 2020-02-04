@@ -17,7 +17,7 @@ const app = express();
 require("./auth/passport");
 
 // Initialize MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true });
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.on("error", console.error.bind(console));

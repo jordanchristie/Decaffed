@@ -73,6 +73,10 @@ export const IntakeInput = styled(TextField)`
   outline: 0;
 `;
 
+export const ErrorMessage = styled.p`
+  color: red;
+`
+
 // Sidebar
 export const AppDrawer = styled(Drawer)`
   width: 50vw;

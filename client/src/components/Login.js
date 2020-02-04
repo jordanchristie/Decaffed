@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router";
+import { withRouter, Link } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { LOGIN_USER } from "../graphql/mutations";
 import {
   IntakeForm,
   IntakeInput,
   ActionButton,
-  SplashBackground
+  SplashBackground,
+  ErrorMessage
 } from "./styledComponents";
 
 const initialState = {
@@ -57,7 +58,11 @@ class Login extends Component {
                   placeholder="Password"
                   onChange={this.handleChange}
                 />
+                {error && <ErrorMessage> {error.message} </ErrorMessage>}
                 <ActionButton>Login</ActionButton>
+                <p>
+                  New to the app? <Link to="/signup">Sign Up</Link>
+                </p>
               </IntakeForm>
             </SplashBackground>
           );
