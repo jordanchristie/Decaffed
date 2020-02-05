@@ -29,7 +29,7 @@ class Login extends Component {
       .then(async ({ data }) => {
         console.log(data);
         localStorage.setItem("token", data.loginUser.token);
-        await this.props.refetch();
+        //await this.props.refetch();
         this.props.history.push("/dashboard");
       })
       .catch(error => console.log(error.message));
@@ -37,6 +37,7 @@ class Login extends Component {
 
   render() {
     const { username, password } = this.state;
+    console.log(this.props);
     return (
       <Mutation mutation={LOGIN_USER} variables={this.state}>
         {(loginUser, { data, loading, error }) => {

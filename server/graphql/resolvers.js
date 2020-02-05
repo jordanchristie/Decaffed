@@ -16,9 +16,7 @@ exports.resolvers = {
 
     getCoffeeShops: async (parent, { coordinates }) => {
       const result = await axios.get(
-        `${YelpSearchURL}&latitude=${coordinates.lat}&longitude=${
-          coordinates.lng
-        }`,
+        `${YelpSearchURL}&latitude=${coordinates.lat}&longitude=${coordinates.lng}`,
         { headers: { Authorization: `Bearer ${keys.yelpAPIKey}` } }
       );
 
@@ -110,6 +108,16 @@ exports.resolvers = {
       };
       user.favoriteShops.push(favoriteShop);
       user.save();
+    },
+
+    removeFavoriteShop: async (parent, { _id }, { User, currentUser }) => {
+      const user = await User.findOne({ username: currentUser.username });
+
+      user.favoriteShops.id(_id).remove();
+
+      user.save();
+
+      return user.favoriteShops;
     },
 
     // Note Mutations

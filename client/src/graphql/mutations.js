@@ -40,9 +40,9 @@ export const ADD_FAVORITE_SHOP = gql`
 `;
 
 export const REMOVE_FAVORITE_SHOP = gql`
-  mutation($id: String!) {
-    removeFavoriteShop(id: $id) {
-      id
+  mutation($_id: String!) {
+    removeFavoriteShop(_id: $_id) {
+      _id
     }
   }
 `;

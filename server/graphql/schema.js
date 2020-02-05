@@ -66,6 +66,7 @@ exports.typeDefs = gql`
       address: String!
       cityState: String!
     ): FavoriteShop
+    removeFavoriteShop(_id: String!): [FavoriteShop]
     addNote(
       title: String
       note: String!
