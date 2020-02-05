@@ -4,13 +4,14 @@ import { Mutation } from "react-apollo";
 import { ADD_NOTE } from "../graphql/mutations";
 import { FieldLabel, NoteInput, ActionButton } from "./styledComponents";
 
-const initialState = {
-  title: "",
-  note: ""
-};
-
 class Note extends Component {
-  state = { ...initialState };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      note: ""
+    };
+  }
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -19,11 +20,15 @@ class Note extends Component {
   };
 
   submitNote = (e, addNote) => {
-    addNote().then(console.log("note added"));
+    e.preventDefault();
+
+    addNote()
+      .then(() => this.resetNote())
+      .then(() => this.props.closeNote());
   };
 
   resetNote = () => {
-    this.setState({ ...initialState });
+    this.setState({ title: "", note: "" });
   };
 
   render() {
@@ -36,7 +41,7 @@ class Note extends Component {
       <Mutation mutation={ADD_NOTE} variables={{ title, note, name, location }}>
         {addNote => {
           return (
-            <NoteWrapper>
+            <NoteWrapper onSubmit={e => this.submitNote(e, addNote)}>
               <NoteHeader>
                 <p onClick={closeNote}>&#215;</p>
               </NoteHeader>
@@ -58,12 +63,7 @@ class Note extends Component {
                 placeholder="Add text to your note"
                 onChange={this.handleChange}
               />
-              <ActionButton
-                className="note-submit"
-                onClick={e => addNote(e, addNote)}
-              >
-                Add Note
-              </ActionButton>
+              <ActionButton className="note-submit">Add Note</ActionButton>
             </NoteWrapper>
           );
         }}
@@ -74,7 +74,7 @@ class Note extends Component {
 
 export default Note;
 
-const NoteWrapper = styled.section`
+const NoteWrapper = styled.form`
   position: absolute;
   top: -43%;
   left: 10%;

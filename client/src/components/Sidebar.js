@@ -6,7 +6,6 @@ import { AppDrawer, NavTitle, NavList, NavLink } from "./styledComponents";
 import { Home, Map, Notes } from "@material-ui/icons";
 
 const Sidebar = ({ client, history, isOpen, toggleSidebar }) => {
-  console.log(history);
   const logout = () => {
     localStorage.removeItem("token");
     client.resetStore();
@@ -39,7 +38,4 @@ const Sidebar = ({ client, history, isOpen, toggleSidebar }) => {
   );
 };
 
-export default compose(
-  withRouter,
-  withApollo
-)(Sidebar);
+export default compose(withRouter, withApollo)(Sidebar);

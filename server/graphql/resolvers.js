@@ -144,9 +144,13 @@ exports.resolvers = {
       const modifiedNote = await Note.findOneAndUpdate({ _id });
     },
 
-    removeNote: async (parent, { _id }, { User }) => {
-      const user = await User.findOne({ _id });
-      user.notes._id({ _id }).remove();
+    deleteNote: async (parent, { _id }, { User, currentUser }) => {
+      const user = await User.findOne({ username: currentUser.username });
+      user.notes.id({ _id }).remove();
+
+      user.save();
+
+      return user.notes;
     }
   }
 };

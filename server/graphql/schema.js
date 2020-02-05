@@ -74,6 +74,6 @@ exports.typeDefs = gql`
       location: String!
     ): Note
     editNote(_id: ID!): Note
-    removeNote(_id: ID!): Note
+    deleteNote(_id: String!): [Note]
   }
 `;

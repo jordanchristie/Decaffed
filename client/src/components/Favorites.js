@@ -17,9 +17,9 @@ const Favorites = ({ favoriteShops }) => {
               mutation={REMOVE_FAVORITE_SHOP}
               variables={{ _id: shop._id }}
             >
-              {removeFavoriteShop => {
-                return <button onClick={removeFavoriteShop}>Delete</button>;
-              }}
+              {removeFavoriteShop => (
+                <button onClick={removeFavoriteShop}>Delete</button>
+              )}
             </Mutation>
           </FavoritesOverlay>
         </Favorite>
@@ -27,7 +27,6 @@ const Favorites = ({ favoriteShops }) => {
     });
   };
 
-  console.log(favoriteShops);
   return (
     <FavoritesList>
       {favoriteShops ? (

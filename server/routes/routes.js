@@ -4,7 +4,6 @@ const express = require("express"),
 
 module.exports = app => {
   app.get("/auth/logout", (req, res) => {
-    console.log("logged out!");
     req.logout();
     res.redirect("/");
   });

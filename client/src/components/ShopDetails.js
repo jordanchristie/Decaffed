@@ -45,7 +45,7 @@ class ShopDetails extends Component {
       phone,
       rating
     } = this.props.shop;
-    console.log(this.props.shop);
+
     const backgroundStyle = {
       background: `url(${image_url}) no-repeat center`,
       backgroundSize: "cover"

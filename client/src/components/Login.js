@@ -37,7 +37,6 @@ class Login extends Component {
 
   render() {
     const { username, password } = this.state;
-    console.log(this.props);
     return (
       <Mutation mutation={LOGIN_USER} variables={this.state}>
         {(loginUser, { data, loading, error }) => {

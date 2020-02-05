@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Mutation } from "react-apollo";
+import { DELETE_NOTE } from "../graphql/mutations";
 
 const Notes = ({ notes }) => {
   const renderNotes = () =>
@@ -9,11 +11,14 @@ const Notes = ({ notes }) => {
         <h5>{note.location}</h5>
         <p>{note.title}</p>
         <p>{note.note}</p>
+        <Mutation mutation={DELETE_NOTE} variables={{ _id: note._id }}>
+          {deleteNote => <button onClick={deleteNote}>Delete</button>}
+        </Mutation>
       </NoteCard>
     ));
   return (
     <NotesList>
-      {notes ? renderNotes() : <p>You don't have any notes yet.</p>}
+      {notes.length ? renderNotes() : <p>You don't have any notes yet.</p>}
     </NotesList>
   );
 };

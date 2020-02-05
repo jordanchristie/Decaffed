@@ -48,10 +48,6 @@ class CoffeeMap extends Component {
     refetch(this.state.coordinates);
   };
 
-  addNote = () => {
-    console.log("hi there");
-  };
-
   render() {
     const mapStyle = {
       width: "100vw",

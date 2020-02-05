@@ -40,7 +40,6 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => {
-    //console.log("context", req.currentUser);
     return {
       User,
       FavoriteShop,

@@ -31,7 +31,7 @@ class SearchBar extends Component {
 
   render() {
     const { coordinates } = this.state;
-    console.log(coordinates);
+
     return (
       <>
         <GoogleComponent
