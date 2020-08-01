@@ -21,7 +21,7 @@ passport.use(
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
       callbackURL: "/auth/google/callback",
-      proxy: true
+      proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
       // Check whether user exists
@@ -34,62 +34,62 @@ passport.use(
       const newUser = await new User({
         _id: profile.id,
         name: profile.displayName,
-        profileImg: profile._json.image.url
+        profileImg: profile._json.image.url,
       }).save();
       done(null, newUser);
     }
   )
 );
 
-passport.use(
-  new GithubStrategy(
-    {
-      clientID: keys.githubClientID,
-      clientSecret: keys.githubClientSecret,
-      callbackURL: "http://localhost:3000/auth/github/callback",
-      proxy: true
-    },
-    async (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
-      // Check whether user exists
-      const existingUser = await User.findOne({ id: profile.id });
-      if (existingUser) {
-        return done(null, existingUser);
-      }
+// passport.use(
+//   new GithubStrategy(
+//     {
+//       clientID: keys.githubClientID,
+//       clientSecret: keys.githubClientSecret,
+//       callbackURL: "http://localhost:3000/auth/github/callback",
+//       proxy: true
+//     },
+//     async (accessToken, refreshToken, profile, done) => {
+//       console.log(profile);
+//       // Check whether user exists
+//       const existingUser = await User.findOne({ id: profile.id });
+//       if (existingUser) {
+//         return done(null, existingUser);
+//       }
 
-      // Create new User
-      const newUser = await new User({
-        _id: profile.id,
-        name: profile.displayName,
-        profileImg: profile._json.avatar_url
-      }).save();
-      done(null, newUser);
-    }
-  )
-);
+//       // Create new User
+//       const newUser = await new User({
+//         _id: profile.id,
+//         name: profile.displayName,
+//         profileImg: profile._json.avatar_url
+//       }).save();
+//       done(null, newUser);
+//     }
+//   )
+// );
 
-passport.use(
-  new TwitterStrategy(
-    {
-      consumerKey: keys.twitterConsumerKey,
-      consumerSecret: keys.twitterConsumerSecret,
-      callbackURL: "auth/twitter/callback",
-      proxy: true
-    },
-    async (accessToken, refreshToken, profile, done) => {
-      //Check whether user exists
-      const existingUser = await User.findOne({ id: profile.id });
-      if (existingUser) {
-        return done(null, existingUser);
-      }
+// passport.use(
+//   new TwitterStrategy(
+//     {
+//       consumerKey: keys.twitterConsumerKey,
+//       consumerSecret: keys.twitterConsumerSecret,
+//       callbackURL: "auth/twitter/callback",
+//       proxy: true
+//     },
+//     async (accessToken, refreshToken, profile, done) => {
+//       //Check whether user exists
+//       const existingUser = await User.findOne({ id: profile.id });
+//       if (existingUser) {
+//         return done(null, existingUser);
+//       }
 
-      // Create new User
-      const newUser = await new User({
-        _id: profile.id,
-        name: profile.displayName,
-        profileImg: profile._json.image.url
-      }).save();
-      done(null, newUser);
-    }
-  )
-);
+//       // Create new User
+//       const newUser = await new User({
+//         _id: profile.id,
+//         name: profile.displayName,
+//         profileImg: profile._json.image.url
+//       }).save();
+//       done(null, newUser);
+//     }
+//   )
+// );
