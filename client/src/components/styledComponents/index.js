@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Drawer from "@material-ui/core/Drawer";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
 
@@ -38,7 +37,7 @@ export const Tagline = styled.h3`
 
 export const ActionButton = styled.button`
   cursor: pointer;
-  background: ${props => props.bg};
+  background: ${(props) => props.bg};
   border: none;
   border-radius: 0.2em;
   color: #fff;
@@ -75,27 +74,20 @@ export const IntakeInput = styled(TextField)`
 
 export const ErrorMessage = styled.p`
   color: red;
-`
-
-// Sidebar
-export const AppDrawer = styled(Drawer)`
-  width: 50vw;
 `;
 
 export const NavTitle = styled.a`
-  text-align: center;
+  font-size: 2rem;
+  text-decoration: none;
+  color: #fff;
 `;
 
-export const NavList = styled.ul`
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  padding: 10%;
-`;
+export const NavList = styled.ul``;
 
 export const NavLink = styled(Link)`
   text-decoration: none;
   margin: 1em;
+  color: #fff;
 `;
 
 export const FieldLabel = styled(InputLabel)``;

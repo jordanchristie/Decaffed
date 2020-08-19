@@ -74,7 +74,7 @@ passport.use(
 //       consumerKey: keys.twitterConsumerKey,
 //       consumerSecret: keys.twitterConsumerSecret,
 //       callbackURL: "auth/twitter/callback",
-//       proxy: true
+//       proxy: true,
 //     },
 //     async (accessToken, refreshToken, profile, done) => {
 //       //Check whether user exists
@@ -87,7 +87,7 @@ passport.use(
 //       const newUser = await new User({
 //         _id: profile.id,
 //         name: profile.displayName,
-//         profileImg: profile._json.image.url
+//         profileImg: profile._json.image.url,
 //       }).save();
 //       done(null, newUser);
 //     }

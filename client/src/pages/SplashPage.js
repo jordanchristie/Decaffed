@@ -6,7 +6,7 @@ import {
   SplashContent,
   Title,
   Tagline,
-  ActionButton
+  ActionButton,
 } from "../components/styledComponents";
 
 const SplashPage = ({ session }) => (
@@ -17,7 +17,7 @@ const SplashPage = ({ session }) => (
       <ActionButton bg="#333" href="/auth/github">
         Login with Github
       </ActionButton>
-      <ActionButton bg="#3f51b5" href="/auth/google">
+      <ActionButton as="a" bg="#3f51b5" href="/auth/google">
         Login with Google
       </ActionButton>
       <ActionButton bg="#1da1f2" href="/auth/twitter">

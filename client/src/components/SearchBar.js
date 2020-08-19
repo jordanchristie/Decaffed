@@ -11,18 +11,18 @@ class SearchBar extends Component {
     this.state = { coordinates: {} };
   }
 
-  handleSearch = e => {
+  handleSearch = (e) => {
     this.setState({ coordinates: e.coordinates });
   };
 
   getGeolocation = () => {
     if (window.navigator) {
-      window.navigator.geolocation.getCurrentPosition(position => {
+      window.navigator.geolocation.getCurrentPosition((position) => {
         const res = {
           coordinates: {
             lat: position.coords.latitude,
-            lng: position.coords.longitude
-          }
+            lng: position.coords.longitude,
+          },
         };
         this.handleSearch(res);
       });
@@ -34,14 +34,19 @@ class SearchBar extends Component {
 
     return (
       <>
-        <GoogleComponent
-          style={{ width: "70%" }}
-          apiKey={keys.GoogleAPIKey}
-          coordinates={true}
-          onChange={e => this.handleSearch(e)}
+        <div
+          className="searchbar-wrapper"
+          style={{ width: "50%", margin: "0 auto" }}
         >
-          <i className="fa fa-search" />
-        </GoogleComponent>
+          <GoogleComponent
+            style={{ width: "70%" }}
+            apiKey={keys.googleAPIKey}
+            coordinates={true}
+            onChange={(e) => this.handleSearch(e)}
+          >
+            <i className="fa fa-search" />
+          </GoogleComponent>
+        </div>
         <Geolocator onClick={this.getGeolocation}>
           <LocationOn />
           {Object.getOwnPropertyNames(coordinates).length
@@ -52,7 +57,7 @@ class SearchBar extends Component {
         <Link
           to={{
             pathname: "/map",
-            state: { coordinates }
+            state: { coordinates },
           }}
           style={{ textAlign: "center" }}
         >

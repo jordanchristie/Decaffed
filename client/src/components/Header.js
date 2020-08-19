@@ -1,37 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
 
 import styled from "styled-components";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+import { NavTitle, NavList, NavLink } from "./styledComponents";
 
-import Sidebar from "./Sidebar";
+const Header = ({ user, client, history }) => {
+  const logout = () => {
+    localStorage.removeItem("token");
+    client.resetStore();
+    history.push("/");
+  };
 
-const Header = () => {
-  const [sideBarOpen, toggleSidebar] = useState(false);
   return (
     <Navbar>
-      <AppBar style={{ position: "relative" }}>
-        <Toolbar>
-          <IconButton onClick={() => toggleSidebar(!sideBarOpen)}>
-            <Menu />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Sidebar
-        isOpen={sideBarOpen}
-        toggleSidebar={() => toggleSidebar(!sideBarOpen)}
-      />
+      <NavTitle href="/">Decaffed.</NavTitle>
+      <NavList>
+        {user ? (
+          <>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+
+            <NavLink to="/map">Map</NavLink>
+
+            <NavLink to="/mynotes">My Notes</NavLink>
+
+            <NavLink as="p" onClick={logout}>
+              Log Out
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink to="/search">Coffee Shops</NavLink>
+            <NavLink to="/signup">Login</NavLink>
+          </>
+        )}
+      </NavList>
     </Navbar>
   );
 };
 
 export default Header;
 
-const Navbar = styled.nav``;
-
-const Menu = styled(MenuIcon)`
-  color: white;
-  height: 60px;
+const Navbar = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 4rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
 `;
