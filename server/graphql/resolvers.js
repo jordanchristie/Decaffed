@@ -3,8 +3,6 @@ const bcrypt = require("bcrypt");
 const keys = require("../keys/keys");
 const { createToken } = require("../util/jwt");
 
-const YelpSearchURL = "https://api.yelp.com/v3/businesses/search?term=cafe";
-
 exports.resolvers = {
   Query: {
     getUser: async (parent, args, { User, currentUser }) => {
@@ -15,35 +13,48 @@ exports.resolvers = {
     },
 
     getCoffeeShops: async (parent, { coordinates }) => {
-      const result = await axios.get(
-        `${YelpSearchURL}&latitude=${coordinates.lat}&longitude=${coordinates.lng}`,
-        { headers: { Authorization: `Bearer ${keys.yelpAPIKey}` } }
-      );
+      const YelpSearchURL = "https://api.yelp.com/v3/graphql/businesses/search";
 
-      const data = await result.data.businesses;
+      const result = await axios.get(`${YelpSearchURL}`, {
+        headers: {
+          Authorization: `Bearer ${keys.YelpAPIKey}`,
+        },
+        params: {
+          term: "cafe",
+          latitude: coordinates.lat,
+          longitude: coordinates.lng,
+        },
+      });
 
-      const normalizedData = data.map(
-        ({
-          name,
-          image_url,
-          location,
-          coordinates,
-          rating,
-          display_phone
-        }) => ({
-          name,
-          image_url,
-          rating,
-          phone: display_phone,
-          address: location.address1,
-          cityState: `${location.city}, ${location.state} ${location.zip_code}`,
-          coordinates: {
-            lat: coordinates.latitude,
-            lng: coordinates.longitude
-          }
-        })
-      );
-      return normalizedData;
+      console.log(result.data);
+
+      // const { data } = await result;
+      // console.log(data);
+
+      // return data;
+
+      // const normalizedData = data.map(
+      //   ({
+      //     name,
+      //     image_url,
+      //     location,
+      //     coordinates,
+      //     rating,
+      //     display_phone,
+      //   }) => ({
+      //     name,
+      //     image_url,
+      //     rating,
+      //     phone: display_phone,
+      //     address: location.address1,
+      //     cityState: `${location.city}, ${location.state} ${location.zip_code}`,
+      //     coordinates: {
+      //       lat: coordinates.latitude,
+      //       lng: coordinates.longitude,
+      //     },
+      //   })
+      // );
+      // return normalizedData;
     },
 
     getAllNotes: async (parent, { _id }, { User }) => {
@@ -54,7 +65,7 @@ exports.resolvers = {
     getAllFavoriteShops: async (parent, { _id }, { User }) => {
       const user = await User.findOne({ _id });
       return user.favoriteShops;
-    }
+    },
   },
   Mutation: {
     // User Mutations
@@ -64,11 +75,11 @@ exports.resolvers = {
       const newUser = await new User({
         username,
         email,
-        password
+        password,
       }).save();
 
       return {
-        token: createToken(newUser, keys.tokenSecret, "1d")
+        token: createToken(newUser, keys.tokenSecret, "1d"),
       };
     },
 
@@ -85,7 +96,7 @@ exports.resolvers = {
       }
 
       return {
-        token: createToken(user, keys.tokenSecret, "1d")
+        token: createToken(user, keys.tokenSecret, "1d"),
       };
     },
 
@@ -104,7 +115,7 @@ exports.resolvers = {
         name,
         image_url,
         address,
-        cityState
+        cityState,
       };
       user.favoriteShops.push(favoriteShop);
       user.save();
@@ -132,7 +143,7 @@ exports.resolvers = {
         title,
         note,
         name,
-        location
+        location,
       };
 
       user.notes.push(newNote);
@@ -151,6 +162,6 @@ exports.resolvers = {
       user.save();
 
       return user.notes;
-    }
-  }
+    },
+  },
 };
